@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
+  <channel>
+    <title>WP Digests — woocommerce</title>
+    <link>https://github.com/philltran/wp-digests/</link>
+    <description>Notable WordPress ecosystem changes in the woocommerce track.</description>
+    <docs>http://www.rssboard.org/rss-specification</docs>
+    <generator>python-feedgen</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 02 Jun 2026 11:30:39 +0000</lastBuildDate>
+    <item>
+      <title>#65441: [dev] Update .ai/skills/woocommerce-performance/options-cache-priming.md</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/65441</link>
+      <description>This PR updates an internal AI-agent skill doc (`.ai/skills/woocommerce-performance/options-cache-priming.md`) and removes a now-redundant inline comment in the variable product data store. It documents "Pattern 4": passing transient-prefixed option names (`_transient_*`, `_transient_timeout_*`, `_site_transient_*`, `_site_transient_timeout_*`) to `wp_prime_option_caches()` is unsafe on sites running a persistent object cache. Because those transients live in the object cache's `transient` group rather than `wp_options`, priming records each name in core's `notoptions` negative cache permanently, causing unbounded growth that can raise per-request cost on sharded backends. The fix is to guard such priming with `! wp_using_ext_object_cache()`.
+
+Digest entry: issues/woocommerce/gh-woocommerce-65441.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-65441</guid>
+      <pubDate>Tue, 02 Jun 2026 05:02:40 +0000</pubDate>
+    </item>
+    <item>
+      <title>#65333: Deprecate Product Editor v2</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/65333</link>
+      <description>This PR formally deprecates WooCommerce's Product Editor v2 (the React/block-based product editor, internally the `product_block_editor` feature) and its entire extensibility surface, ahead of removal in **WooCommerce 11.0**. It adds runtime deprecation notices across both the JavaScript (`@woocommerce/product-editor`) and PHP layers, marks the public template/block-registration APIs and filter/action hooks as deprecated since **10.9.0**, and surfaces an in-editor warning banner that lets merchants switch back to the classic product editor in one click. The legacy `FeedbackBar` CES component is also removed as part of the cleanup. No functionality is removed yet — this release is the advisory window before the editor and its APIs are deleted.
+
+Digest entry: issues/woocommerce/gh-woocommerce-65333.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-65333</guid>
+      <pubDate>Tue, 02 Jun 2026 05:03:31 +0000</pubDate>
+    </item>
+    <item>
+      <title>#65210: Replace `tsc` With `esbuild`</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/65210</link>
+      <description>This monorepo infrastructure change swaps the TypeScript compiler (`tsc`) for `esbuild` across all per-package JS builds in the WooCommerce monorepo, building on a prior PR (#65168) that had already stripped type-checking out of the build pipeline. Because type-checking no longer ran during builds, `tsc` was only doing transpilation — work `esbuild` does dramatically faster. The result is large build-time and memory reductions: cold builds drop ~71% (44.7s → 12.8s) and watch-mode peak memory falls ~68% (24.4 GB → 7.9 GB). As a side effect, JSDoc comments are now stripped from transpiled output, and the TS config switches to `isolatedModules`, which requires per-file-safe code (e.g. explicit `import type`).
+
+Digest entry: issues/woocommerce/gh-woocommerce-65210.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-65210</guid>
+      <pubDate>Tue, 02 Jun 2026 05:04:06 +0000</pubDate>
+    </item>
+    <item>
+      <title>#65247: Link email events orders store actions</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/65247</link>
+      <description>WooCommerce's `EmailLogger` service now records a private order note for every transactional email send or failure that is associated with a `WC_Order`. Previously the logger only wrote entries to the WooCommerce log files (`WooCommerce → Status → Logs`); now the same send/failure events surface directly on the order's admin timeline. Each note states whether the email "sent" or "failed to send," and failure notes include the captured `wp_mail_failed` error reason with any embedded email addresses redacted. This is a follow-up to the EmailLogger work introduced in #64491 and #64859.
+
+Digest entry: issues/woocommerce/gh-woocommerce-65247.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-65247</guid>
+      <pubDate>Tue, 02 Jun 2026 05:04:42 +0000</pubDate>
+    </item>
+  </channel>
+</rss>

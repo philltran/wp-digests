@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 02 Jun 2026 04:55:59 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 02 Jun 2026 11:30:39 +0000</lastBuildDate>
     <item>
       <title>#75692: Navigation Overlay Close: Set Close as default text, rather than using a placeholder</title>
       <link>https://github.com/WordPress/gutenberg/commit/e90f98c993abf73ada30c5d8fdc975da3d2044be</link>
@@ -52,6 +52,123 @@ Digest entry: issues/gutenberg/gh-gutenberg-78711.md · Source: WordPress/gutenb
 Digest entry: issues/gutenberg/gh-gutenberg-78757.md · Source: WordPress/gutenberg</description>
       <guid isPermaLink="false">gh-gutenberg-78757</guid>
       <pubDate>Tue, 02 Jun 2026 04:54:50 +0000</pubDate>
+    </item>
+    <item>
+      <title>#78758: Media Editor: Remove resize handles toggle from crop panel</title>
+      <link>https://github.com/WordPress/gutenberg/pull/78758</link>
+      <description>This PR removes the user-facing **"Show resize handles"** toggle from the media editor's Crop panel in the Gutenberg media modal. The toggle exposed an implementation detail (the cropper's `freeformCrop` behavior) rather than a clear user goal, and disabling it removed the primary affordance for resizing a free-form crop. The media modal now always enables crop resize handles, leaving only `Aspect ratio` and `Zoom` controls in the Crop panel. The lower-level cropper `freeformCrop` prop is unchanged and remains available for internal/custom cropper integrations.
+
+Digest entry: issues/gutenberg/gh-gutenberg-78758.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-78758</guid>
+      <pubDate>Tue, 02 Jun 2026 04:57:06 +0000</pubDate>
+    </item>
+    <item>
+      <title>#78763: Hide Cover overlay controls for viewport states</title>
+      <link>https://github.com/WordPress/gutenberg/pull/78763</link>
+      <description>The Cover block's overlay color/gradient controls in the inspector are now hidden whenever a viewport ("style") state is active in the editor. Until the overlay controls are made to work correctly with viewport states, showing them while a state is selected was misleading, so this change gates their rendering on `! hasSelectedStyleState`. This is a stop-gap UI fix that is part of the broader viewport states effort (#77817), not a removal of the controls themselves — they reappear once no state is selected.
+
+Digest entry: issues/gutenberg/gh-gutenberg-78763.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-78763</guid>
+      <pubDate>Tue, 02 Jun 2026 04:57:28 +0000</pubDate>
+    </item>
+    <item>
+      <title>#78847: e2e-test-utils-playwright: add src to published NPM files</title>
+      <link>https://github.com/WordPress/gutenberg/pull/78847</link>
+      <description>This patch fixes a regression in the published `@wordpress/e2e-test-utils-playwright` NPM package. In PR #78237, the author stopped building the package — relying on Playwright's ability to consume TypeScript/ESM source files directly — which let e2e test runs skip a build step. However, the `src` directory was never added to the `files` array in the package's `package.json`, so the published tarball shipped without any source files, leaving the package effectively empty for consumers installing it from NPM. The fix adds `src` to `files`.
+
+Digest entry: issues/gutenberg/gh-gutenberg-78847.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-78847</guid>
+      <pubDate>Tue, 02 Jun 2026 04:57:46 +0000</pubDate>
+    </item>
+    <item>
+      <title>#78567: Font Library: Fix Update button staying active when changes are reverted</title>
+      <link>https://github.com/WordPress/gutenberg/pull/78567</link>
+      <description>Fixes a bug in the Font Library modal (Appearance &gt; Fonts) where the **Update** button stayed enabled after a font-variant selection was toggled and then reverted to the last-saved state, falsely signaling unsaved changes. The previous logic only checked whether an edits entry existed (`!! globalStyles.edits.settings.typography.fontFamilies`), which never cleared once a checkbox was touched. The fix compares the edited `fontFamilies` value against the saved value from `globalStyles.record`, so the button reflects whether the selection actually differs from what was persisted.
+
+Digest entry: issues/gutenberg/gh-gutenberg-78567.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-78567</guid>
+      <pubDate>Tue, 02 Jun 2026 04:58:05 +0000</pubDate>
+    </item>
+    <item>
+      <title>#78404: Media: Send Document-Isolation-Policy header on the site preview frame</title>
+      <link>https://github.com/WordPress/gutenberg/pull/78404</link>
+      <description>When a classic theme is active, the Site Editor (Appearance &gt; Design) renders an inert preview of the site's front end via the `wp_site_preview` request—interactive elements are supposed to be non-functional. PR #75991, which introduced cross-origin isolation for client-side media features, broke this: the preview frame became interactive again and logged console errors in Chrome. This PR restores the intended inert behavior by sending the `Document-Isolation-Policy` header on the `wp_site_preview` response.
+
+Digest entry: issues/gutenberg/gh-gutenberg-78404.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-78404</guid>
+      <pubDate>Tue, 02 Jun 2026 04:58:25 +0000</pubDate>
+    </item>
+    <item>
+      <title>#78774: Icons: maintain absolute stroke-width regardless of icon-size</title>
+      <link>https://github.com/WordPress/gutenberg/pull/78774</link>
+      <description>This PR lays the groundwork for migrating the `@wordpress/icons` set from fill-based to stroke-based SVGs without breaking existing consumers. The actual code change is narrow: `square.svg` (the only stroke-based icon already in trunk) is updated to a new authoring convention where `stroke`, `stroke-width`, and `fill` live on the outer `&lt;svg&gt;` and the `&lt;path&gt;` gains `vector-effect="non-scaling-stroke"`, so the stroke renders at a constant pixel weight (1.5px) regardless of icon size. A `Stroke width` RangeControl is added to the Storybook icon-library story to visualize the system and identify which icons still need redrawing. Note that an earlier, broader version of this PR (a `strokeWidth` prop on the React `Icon` component and `wp_kses` allowlist changes in PHP) was dropped — those are deferred to follow-ups.
+
+Digest entry: issues/gutenberg/gh-gutenberg-78774.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-78774</guid>
+      <pubDate>Tue, 02 Jun 2026 04:58:52 +0000</pubDate>
+    </item>
+    <item>
+      <title>#78821: Dashboard: Promote WidgetRender into widget-primitives</title>
+      <link>https://github.com/WordPress/gutenberg/pull/78821</link>
+      <description>This is a pure refactor of the WordPress dashboard's widget rendering code in Gutenberg — no behavior change. It promotes the host-agnostic `&lt;WidgetRender&gt;` component out of the dashboard route and into the `widget-primitives` kit, so it becomes the single canonical entry point for mounting a dashboard widget. The dashboard's old `WidgetRender` is reduced to a thin adapter renamed `DashboardWidgetRender` that only supplies dashboard-specific concerns (context wiring and the per-instance `setAttributes` callback). The same pass narrows the `widget-primitives` public API and trims stale/speculative documentation.
+
+Digest entry: issues/gutenberg/gh-gutenberg-78821.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-78821</guid>
+      <pubDate>Tue, 02 Jun 2026 04:59:13 +0000</pubDate>
+    </item>
+    <item>
+      <title>#78237: Performance Tests: log timestamps, optimize build overhead</title>
+      <link>https://github.com/WordPress/gutenberg/pull/78237</link>
+      <description>This PR speeds up the Gutenberg performance-testing pipeline, which was taking ~36 minutes in CI despite the actual `npm run test:performance` suite running in only ~6 minutes per branch — meaning ~24 of those minutes were pure overhead (checkout, build, Docker setup). It first adds timestamps to every logged step in `bin/plugin/commands/performance.js` to expose where time is spent, then applies three build/runtime optimizations that cut the end-to-end run from ~36 to ~29 minutes. The changes are confined to the perf test runner and the `e2e-test-utils-playwright` package; there is no change to shipped plugin code (reported size change: 0 B).
+
+Digest entry: issues/gutenberg/gh-gutenberg-78237.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-78237</guid>
+      <pubDate>Tue, 02 Jun 2026 04:59:36 +0000</pubDate>
+    </item>
+    <item>
+      <title>#74242: Button: Migrate to width block support</title>
+      <link>https://github.com/WordPress/gutenberg/pull/74242</link>
+      <description>This PR migrates the core Button block away from its bespoke `width` attribute to the standard `dimensions.width` block support. Instead of a four-option toggle group (25/50/75/100%), the width control now renders in the Dimensions panel as a segmented slider backed by dimension presets, and accepts any value/unit (e.g. `150px`, `50vw`). Crucially, button width becomes addressable via theme.json and Global Styles, so themes and users can set a default button width globally and override it per instance. Existing buttons are migrated automatically through the block's deprecation chain.
+
+Digest entry: issues/gutenberg/gh-gutenberg-74242.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-74242</guid>
+      <pubDate>Tue, 02 Jun 2026 05:00:05 +0000</pubDate>
+    </item>
+    <item>
+      <title>#78713: Try allowing transforms to a variation of another block</title>
+      <link>https://github.com/WordPress/gutenberg/pull/78713</link>
+      <description>This PR extends block transforms so a block can be converted not just into another block type, but into a *specific variation* of another block. The core mechanism is a new `variationName` argument threaded through `switchToBlockType`. As a demonstration of the capability, it adds a "transform to Grid" option to both the Columns and Gallery blocks, converting them into the Grid variation of `core/group` to change their layout type. It fixes #70355.
+
+Digest entry: issues/gutenberg/gh-gutenberg-78713.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-78713</guid>
+      <pubDate>Tue, 02 Jun 2026 05:00:32 +0000</pubDate>
+    </item>
+    <item>
+      <title>#78748: RTC: Return forbidden rooms together</title>
+      <link>https://github.com/WordPress/gutenberg/pull/78748</link>
+      <description>This Gutenberg PR changes the HTTP polling real-time collaboration (RTC) sync endpoint so a multi-room poll that hits multiple permission-denied rooms reports *all* of them in a single `403`, instead of failing one room at a time. Previously `check_permissions()` returned a `WP_Error` on the first forbidden room, so the client had to retry once per denied room — generating repeated `403`s and extra round trips — before settling on a working set. Now the server collects every failing room and returns them in the error's `data.rooms` array, and the polling client unregisters them all at once while preserving pending updates for the still-valid rooms.
+
+Digest entry: issues/gutenberg/gh-gutenberg-78748.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-78748</guid>
+      <pubDate>Tue, 02 Jun 2026 05:00:59 +0000</pubDate>
+    </item>
+    <item>
+      <title>#78811: RTC: Prevent slower polling filters</title>
+      <link>https://github.com/WordPress/gutenberg/pull/78811</link>
+      <description>This change hardens the `@wordpress/sync` HTTP polling provider used by Real-time Collaboration (RTC) so that the polling-interval filters can only make active polling *faster*, never slower. Previously, hosts could use these filters to raise the polling interval high enough that collaboration felt laggy or broken. The filtered values are now passed through a small helper that accepts only positive finite numbers, allows values below the defaults, and clamps anything slower back to the defaults (`4000ms` when solo, `1000ms` with collaborators). Invalid values fall back to the defaults.
+
+Digest entry: issues/gutenberg/gh-gutenberg-78811.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-78811</guid>
+      <pubDate>Tue, 02 Jun 2026 05:01:29 +0000</pubDate>
+    </item>
+    <item>
+      <title>#77476: Common CSS: avoid false-positive border-style on custom properties</title>
+      <link>https://github.com/WordPress/gutenberg/pull/77476</link>
+      <description>The default `border-style: solid` fallback that Gutenberg injects via `common.scss` was leaking onto elements that merely declared a CSS custom property whose name contained `border-width` or `border-color` (e.g. `--my-border-width`). This happened because the fallback selectors used substring matching (`[style*="border-color"]`), which matched any inline `style` attribute containing that string. The fix replaces each loose `*=` selector with three tighter selectors that only match when the property appears at the start of the style string or immediately after a `;` — positions where a real declaration can occur but a `--`-prefixed custom property cannot. Real `border-width`/`border-color` declarations still receive the solid-style fallback; custom properties no longer trigger a phantom border.
+
+Digest entry: issues/gutenberg/gh-gutenberg-77476.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-77476</guid>
+      <pubDate>Tue, 02 Jun 2026 05:01:50 +0000</pubDate>
     </item>
   </channel>
 </rss>
