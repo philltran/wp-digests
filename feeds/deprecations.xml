@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 02 Jun 2026 11:30:39 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 02 Jun 2026 12:16:11 +0000</lastBuildDate>
     <item>
       <title>#65333: Deprecate Product Editor v2</title>
       <link>https://github.com/woocommerce/woocommerce/pull/65333</link>
@@ -16,6 +16,15 @@
 Digest entry: issues/woocommerce/gh-woocommerce-65333.md · Source: woocommerce/woocommerce</description>
       <guid isPermaLink="false">gh-woocommerce-65333</guid>
       <pubDate>Tue, 02 Jun 2026 05:03:31 +0000</pubDate>
+    </item>
+    <item>
+      <title>#77773: Make `@wordpress/nux` a no-op compatibility package</title>
+      <link>https://github.com/WordPress/gutenberg/pull/77773</link>
+      <description>`@wordpress/nux`, deprecated since WordPress 5.4, has been converted into a no-op compatibility shim rather than being removed outright. The `DotTip` component now renders nothing, all `core/nux` data store selectors return inert values, and all actions are still callable but have no runtime effect. The package entry point, script handle, and data store registration are preserved to avoid breaking existing imports, `wp_enqueue_script` calls, and older WordPress-Develop upgrade workflows. The change trims approximately 5 kB from the total Gutenberg build.
+
+Digest entry: issues/gutenberg/gh-gutenberg-77773.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-77773</guid>
+      <pubDate>Tue, 02 Jun 2026 12:12:28 +0000</pubDate>
     </item>
   </channel>
 </rss>
