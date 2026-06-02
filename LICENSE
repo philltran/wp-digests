@@ -1,0 +1,33 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Copyright (c) 2026 WP Digests contributors
+
+The AI-generated digest text in this repository (the files under issues/ and the
+descriptions in feeds/) is licensed under the Creative Commons Attribution 4.0
+International License ("CC BY 4.0").
+
+You are free to:
+  - Share — copy and redistribute the material in any medium or format
+  - Adapt — remix, transform, and build upon the material for any purpose, even
+    commercially
+
+Under the following terms:
+  - Attribution — You must give appropriate credit (e.g. "WP Digests"), provide a link
+    to this repository and to the license, and indicate if changes were made. You may do
+    so in any reasonable manner, but not in any way that suggests the licensor endorses
+    you or your use.
+  - No additional restrictions — You may not apply legal terms or technological measures
+    that legally restrict others from doing anything the license permits.
+
+Full legal code: https://creativecommons.org/licenses/by/4.0/legalcode
+Human-readable summary: https://creativecommons.org/licenses/by/4.0/
+
+IMPORTANT SCOPE NOTE
+This license applies ONLY to the digest summaries authored for this project. It does NOT
+apply to the upstream content those summaries describe or quote. That upstream content
+(WordPress core / Trac contributions, Gutenberg, WooCommerce, Make WordPress posts, etc.)
+remains under its own license — generally GPLv2-or-later, GPL/MPL, or Creative Commons —
+held by its respective authors. Each digest entry links to its authoritative source.
+
+This work is provided "as is", without warranty of any kind. The summaries are
+AI-generated and may contain errors.
