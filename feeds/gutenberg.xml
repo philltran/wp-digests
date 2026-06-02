@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
+  <channel>
+    <title>WP Digests — gutenberg</title>
+    <link>https://github.com/philltran/wp-digests/</link>
+    <description>Notable WordPress ecosystem changes in the gutenberg track.</description>
+    <docs>http://www.rssboard.org/rss-specification</docs>
+    <generator>python-feedgen</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 02 Jun 2026 04:55:59 +0000</lastBuildDate>
+    <item>
+      <title>#75692: Navigation Overlay Close: Set Close as default text, rather than using a placeholder</title>
+      <link>https://github.com/WordPress/gutenberg/commit/e90f98c993abf73ada30c5d8fdc975da3d2044be</link>
+      <description>The Navigation Overlay Close button block (`core/navigation-overlay-close`) previously rendered its "Close" label as a `RichText` placeholder rather than as real content. This PR removes the placeholder and instead seeds the block's text with a default value of "Close", and drops the `withoutInteractiveFormatting` flag on the `RichText`. The result is that the close button's text now renders identically in the editor and on the frontend (it was previously shown in grey placeholder styling in the editor), and inline formatting controls now apply to the label as expected.
+
+Digest entry: issues/gutenberg/gh-gutenberg-75692.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-75692</guid>
+      <pubDate>Tue, 02 Jun 2026 04:54:50 +0000</pubDate>
+    </item>
+    <item>
+      <title>#78670: Hide image dimension tools when a state is selected</title>
+      <link>https://github.com/WordPress/gutenberg/commit/95108749d74ae3492c8c4614e9c3b606e9c4c8c2</link>
+      <description>When a responsive style state (e.g. 'Mobile' or 'Tablet') is selected via the block card's style-state dropdown, several dimension-related controls on the Cover, Image, and Post Featured Image blocks now don't function correctly because those controls aren't yet wired up to per-state styling. As a stopgap, this PR hides those controls whenever a non-default style state is selected, preventing users from interacting with inputs that would produce broken or no-op behavior. The affected controls include Cover min height, Image focal point / aspect ratio / width / height / scale, and Featured Imag
+
+Digest entry: issues/gutenberg/gh-gutenberg-78670.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-78670</guid>
+      <pubDate>Tue, 02 Jun 2026 04:54:50 +0000</pubDate>
+    </item>
+    <item>
+      <title>#78708: Media Editor Modal: Try placing the save and cancel buttons in the footer</title>
+      <link>https://github.com/WordPress/gutenberg/commit/46f6176dd6833067ea439ffe48e06fe1a5f683dd</link>
+      <description>An experimental exploration of the new block-editor Media Editor modal (the image crop/edit UI opened from the Image block's Crop toolbar button). The PR relocates the **Save** and **Cancel** action buttons out of the modal's top-right header and into the modal footer, placing them on the same row as the existing editing controls (undo/redo and the crop/rotate/flip toolbar). The goal is to make the editor feel like a conventional WP modal — where confirm/dismiss actions live in the footer — rather than putting action buttons at the top-right. It is explicitly a work-in-progress to drive discus
+
+Digest entry: issues/gutenberg/gh-gutenberg-78708.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-78708</guid>
+      <pubDate>Tue, 02 Jun 2026 04:54:50 +0000</pubDate>
+    </item>
+    <item>
+      <title>#78711: Image Editor: focus return after closing image crop modal</title>
+      <link>https://github.com/WordPress/gutenberg/commit/898fda7c463b4fccf3ce8bb7a728b357b92faddf</link>
+      <description>This fixes a keyboard accessibility bug in the block editor's image cropper. When the media editor modal is opened from a block toolbar's Crop button via keyboard, closing it (via Cancel, Escape, or Save) left focus lost rather than returning it to the launching control. The PR adds an optional `onClose` callback to the media editor modal's open payload and wires up a focus-return callback from the Image block (including within Gallery) and the Site Logo block, so focus returns to the Crop toolbar button after the modal closes.
+
+Digest entry: issues/gutenberg/gh-gutenberg-78711.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-78711</guid>
+      <pubDate>Tue, 02 Jun 2026 04:54:50 +0000</pubDate>
+    </item>
+    <item>
+      <title>#78757: Image cropper: round zoom control values and display as percentages</title>
+      <link>https://github.com/WordPress/gutenberg/commit/910a2738ee4586bdb7b7874583aacea3a6769885</link>
+      <description>The block editor's image cropper (image editing modal) now displays its zoom control as a percentage rather than a raw multiplier. Previously the control surfaced the zoom multiplier directly, which could render imprecise float values like `3.749999999999999` in the input. The control is now labelled `Zoom (%)` and shows clean percentage values such as `150`, `375`, or `1000`. The underlying cropper state and crop math are unchanged — only the displayed/entered unit is converted.
+
+Digest entry: issues/gutenberg/gh-gutenberg-78757.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-78757</guid>
+      <pubDate>Tue, 02 Jun 2026 04:54:50 +0000</pubDate>
+    </item>
+  </channel>
+</rss>
