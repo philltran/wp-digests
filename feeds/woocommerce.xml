@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 02 Jun 2026 12:16:11 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 03 Jun 2026 18:47:56 +0000</lastBuildDate>
     <item>
       <title>#65441: [dev] Update .ai/skills/woocommerce-performance/options-cache-priming.md</title>
       <link>https://github.com/woocommerce/woocommerce/pull/65441</link>
@@ -43,6 +43,69 @@ Digest entry: issues/woocommerce/gh-woocommerce-65210.md · Source: woocommerce/
 Digest entry: issues/woocommerce/gh-woocommerce-65247.md · Source: woocommerce/woocommerce</description>
       <guid isPermaLink="false">gh-woocommerce-65247</guid>
       <pubDate>Tue, 02 Jun 2026 05:04:42 +0000</pubDate>
+    </item>
+    <item>
+      <title>#65395: Remove async product editor category field</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/65395</link>
+      <description>WooCommerce has removed the dormant `async-product-editor-category-field` feature flag and its associated product category metabox assets, as the functionality was never enabled in production. This cleanup eliminates unused React-based async components, reduces frontend bundle size, and formally deprecates the underlying AJAX callback to prevent future reliance on it. The change streamlines the product editor pipeline without altering core product categorization logic or database schemas.
+
+Digest entry: issues/woocommerce/gh-woocommerce-65395.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-65395</guid>
+      <pubDate>Wed, 03 Jun 2026 02:50:18 +0000</pubDate>
+    </item>
+    <item>
+      <title>#64387: Add modern settings SDK opt-in path</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/64387</link>
+      <description>WooCommerce introduces an opt-in React-based settings SDK that enables extensions to render a modern, canonical UI while keeping `WC_Settings_Page` as the PHP migration boundary. This architectural shift separates client-side rendering from server-side persistence and asset management, providing a structured upgrade path for extensions without requiring full legacy flow rewrites.
+
+Digest entry: issues/woocommerce/gh-woocommerce-64387.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-64387</guid>
+      <pubDate>Wed, 03 Jun 2026 02:51:28 +0000</pubDate>
+    </item>
+    <item>
+      <title>#65316: Remove `@woocommerce/settings-editor`</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/65316</link>
+      <description>WooCommerce removed the unused `@woocommerce/settings-editor` package and stripped its associated feature-flagged admin plumbing. This cleanup eliminates dead modern-settings frontend sources, REST controllers, transformer classes, and legacy build configurations to reduce monorepo maintenance overhead. The change consolidates the admin settings experience back to the established legacy routing and asset pipeline without altering merchant-facing behavior.
+
+Digest entry: issues/woocommerce/gh-woocommerce-65316.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-65316</guid>
+      <pubDate>Wed, 03 Jun 2026 02:53:35 +0000</pubDate>
+    </item>
+    <item>
+      <title>#64158: Fix preg_match null deprecation in WC_Eval_Math</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/64158</link>
+      <description>This update resolves a PHP 8.1+ deprecation notice in WooCommerce’s `WC_Eval_Math` class when evaluating mathematical shipping formulas with insufficient stack depth. Specifically, the internal stack’s `last()` method returns `null` when accessing indices beyond available elements, which was passed directly to `preg_match()`. The patch applies a null coalescing operator to safely convert `null` into an empty string before regex evaluation, eliminating the deprecation warning without altering parsing behavior.
+
+Digest entry: issues/woocommerce/gh-woocommerce-64158.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-64158</guid>
+      <pubDate>Wed, 03 Jun 2026 02:54:56 +0000</pubDate>
+    </item>
+    <item>
+      <title>#65111: Add mobile app QR login</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/65111</link>
+      <description>WooCommerce introduces a QR-based authentication flow for its mobile app, enabling administrators and shop managers to authorize site-scoped Application Passwords directly from the browser without requiring WordPress.com account linkage or manual credential entry. This reduces onboarding friction for remote store management and secures mobile access through a bounded token exchange. The feature ships as an integrated stack handling token generation, number-matching approval, rate limiting, and fallback states.
+
+Digest entry: issues/woocommerce/gh-woocommerce-65111.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-65111</guid>
+      <pubDate>Wed, 03 Jun 2026 02:56:42 +0000</pubDate>
+    </item>
+    <item>
+      <title>#65270: Use first name for greeting if available, instead of user login, on new customer account and reset password emails</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/65270</link>
+      <description>The "new customer account" and "reset password" transactional emails now greet customers by first name instead of their login (username). Both `WC_Email_Customer_New_Account` and `WC_Email_Customer_Reset_Password` compute a `user_display_name` during `trigger()` using a three-step fallback: `WC_Customer::get_billing_first_name()` → WordPress `first_name` user meta → `user_login`. The resolved value is passed into HTML, plain-text, and block-editor template contexts. As a side effect, `WC_Email_Customer_Reset_Password::trigger()` gained an early-return guard when `get_user_by()` returns `false`, eliminating two long-standing PHPStan property-on-non-object suppressions.
+
+Digest entry: issues/woocommerce/gh-woocommerce-65270.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-65270</guid>
+      <pubDate>Wed, 03 Jun 2026 06:20:50 +0000</pubDate>
+    </item>
+    <item>
+      <title>#65332: Deprecate get_block_type</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/65332</link>
+      <description>`AbstractBlock::get_block_type()` is deprecated in WooCommerce 10.9.0 in favor of `AbstractBlock::get_full_block_name()`. The two methods were functionally identical — both returned `$this-&gt;namespace . '/' . $this-&gt;block_name` — so the one with the less descriptive name was retired. Internal call sites in `register_block_type()` and `ProductFilterTaxonomy`'s `data-wp-key` computation have been updated to call the canonical method directly.
+
+Digest entry: issues/woocommerce/gh-woocommerce-65332.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-65332</guid>
+      <pubDate>Wed, 03 Jun 2026 06:21:13 +0000</pubDate>
     </item>
   </channel>
 </rss>

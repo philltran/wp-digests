@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
+  <channel>
+    <title>WP Digests — wp-core</title>
+    <link>https://github.com/philltran/wp-digests/</link>
+    <description>Notable WordPress ecosystem changes in the wp-core track.</description>
+    <docs>http://www.rssboard.org/rss-specification</docs>
+    <generator>python-feedgen</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 03 Jun 2026 18:47:57 +0000</lastBuildDate>
+    <item>
+      <title>REST API: Allow-list ability schema response keywords</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/da7588be089fbaeb05ecb4d79dca3cf11815698d</link>
+      <description>The `prepare_schema_for_response()` method in `WP_REST_Abilities_V1_List_Controller` has been switched from a deny-list approach to an allow-list approach when serializing ability `input_schema` and `output_schema` for REST clients. Previously, only three known WordPress-internal keys (`sanitize_callback`, `validate_callback`, `arg_options`) were stripped; any other non-standard keyword silently leaked through. The new implementation keeps only keys returned by `rest_get_allowed_schema_keywords()` plus a curated set of additional JSON Schema draft-04 keywords, stripping everything else — including WordPress-internal keywords like `context`, `readonly`, `example`, and `examples` that the old deny-list missed. Seven additional draft-04 keywords (`required`, `allOf`, `not`, `$ref`, `definitions`, `dependencies`, `additionalItems`) are explicitly preserved so clients can validate richer schemas.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-da7588be08.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-da7588be08</guid>
+      <pubDate>Wed, 03 Jun 2026 06:21:57 +0000</pubDate>
+    </item>
+    <item>
+      <title>HTML API: Fixes for issues discovered while fuzzing.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/b2850aae6f0dcbe35434089ef152f8fab21522a1</link>
+      <description>Fuzz-testing against the HTML API surfaced several bugs across four files: out-of-bounds string reads that emitted native PHP warnings, non-idempotent normalization (where `WP_HTML_Processor::normalize()` produced different output on a second pass), incorrect namespace handling in the open-elements stack, and a premature form-pointer reset that allowed a `&lt;form&gt;` opener to survive the first normalization pass but vanish on the second. This patch fixes all discovered cases and adds regression tests for each. The patch was proposed by Codex (OpenAI) and revised by dmsnell.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-b2850aae6f.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-b2850aae6f</guid>
+      <pubDate>Wed, 03 Jun 2026 06:23:10 +0000</pubDate>
+    </item>
+  </channel>
+</rss>
