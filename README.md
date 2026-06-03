@@ -23,6 +23,12 @@ into per-track RSS feeds under [`feeds/`](feeds/). Updated weekly.
 
 Browse the Markdown here on GitHub, or subscribe to a feed's raw URL.
 
+## Inspired by
+
+This project is directly inspired by Dries Buytaert's
+[`drupal-digests`](https://github.com/dbuytaert/drupal-digests) — an AI-generated digest of
+notable Drupal ecosystem changes. WP Digests applies the same idea to the WordPress ecosystem.
+
 ## Disclaimers & attribution
 
 - **Not affiliated.** This is an independent, community project. It is **not affiliated
