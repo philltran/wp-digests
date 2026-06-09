@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 03 Jun 2026 18:47:56 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 09 Jun 2026 03:28:46 +0000</lastBuildDate>
     <item>
       <title>#65441: [dev] Update .ai/skills/woocommerce-performance/options-cache-priming.md</title>
       <link>https://github.com/woocommerce/woocommerce/pull/65441</link>
@@ -106,6 +106,24 @@ Digest entry: issues/woocommerce/gh-woocommerce-65270.md · Source: woocommerce/
 Digest entry: issues/woocommerce/gh-woocommerce-65332.md · Source: woocommerce/woocommerce</description>
       <guid isPermaLink="false">gh-woocommerce-65332</guid>
       <pubDate>Wed, 03 Jun 2026 06:21:13 +0000</pubDate>
+    </item>
+    <item>
+      <title>#65523: Rename Products (Beta) block to Products (Deprecated)</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/65523</link>
+      <description>WooCommerce renames the legacy `woocommerce/product-query` block from "Products (Beta)" to "Products (Deprecated)" to clarify its lifecycle status and steer editors toward the modern Product Collection block. The change also scopes a PHP render filter to core Query blocks only and adds a defensive type check to the editor's allowed-controls hook.
+
+Digest entry: issues/woocommerce/gh-woocommerce-65523.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-65523</guid>
+      <pubDate>Tue, 09 Jun 2026 02:36:54 +0000</pubDate>
+    </item>
+    <item>
+      <title>#64326: Fix order items being lost when order resume fails mid-checkout</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/64326</link>
+      <description>WooCommerce defers order item database deletions to prevent data loss during checkout resume failures. Previously, `WC_Abstract_Order::remove_order_items()` executed immediate row deletions, leaving orders with zero line items if a subsequent exception prevented `$order-&gt;save()`. The fix schedules bulk deletions until the next `save_items()` call, ensuring items are only removed from the database atomically alongside their persistence. A defensive check in `WC_Checkout::create_order()` now verifies that persisted orders contain line items when the cart still contains products, throwing an exception to catch silent save failures.
+
+Digest entry: issues/woocommerce/gh-woocommerce-64326.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-64326</guid>
+      <pubDate>Tue, 09 Jun 2026 02:37:55 +0000</pubDate>
     </item>
   </channel>
 </rss>

@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 03 Jun 2026 18:47:57 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 09 Jun 2026 03:28:46 +0000</lastBuildDate>
     <item>
       <title>REST API: Allow-list ability schema response keywords</title>
       <link>https://github.com/WordPress/wordpress-develop/commit/da7588be089fbaeb05ecb4d79dca3cf11815698d</link>
@@ -25,6 +25,15 @@ Digest entry: issues/wp-core/gh-wordpress-develop-da7588be08.md · Source: WordP
 Digest entry: issues/wp-core/gh-wordpress-develop-b2850aae6f.md · Source: WordPress/wordpress-develop</description>
       <guid isPermaLink="false">gh-wordpress-develop-b2850aae6f</guid>
       <pubDate>Wed, 03 Jun 2026 06:23:10 +0000</pubDate>
+    </item>
+    <item>
+      <title>REST API: Fix `rest_is_integer()` returning false for large integers.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/dbf0e21feacbe1fc8d14b126b06d3e58a4ab4117</link>
+      <description>The `rest_is_integer()` function in the REST API was rewritten to correctly identify integer-like values of any magnitude, resolving a PHP 8.4 regression where large integers were incorrectly flagged as non-integers. The previous implementation relied on `round( (float) $value ) === (float) $value`, which became unreliable due to a `round()` behavior change in PHP 8.4 that caused valid large integers to fail schema validation. This fix ensures REST endpoints no longer reject canonical integer strings or high-value numeric parameters that exceed previous precision thresholds.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-dbf0e21fea.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-dbf0e21fea</guid>
+      <pubDate>Tue, 09 Jun 2026 02:38:31 +0000</pubDate>
     </item>
   </channel>
 </rss>
