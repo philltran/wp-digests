@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 09 Jun 2026 03:28:46 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 12 Jun 2026 01:32:43 +0000</lastBuildDate>
     <item>
       <title>REST API: Allow-list ability schema response keywords</title>
       <link>https://github.com/WordPress/wordpress-develop/commit/da7588be089fbaeb05ecb4d79dca3cf11815698d</link>
@@ -34,6 +34,33 @@ Digest entry: issues/wp-core/gh-wordpress-develop-b2850aae6f.md · Source: WordP
 Digest entry: issues/wp-core/gh-wordpress-develop-dbf0e21fea.md · Source: WordPress/wordpress-develop</description>
       <guid isPermaLink="false">gh-wordpress-develop-dbf0e21fea</guid>
       <pubDate>Tue, 09 Jun 2026 02:38:31 +0000</pubDate>
+    </item>
+    <item>
+      <title>HTML API: preserve adjusted foreign attributes on serialization.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/a513738f4860c2bfb5122234d754233c0c6246f7</link>
+      <description>The HTML API incorrectly serialized adjusted foreign attributes (e.g., SVG’s `xlink:href`) by replacing the namespace colon with a space, producing malformed output containing two separate attributes instead of one correctly prefixed attribute. This commit fixes `WP_HTML_Processor::serialize_token()` to detect space-separated adjusted names and rejoin them with a colon during serialization, ensuring valid SVG and MathML markup is preserved.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-a513738f48.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-a513738f48</guid>
+      <pubDate>Fri, 12 Jun 2026 01:12:50 +0000</pubDate>
+    </item>
+    <item>
+      <title>HTML API: Ensure that code points always encode to UTF-8</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/41c748932b65a01afcaa267e2d0609d7e355c7c1</link>
+      <description>The HTML API's character decoder now explicitly forces UTF-8 encoding when converting numeric character references to strings, preventing potential corruption or invalid byte sequences on sites configured with non-UTF-8 charsets. This ensures deterministic output regardless of the site's internal encoding settings, addressing an edge case uncovered during fuzz testing.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-41c748932b.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-41c748932b</guid>
+      <pubDate>Fri, 12 Jun 2026 01:13:15 +0000</pubDate>
+    </item>
+    <item>
+      <title>Charset: Replace polyfill wp_has_noncharacters() with direct PCRE version.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/eef6a6e9854febe3f5b4433992a2d0dd173bd962</link>
+      <description>The `wp_has_noncharacters()` utility now uses a single, byte-level PCRE regex instead of branching to a polyfill when Unicode PCRE support is unavailable. This resolves a bug discovered during HTML API fuzzing where malformed UTF-8 sequences previously caused the Unicode regex to fail entirely. By matching noncharacter code points directly via their raw UTF-8 byte representations, the function reliably detects them regardless of surrounding invalid bytes or environment constraints.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-eef6a6e985.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-eef6a6e985</guid>
+      <pubDate>Fri, 12 Jun 2026 01:13:56 +0000</pubDate>
     </item>
   </channel>
 </rss>

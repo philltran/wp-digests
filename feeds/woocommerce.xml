@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 09 Jun 2026 03:28:46 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 12 Jun 2026 01:32:43 +0000</lastBuildDate>
     <item>
       <title>#65441: [dev] Update .ai/skills/woocommerce-performance/options-cache-priming.md</title>
       <link>https://github.com/woocommerce/woocommerce/pull/65441</link>
@@ -27,24 +27,6 @@ Digest entry: issues/woocommerce/gh-woocommerce-65333.md · Source: woocommerce/
       <pubDate>Tue, 02 Jun 2026 05:03:31 +0000</pubDate>
     </item>
     <item>
-      <title>#65210: Replace `tsc` With `esbuild`</title>
-      <link>https://github.com/woocommerce/woocommerce/pull/65210</link>
-      <description>This monorepo infrastructure change swaps the TypeScript compiler (`tsc`) for `esbuild` across all per-package JS builds in the WooCommerce monorepo, building on a prior PR (#65168) that had already stripped type-checking out of the build pipeline. Because type-checking no longer ran during builds, `tsc` was only doing transpilation — work `esbuild` does dramatically faster. The result is large build-time and memory reductions: cold builds drop ~71% (44.7s → 12.8s) and watch-mode peak memory falls ~68% (24.4 GB → 7.9 GB). As a side effect, JSDoc comments are now stripped from transpiled output, and the TS config switches to `isolatedModules`, which requires per-file-safe code (e.g. explicit `import type`).
-
-Digest entry: issues/woocommerce/gh-woocommerce-65210.md · Source: woocommerce/woocommerce</description>
-      <guid isPermaLink="false">gh-woocommerce-65210</guid>
-      <pubDate>Tue, 02 Jun 2026 05:04:06 +0000</pubDate>
-    </item>
-    <item>
-      <title>#65247: Link email events orders store actions</title>
-      <link>https://github.com/woocommerce/woocommerce/pull/65247</link>
-      <description>WooCommerce's `EmailLogger` service now records a private order note for every transactional email send or failure that is associated with a `WC_Order`. Previously the logger only wrote entries to the WooCommerce log files (`WooCommerce → Status → Logs`); now the same send/failure events surface directly on the order's admin timeline. Each note states whether the email "sent" or "failed to send," and failure notes include the captured `wp_mail_failed` error reason with any embedded email addresses redacted. This is a follow-up to the EmailLogger work introduced in #64491 and #64859.
-
-Digest entry: issues/woocommerce/gh-woocommerce-65247.md · Source: woocommerce/woocommerce</description>
-      <guid isPermaLink="false">gh-woocommerce-65247</guid>
-      <pubDate>Tue, 02 Jun 2026 05:04:42 +0000</pubDate>
-    </item>
-    <item>
       <title>#65395: Remove async product editor category field</title>
       <link>https://github.com/woocommerce/woocommerce/pull/65395</link>
       <description>WooCommerce has removed the dormant `async-product-editor-category-field` feature flag and its associated product category metabox assets, as the functionality was never enabled in production. This cleanup eliminates unused React-based async components, reduces frontend bundle size, and formally deprecates the underlying AJAX callback to prevent future reliance on it. The change streamlines the product editor pipeline without altering core product categorization logic or database schemas.
@@ -52,24 +34,6 @@ Digest entry: issues/woocommerce/gh-woocommerce-65247.md · Source: woocommerce/
 Digest entry: issues/woocommerce/gh-woocommerce-65395.md · Source: woocommerce/woocommerce</description>
       <guid isPermaLink="false">gh-woocommerce-65395</guid>
       <pubDate>Wed, 03 Jun 2026 02:50:18 +0000</pubDate>
-    </item>
-    <item>
-      <title>#64387: Add modern settings SDK opt-in path</title>
-      <link>https://github.com/woocommerce/woocommerce/pull/64387</link>
-      <description>WooCommerce introduces an opt-in React-based settings SDK that enables extensions to render a modern, canonical UI while keeping `WC_Settings_Page` as the PHP migration boundary. This architectural shift separates client-side rendering from server-side persistence and asset management, providing a structured upgrade path for extensions without requiring full legacy flow rewrites.
-
-Digest entry: issues/woocommerce/gh-woocommerce-64387.md · Source: woocommerce/woocommerce</description>
-      <guid isPermaLink="false">gh-woocommerce-64387</guid>
-      <pubDate>Wed, 03 Jun 2026 02:51:28 +0000</pubDate>
-    </item>
-    <item>
-      <title>#65316: Remove `@woocommerce/settings-editor`</title>
-      <link>https://github.com/woocommerce/woocommerce/pull/65316</link>
-      <description>WooCommerce removed the unused `@woocommerce/settings-editor` package and stripped its associated feature-flagged admin plumbing. This cleanup eliminates dead modern-settings frontend sources, REST controllers, transformer classes, and legacy build configurations to reduce monorepo maintenance overhead. The change consolidates the admin settings experience back to the established legacy routing and asset pipeline without altering merchant-facing behavior.
-
-Digest entry: issues/woocommerce/gh-woocommerce-65316.md · Source: woocommerce/woocommerce</description>
-      <guid isPermaLink="false">gh-woocommerce-65316</guid>
-      <pubDate>Wed, 03 Jun 2026 02:53:35 +0000</pubDate>
     </item>
     <item>
       <title>#64158: Fix preg_match null deprecation in WC_Eval_Math</title>
@@ -108,15 +72,6 @@ Digest entry: issues/woocommerce/gh-woocommerce-65332.md · Source: woocommerce/
       <pubDate>Wed, 03 Jun 2026 06:21:13 +0000</pubDate>
     </item>
     <item>
-      <title>#65523: Rename Products (Beta) block to Products (Deprecated)</title>
-      <link>https://github.com/woocommerce/woocommerce/pull/65523</link>
-      <description>WooCommerce renames the legacy `woocommerce/product-query` block from "Products (Beta)" to "Products (Deprecated)" to clarify its lifecycle status and steer editors toward the modern Product Collection block. The change also scopes a PHP render filter to core Query blocks only and adds a defensive type check to the editor's allowed-controls hook.
-
-Digest entry: issues/woocommerce/gh-woocommerce-65523.md · Source: woocommerce/woocommerce</description>
-      <guid isPermaLink="false">gh-woocommerce-65523</guid>
-      <pubDate>Tue, 09 Jun 2026 02:36:54 +0000</pubDate>
-    </item>
-    <item>
       <title>#64326: Fix order items being lost when order resume fails mid-checkout</title>
       <link>https://github.com/woocommerce/woocommerce/pull/64326</link>
       <description>WooCommerce defers order item database deletions to prevent data loss during checkout resume failures. Previously, `WC_Abstract_Order::remove_order_items()` executed immediate row deletions, leaving orders with zero line items if a subsequent exception prevented `$order-&gt;save()`. The fix schedules bulk deletions until the next `save_items()` call, ensuring items are only removed from the database atomically alongside their persistence. A defensive check in `WC_Checkout::create_order()` now verifies that persisted orders contain line items when the cart still contains products, throwing an exception to catch silent save failures.
@@ -124,6 +79,60 @@ Digest entry: issues/woocommerce/gh-woocommerce-65523.md · Source: woocommerce/
 Digest entry: issues/woocommerce/gh-woocommerce-64326.md · Source: woocommerce/woocommerce</description>
       <guid isPermaLink="false">gh-woocommerce-64326</guid>
       <pubDate>Tue, 09 Jun 2026 02:37:55 +0000</pubDate>
+    </item>
+    <item>
+      <title>#65423: Fix SKU duplication corrupting hyphenated SKUs</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/65423</link>
+      <description>Fixes a regression in WooCommerce product duplication where hyphenated SKUs were incorrectly modified instead of having an incremental suffix appended. Duplicating a product with SKU `SKU-123` now correctly produces `SKU-123-1`, rather than erroneously stripping the trailing number and incrementing it to `SKU-124`. This bug was introduced in WooCommerce 10.5.0 via PR #62628.
+
+Digest entry: issues/woocommerce/gh-woocommerce-65423.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-65423</guid>
+      <pubDate>Fri, 12 Jun 2026 01:07:06 +0000</pubDate>
+    </item>
+    <item>
+      <title>#65591: Performance: coalesce variation batch transient deletion</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/65591</link>
+      <description>Coalesces repeated product transient deletion during REST API variation batch writes on `/wc/v3/products/{product_id}/variations/batch`. Previously, each individual variation update triggered immediate transient clears and action hooks, creating significant overhead during bulk imports or migrations. This change defers all deletions to a single flush at the end of the batch operation, reducing transient clear operations by ~79% and cutting related query counts in benchmarked workloads.
+
+Digest entry: issues/woocommerce/gh-woocommerce-65591.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-65591</guid>
+      <pubDate>Fri, 12 Jun 2026 01:08:04 +0000</pubDate>
+    </item>
+    <item>
+      <title>#65538: Remove 'add-to-wishlist-button' from Add to Cart + Options template parts</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/65538</link>
+      <description>This PR removes the `woocommerce/add-to-wishlist-button` block from WooCommerce's default Add to Cart + Options template parts. The block was inadvertently included in a prior release while its underlying functionality remained behind an experimental feature flag, causing the site editor to render it as an unsupported/ignored element. Removing it resolves editor warnings and aligns the default templates with the current opt-in state of the feature.
+
+Digest entry: issues/woocommerce/gh-woocommerce-65538.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-65538</guid>
+      <pubDate>Fri, 12 Jun 2026 01:08:44 +0000</pubDate>
+    </item>
+    <item>
+      <title>#65630: Fix PSR-4 upgrade fallback fataling on a foreign loader or torn file</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/65630</link>
+      <description>WooCommerce's PSR-4 fallback autoloader now degrades gracefully instead of fataling when encountering a malformed Composer `ClassLoader` shape or a torn/partially-written class file during in-place upgrades. This resolves an edge-case regression that would kill requests and break defensive `class_exists()` probes, ensuring the bootstrap continues safely while leaving unresolved classes for later retry.
+
+Digest entry: issues/woocommerce/gh-woocommerce-65630.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-65630</guid>
+      <pubDate>Fri, 12 Jun 2026 01:09:29 +0000</pubDate>
+    </item>
+    <item>
+      <title>#65338: Add a Composer PSR-4 fallback autoloader to prevent in-place-upgrade class-not-found fatals</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/65338</link>
+      <description>Resolves "class not found" fatals that occur during WordPress in-place plugin upgrades when a new first-party WooCommerce class is introduced mid-request. The fix registers a Composer PSR-4 autoloader scoped strictly to `Automattic\WooCommerce\` as a lowest-priority SPL fallback, ensuring newly swapped classes resolve correctly even after the primary Jetpack Autoloader's in-memory classmap snapshot becomes stale. This prevents fatal errors when plugins or themes attempt to lazy-load classes that only exist in the upgraded plugin files.
+
+Digest entry: issues/woocommerce/gh-woocommerce-65338.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-65338</guid>
+      <pubDate>Fri, 12 Jun 2026 01:10:37 +0000</pubDate>
+    </item>
+    <item>
+      <title>#65598: Deprecate QueryFilters class</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/65598</link>
+      <description>WooCommerce 11.0 deprecates the `Automattic\WooCommerce\Blocks\QueryFilters` class, which historically handled product query filtering for shop archives and widgets. The class is converted into a compatibility wrapper that emits `wc_deprecated_function()` notices and delegates all filtering logic to the newer `QueryClauses` and `FilterDataProvider` service classes. Full removal is scheduled for WooCommerce 12.0.
+
+Digest entry: issues/woocommerce/gh-woocommerce-65598.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-65598</guid>
+      <pubDate>Fri, 12 Jun 2026 01:11:35 +0000</pubDate>
     </item>
   </channel>
 </rss>

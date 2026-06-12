@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 09 Jun 2026 03:28:46 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 12 Jun 2026 01:32:43 +0000</lastBuildDate>
     <item>
       <title>#65333: Deprecate Product Editor v2</title>
       <link>https://github.com/woocommerce/woocommerce/pull/65333</link>
@@ -106,6 +106,24 @@ Digest entry: issues/dev-notes/make-core-123151.md · Source: Make WordPress Cor
 Digest entry: issues/dev-notes/make-core-122987.md · Source: Make WordPress Core</description>
       <guid isPermaLink="false">make-core-122987</guid>
       <pubDate>Wed, 03 Jun 2026 07:23:18 +0000</pubDate>
+    </item>
+    <item>
+      <title>#65598: Deprecate QueryFilters class</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/65598</link>
+      <description>WooCommerce 11.0 deprecates the `Automattic\WooCommerce\Blocks\QueryFilters` class, which historically handled product query filtering for shop archives and widgets. The class is converted into a compatibility wrapper that emits `wc_deprecated_function()` notices and delegates all filtering logic to the newer `QueryClauses` and `FilterDataProvider` service classes. Full removal is scheduled for WooCommerce 12.0.
+
+Digest entry: issues/woocommerce/gh-woocommerce-65598.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-65598</guid>
+      <pubDate>Fri, 12 Jun 2026 01:11:35 +0000</pubDate>
+    </item>
+    <item>
+      <title>Charset: Replace polyfill wp_has_noncharacters() with direct PCRE version.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/eef6a6e9854febe3f5b4433992a2d0dd173bd962</link>
+      <description>The `wp_has_noncharacters()` utility now uses a single, byte-level PCRE regex instead of branching to a polyfill when Unicode PCRE support is unavailable. This resolves a bug discovered during HTML API fuzzing where malformed UTF-8 sequences previously caused the Unicode regex to fail entirely. By matching noncharacter code points directly via their raw UTF-8 byte representations, the function reliably detects them regardless of surrounding invalid bytes or environment constraints.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-eef6a6e985.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-eef6a6e985</guid>
+      <pubDate>Fri, 12 Jun 2026 01:13:56 +0000</pubDate>
     </item>
   </channel>
 </rss>
