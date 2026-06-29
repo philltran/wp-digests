@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 12 Jun 2026 01:32:43 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 29 Jun 2026 23:02:01 +0000</lastBuildDate>
     <item>
       <title>REST API: Allow-list ability schema response keywords</title>
       <link>https://github.com/WordPress/wordpress-develop/commit/da7588be089fbaeb05ecb4d79dca3cf11815698d</link>
@@ -61,6 +61,51 @@ Digest entry: issues/wp-core/gh-wordpress-develop-41c748932b.md · Source: WordP
 Digest entry: issues/wp-core/gh-wordpress-develop-eef6a6e985.md · Source: WordPress/wordpress-develop</description>
       <guid isPermaLink="false">gh-wordpress-develop-eef6a6e985</guid>
       <pubDate>Fri, 12 Jun 2026 01:13:56 +0000</pubDate>
+    </item>
+    <item>
+      <title>HTML API: Prevent HTML newline normalization on foreign elements.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/23a6bbf248a826ae213a012e91441c4e29d5f34c</link>
+      <description>The HTML API now prevents HTML-specific leading newline normalization from being applied to foreign elements, ensuring that `&lt;textarea&gt;` inside SVG or MathML contexts retains its original whitespace. This aligns the processor's serialization behavior with HTML parsing specifications by respecting document namespace boundaries during token handling.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-23a6bbf248.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-23a6bbf248</guid>
+      <pubDate>Mon, 29 Jun 2026 15:13:07 +0000</pubDate>
+    </item>
+    <item>
+      <title>HTML API: Replace locale-dependent ctype check in HTML decoder.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/db48dcfc2636fe84c913cadfc5ba1ed94dea21b7</link>
+      <description>Replaces a locale-dependent `ctype_alnum()` check in `WP_HTML_Decoder::read_character_reference()` with explicit ASCII byte-range comparisons. This fixes a parser edge-case where high-bit UTF-8 bytes were incorrectly treated as alphanumerics in certain locales, ensuring consistent decoding of legacy semicolonless character references across all PHP environments.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-db48dcfc26.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-db48dcfc26</guid>
+      <pubDate>Mon, 29 Jun 2026 15:13:50 +0000</pubDate>
+    </item>
+    <item>
+      <title>REST API: Add a shared helper for JSON Schema allowed keywords.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/859d7fea0e316b1bfc6bdfe8efa88e4e9402666b</link>
+      <description>Introduces `wp_get_json_schema_allowed_keywords()` as a centralized helper that dictates which JSON Schema keywords remain in REST API response payloads. The function supports two profiles: `rest-api` (default, narrower set for standard route output) and `draft-04` (broader set preserving structural vocabulary like `$ref`, `allOf`, and `definitions` for the Abilities API). It exposes the new `wp_json_schema_allowed_keywords` filter, enabling extensible schema generation without altering core validation internals.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-859d7fea0e.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-859d7fea0e</guid>
+      <pubDate>Mon, 29 Jun 2026 15:15:08 +0000</pubDate>
+    </item>
+    <item>
+      <title>HTML API: Ensure correct serialization of XMP contents.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/bcf665d94c08dc85ed262dc7bb25c1f3a664b95f</link>
+      <description>Fixes a serialization bug in the HTML API where `&lt;xmp&gt;` element contents were incorrectly escaped as HTML character references. This ensures `WP_HTML_Processor` treats `XMP` as a raw text element, preserving its inner text literally during normalization and serialization as per the HTML specification.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-bcf665d94c.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-bcf665d94c</guid>
+      <pubDate>Mon, 29 Jun 2026 15:15:38 +0000</pubDate>
+    </item>
+    <item>
+      <title>Performance: avoid over-allocation in wp_is_numeric_array()</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/9569f228755792542f0e10047b991c82f5b07e5f</link>
+      <description>`wp_is_numeric_array()` in `src/wp-includes/functions.php` was refactored to eliminate eager memory allocation and replace it with an early-exit iteration pattern. Previous performance tracing identified that eagerly calling `array_keys()` and `array_filter()` caused significant overhead when validating arrays during page rendering. The updated implementation now short-circuits on the first string key, reducing runtime allocations while preserving identical boolean return behavior.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-9569f22875.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-9569f22875</guid>
+      <pubDate>Mon, 29 Jun 2026 15:16:21 +0000</pubDate>
     </item>
   </channel>
 </rss>

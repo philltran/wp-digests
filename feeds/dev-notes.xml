@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 12 Jun 2026 01:32:43 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 29 Jun 2026 23:02:01 +0000</lastBuildDate>
     <item>
       <title>Dev Chat Agenda – June 3, 2026</title>
       <link>https://make.wordpress.org/core/2026/06/03/dev-chat-agenda-june-03-2026/</link>
@@ -277,6 +277,69 @@ Digest entry: issues/dev-notes/make-core-123048.md · Source: Make WordPress Cor
 Digest entry: issues/dev-notes/make-core-123731.md · Source: Make WordPress Core</description>
       <guid isPermaLink="false">make-core-123731</guid>
       <pubDate>Tue, 09 Jun 2026 02:40:59 +0000</pubDate>
+    </item>
+    <item>
+      <title>Call for Testing: Unicode email addresses.</title>
+      <link>https://make.wordpress.org/core/2026/06/10/call-for-testing-unicode-email-addresses/</link>
+      <description>WordPress now accepts non-ASCII (Unicode) characters in email local parts, aligning server-side validation with the WHATWG HTML specification. This enhancement is gated behind core filters that can be removed to restore ASCII-only validation if third-party integrations lack UTF-8 mailbox routing support. A new `WP_Email_Address` class provides a structured parser that safely decodes Punycode domains and separates ASCII/Unicode representations for appropriate output contexts.
+
+Digest entry: issues/dev-notes/make-core-123781.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-123781</guid>
+      <pubDate>Fri, 12 Jun 2026 01:48:13 +0000</pubDate>
+    </item>
+    <item>
+      <title>Hiding the Classic block from the inserter in WordPress 7.1</title>
+      <link>https://make.wordpress.org/core/2026/06/23/hiding-the-classic-block-from-the-inserter-in-wordpress-7-1/</link>
+      <description>In WordPress 7.1, the Classic block (`core/freeform`) is hidden from the block inserter by default. This change leaves all existing Classic blocks fully editable and untouched, while preventing new instances from being added through the inserter, block library, or slash commands. The shift aims to reduce legacy content creation and streamline editor architecture without breaking backward compatibility.
+
+Digest entry: issues/dev-notes/make-core-124141.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124141</guid>
+      <pubDate>Mon, 29 Jun 2026 15:45:53 +0000</pubDate>
+    </item>
+    <item>
+      <title>Merge Proposal: Guidelines built on Knowledge</title>
+      <link>https://make.wordpress.org/core/2026/06/22/merge-proposal-guidelines-built-on-knowledge/</link>
+      <description>WordPress 7.1 introduces `wp_knowledge`, a new internal custom post type paired with the `wp_knowledge_type` taxonomy, as a canonical storage primitive for site standards and authoring notes. The merged implementation provides native revisions, private-by-default records, and a capability-gated REST surface to replace fragmented plugin-specific knowledge stores. Guidelines ships as the first consumer feature, offering a Settings-driven UI for capturing voice, tone, and per-block rules, but core deliberately omits AI processing, decay mechanisms, or retrieval algorithms.
+
+Digest entry: issues/dev-notes/make-core-123989.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-123989</guid>
+      <pubDate>Mon, 29 Jun 2026 15:46:50 +0000</pubDate>
+    </item>
+    <item>
+      <title>Roadmap to 7.1</title>
+      <link>https://make.wordpress.org/core/2026/06/19/roadmap-to-7-1/</link>
+      <description>WordPress 7.1 plans to enforce an iframe-based editor shell for block-based themes, isolating the editing canvas from the admin DOM. This architectural shift allows viewport-relative units to resolve correctly against the canvas sandbox rather than the browser window, but requires all blocks operating within the editor to declare Block API version 3.
+
+Digest entry: issues/dev-notes/make-core-124010.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124010</guid>
+      <pubDate>Mon, 29 Jun 2026 15:47:40 +0000</pubDate>
+    </item>
+    <item>
+      <title>WordPress 7.0.1 Release Schedule</title>
+      <link>https://make.wordpress.org/core/2026/06/18/wordpress-7-0-1-release-schedule/</link>
+      <description>WordPress Core published the maintenance release schedule for 7.0.1, outlining a sequential bug scrub cadence from June 18 through July 9, 2026, culminating in a general release on July 9. The post establishes 7.0.1 as a strict bug-fix maintenance release scoped to regressions introduced during the 7.0 cycle or intentionally deferred tickets, while also coordinating locale string translation updates.
+
+Digest entry: issues/dev-notes/make-core-123961.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-123961</guid>
+      <pubDate>Mon, 29 Jun 2026 15:48:02 +0000</pubDate>
+    </item>
+    <item>
+      <title>Recap: Restoring removed version history.</title>
+      <link>https://make.wordpress.org/core/2026/06/17/recap-restoring-removed-version-history/</link>
+      <description>A significant repository maintenance effort resolved infrastructure breakage caused by build script changes that moved specific PHP files out of SVN version control and into `.gitignore`. The fix merges a dedicated restore branch into `trunk` to reintroduce these PHP files back into the SVN repository, replaying their full upstream Gutenberg sync history as sequential commits.
+
+Digest entry: issues/dev-notes/make-core-122418.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-122418</guid>
+      <pubDate>Mon, 29 Jun 2026 15:48:30 +0000</pubDate>
+    </item>
+    <item>
+      <title>What’s new in Gutenberg 23.4? (June 17, 2026)</title>
+      <link>https://make.wordpress.org/core/2026/06/17/whats-new-in-gutenberg-23-3-03-jun-2/</link>
+      <description>Gutenberg 23.4 introduces an experimental flag to validate plugin and editor integrations against the React 19 runtime, enables block transforms to target specific block variations (e.g., converting Columns or Gallery to a Grid layout), and synchronizes the Site Editor chrome with the active admin color scheme. The release also adds UltraHDR JPEG detection, client-side media upload progress indicators, and exposes a filterable API for DataViews entity view configuration.
+
+Digest entry: issues/dev-notes/make-core-123843.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-123843</guid>
+      <pubDate>Mon, 29 Jun 2026 15:49:35 +0000</pubDate>
     </item>
   </channel>
 </rss>

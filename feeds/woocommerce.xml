@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 12 Jun 2026 01:32:43 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 29 Jun 2026 23:02:01 +0000</lastBuildDate>
     <item>
       <title>#65441: [dev] Update .ai/skills/woocommerce-performance/options-cache-priming.md</title>
       <link>https://github.com/woocommerce/woocommerce/pull/65441</link>
@@ -133,6 +133,24 @@ Digest entry: issues/woocommerce/gh-woocommerce-65338.md · Source: woocommerce/
 Digest entry: issues/woocommerce/gh-woocommerce-65598.md · Source: woocommerce/woocommerce</description>
       <guid isPermaLink="false">gh-woocommerce-65598</guid>
       <pubDate>Fri, 12 Jun 2026 01:11:35 +0000</pubDate>
+    </item>
+    <item>
+      <title>#66036: Fix deprecated AssetDataRegistry argument notice</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/66036</link>
+      <description>This pull request corrects a logic bug in WooCommerce's `AssetDataRegistry::add()` and `hydrate_data_from_api_request()` methods where the `$check_key_exists` deprecation notice only fired for truthy values. The fix ensures `wc_deprecated_argument()` triggers whenever the third argument is explicitly passed, regardless of whether it is `true` or `false`. This aligns WooCommerce's internal usage with WordPress deprecation standards and gives developers accurate signal that the parameter must be removed.
+
+Digest entry: issues/woocommerce/gh-woocommerce-66036.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-66036</guid>
+      <pubDate>Mon, 29 Jun 2026 15:11:53 +0000</pubDate>
+    </item>
+    <item>
+      <title>#64407: fix(analytics): prevent fatal when plain WC_Order passed to customer DataStore</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/64407</link>
+      <description>Resolves three fatal error paths in WooCommerce's Analytics Customers DataStore (`DataStore.php`). The patch prevents crashes when a plain `WC_Order` instance is passed without the `woocommerce_order_class` filter, hardens date field resolution against null values that trigger `getTimestamp()` failures, and adds a strict guard for failed `wc_get_order()` lookups.
+
+Digest entry: issues/woocommerce/gh-woocommerce-64407.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-64407</guid>
+      <pubDate>Mon, 29 Jun 2026 15:12:37 +0000</pubDate>
     </item>
   </channel>
 </rss>

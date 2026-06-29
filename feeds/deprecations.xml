@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 12 Jun 2026 01:32:43 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 29 Jun 2026 23:02:01 +0000</lastBuildDate>
     <item>
       <title>#65333: Deprecate Product Editor v2</title>
       <link>https://github.com/woocommerce/woocommerce/pull/65333</link>
@@ -124,6 +124,96 @@ Digest entry: issues/woocommerce/gh-woocommerce-65598.md · Source: woocommerce/
 Digest entry: issues/wp-core/gh-wordpress-develop-eef6a6e985.md · Source: WordPress/wordpress-develop</description>
       <guid isPermaLink="false">gh-wordpress-develop-eef6a6e985</guid>
       <pubDate>Fri, 12 Jun 2026 01:13:56 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79149: Knowledge: Rename the Guidelines CPT storage primitive to Knowledge</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79149</link>
+      <description>This pull request renames the experimental Guidelines content storage primitive to a "Knowledge" namespace across the Gutenberg plugin. It updates the custom post type (`wp_guideline` → `wp_knowledge`), associated taxonomy (`wp_guideline_type` → `wp_knowledge_type`), REST routes, capability filters, and built-in type slugs. The consolidation prepares the feature for potential graduation without altering its underlying behavior or data shape.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79149.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79149</guid>
+      <pubDate>Mon, 29 Jun 2026 14:50:56 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79263: Knowledge: Dissolve the Guidelines singleton into per-scope rows</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79263</link>
+      <description>The Gutenberg Knowledge layer for `Settings → Guidelines` is refactored from a singleton post holding all categories as `_guideline_*` meta into one published `wp_knowledge` row per scope (prefixed `guideline-`). The custom `/wp/v2/content-guidelines` REST controller and hand-rolled client store are removed. The admin interface remains visually identical, but all reads/writes now route through the standard `/wp/v2/knowledge` endpoint via `useEntityRecords`.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79263.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79263</guid>
+      <pubDate>Mon, 29 Jun 2026 14:51:32 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79593: FontFamilyControl: Hard deprecate 40px default size</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79593</link>
+      <description>Hard-deprecates the `__next40pxDefaultSize` prop on the `FontFamilyControl` component in `@wordpress/block-editor`, making the 40px default height permanent and removing the soft console warning introduced in WordPress 6.8. This cleanup ensures consistent typography sizing across the Block Editor while retiring legacy opt-in props.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79593.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79593</guid>
+      <pubDate>Mon, 29 Jun 2026 14:56:02 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79589: LineHeightControl: Hard deprecate 40px default size</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79589</link>
+      <description>Hard deprecates the `__next40pxDefaultSize` prop on `LineHeightControl`, making the 40px line-height default permanent and removing console warnings for omitting it. This follows up on a soft deprecation introduced in WordPress 6.8, finalizing the typography control sizing update across the Block Editor.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79589.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79589</guid>
+      <pubDate>Mon, 29 Jun 2026 14:58:16 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79550: TreeSelect: Hard deprecate 40px default size</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79550</link>
+      <description>The `TreeSelect` component hard-deprecates the `__next40pxDefaultSize` prop, making the larger default height permanent and removing the opt-in runtime API. This cleanup finalizes the deprecation cycle that began in WordPress 6.7 and aligns with the scheduled removal before WordPress 7.1.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79550.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79550</guid>
+      <pubDate>Mon, 29 Jun 2026 14:59:22 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79533: LetterSpacingControl: Hard deprecate 40px default size</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79533</link>
+      <description>Hard deprecates the `__next40pxDefaultSize` prop on `LetterSpacingControl`, making the 40px default height permanent and removing the soft-deprecation warning introduced in WordPress 6.8. This change finalizes the sizing timeline for letter spacing controls across the block editor, ensuring all instances now render at the larger default height without runtime warnings.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79533.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79533</guid>
+      <pubDate>Mon, 29 Jun 2026 15:10:51 +0000</pubDate>
+    </item>
+    <item>
+      <title>#66036: Fix deprecated AssetDataRegistry argument notice</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/66036</link>
+      <description>This pull request corrects a logic bug in WooCommerce's `AssetDataRegistry::add()` and `hydrate_data_from_api_request()` methods where the `$check_key_exists` deprecation notice only fired for truthy values. The fix ensures `wc_deprecated_argument()` triggers whenever the third argument is explicitly passed, regardless of whether it is `true` or `false`. This aligns WooCommerce's internal usage with WordPress deprecation standards and gives developers accurate signal that the parameter must be removed.
+
+Digest entry: issues/woocommerce/gh-woocommerce-66036.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-66036</guid>
+      <pubDate>Mon, 29 Jun 2026 15:11:53 +0000</pubDate>
+    </item>
+    <item>
+      <title>Hiding the Classic block from the inserter in WordPress 7.1</title>
+      <link>https://make.wordpress.org/core/2026/06/23/hiding-the-classic-block-from-the-inserter-in-wordpress-7-1/</link>
+      <description>In WordPress 7.1, the Classic block (`core/freeform`) is hidden from the block inserter by default. This change leaves all existing Classic blocks fully editable and untouched, while preventing new instances from being added through the inserter, block library, or slash commands. The shift aims to reduce legacy content creation and streamline editor architecture without breaking backward compatibility.
+
+Digest entry: issues/dev-notes/make-core-124141.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124141</guid>
+      <pubDate>Mon, 29 Jun 2026 15:45:53 +0000</pubDate>
+    </item>
+    <item>
+      <title>Roadmap to 7.1</title>
+      <link>https://make.wordpress.org/core/2026/06/19/roadmap-to-7-1/</link>
+      <description>WordPress 7.1 plans to enforce an iframe-based editor shell for block-based themes, isolating the editing canvas from the admin DOM. This architectural shift allows viewport-relative units to resolve correctly against the canvas sandbox rather than the browser window, but requires all blocks operating within the editor to declare Block API version 3.
+
+Digest entry: issues/dev-notes/make-core-124010.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124010</guid>
+      <pubDate>Mon, 29 Jun 2026 15:47:40 +0000</pubDate>
+    </item>
+    <item>
+      <title>What’s new in Gutenberg 23.4? (June 17, 2026)</title>
+      <link>https://make.wordpress.org/core/2026/06/17/whats-new-in-gutenberg-23-3-03-jun-2/</link>
+      <description>Gutenberg 23.4 introduces an experimental flag to validate plugin and editor integrations against the React 19 runtime, enables block transforms to target specific block variations (e.g., converting Columns or Gallery to a Grid layout), and synchronizes the Site Editor chrome with the active admin color scheme. The release also adds UltraHDR JPEG detection, client-side media upload progress indicators, and exposes a filterable API for DataViews entity view configuration.
+
+Digest entry: issues/dev-notes/make-core-123843.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-123843</guid>
+      <pubDate>Mon, 29 Jun 2026 15:49:35 +0000</pubDate>
     </item>
   </channel>
 </rss>
