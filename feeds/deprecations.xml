@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 29 Jun 2026 23:02:01 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 02 Jul 2026 18:20:26 +0000</lastBuildDate>
     <item>
       <title>#65333: Deprecate Product Editor v2</title>
       <link>https://github.com/woocommerce/woocommerce/pull/65333</link>
@@ -214,6 +214,105 @@ Digest entry: issues/dev-notes/make-core-124010.md · Source: Make WordPress Cor
 Digest entry: issues/dev-notes/make-core-123843.md · Source: Make WordPress Core</description>
       <guid isPermaLink="false">make-core-123843</guid>
       <pubDate>Mon, 29 Jun 2026 15:49:35 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79721: UnitControl: Hard deprecate 40px default size</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79721</link>
+      <description>Hard deprecates the `__next40pxDefaultSize` boolean prop on `UnitControl`. The larger 40px default sizing is now unconditionally applied, making the previously opt-in flag redundant and slated for complete removal. This cleanup standardizes the component's internal API while preserving existing UI spacing in block editor panels.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79721.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79721</guid>
+      <pubDate>Thu, 02 Jul 2026 16:55:36 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79720: FormTokenField: Hard deprecate 40px default size</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79720</link>
+      <description>The `__next40pxDefaultSize` prop on the `FormTokenField` component has been hard-deprecated and removed from the runtime API, finalizing a deprecation cycle that began in WordPress 6.7. The component now permanently renders at the 40px height, eliminating the legacy size toggle and associated warning logic.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79720.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79720</guid>
+      <pubDate>Thu, 02 Jul 2026 16:56:12 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79656: ToggleGroupControl: Hard deprecate 40px default size</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79656</link>
+      <description>Hard deprecates the `__next40pxDefaultSize` and `size` props on the `ToggleGroupControl` component, making the 40px default height unconditional. The opt-in sizing prop was retained only to satisfy existing type definitions while being ignored at runtime, effectively removing an unstable sizing API from the public contract.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79656.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79656</guid>
+      <pubDate>Thu, 02 Jul 2026 17:12:44 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79657: Radio: Hard deprecate 40px default size</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79657</link>
+      <description>The `Radio` component in `@wordpress/components` hard-deprecates the `__next40pxDefaultSize` prop, ending the opt-in period for its larger default sizing. The prop is now stripped at the component boundary and hardcoded onto the inner `&lt;Button /&gt;`, making the larger 40px height the permanent default behavior. Developers should remove the prop from all call sites to maintain clean code and prepare for potential future removal of the argument entirely.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79657.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79657</guid>
+      <pubDate>Thu, 02 Jul 2026 17:13:34 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79655: FormFileUpload: Hard deprecate 40px default size</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79655</link>
+      <description>Hard deprecates the `__next40pxDefaultSize` prop on the `FormFileUpload` component within `@wordpress/components`. The opt-in cycle for the larger default button size has concluded; the component now unconditionally renders a 40px `Button` internally, and passing the prop to consumers is obsolete.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79655.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79655</guid>
+      <pubDate>Thu, 02 Jul 2026 17:15:57 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79636: ComboboxControl: Hard deprecate 40px default size</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79636</link>
+      <description>Hard deprecates the `__next40pxDefaultSize` prop on `ComboboxControl`, making the larger default height unconditional and removing all legacy sizing styles, warning hooks, and opt-in logic. The opt-in period for the upgraded control size is now complete, so the prop is ignored by the component and can be safely stripped from external call sites without altering rendering or behavior.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79636.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79636</guid>
+      <pubDate>Thu, 02 Jul 2026 17:16:46 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79635: FontAppearanceControl: Hard deprecate 40px default size</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79635</link>
+      <description>Hard deprecates the `__next40pxDefaultSize` prop on `FontAppearanceControl`, making the larger 40px default height permanent and removing the soft-deprecation console warning introduced in WordPress 6.8. The prop is now accepted but ignored, allowing developers to safely remove it from all usages. This change finalizes a multi-version transition to standardize the Block Editor's typography control sizing without altering functional behavior.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79635.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79635</guid>
+      <pubDate>Thu, 02 Jul 2026 17:18:14 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79590: RangeControl: Hard deprecate 40px default size</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79590</link>
+      <description>The `RangeControl` component permanently adopts the 40px default height, hard-deprecating the legacy `__next40pxDefaultSize` prop. This scheduled cleanup follows a soft deprecation introduced in WordPress 6.7 and fulfills the removal timeline ahead of version 7.1, ensuring consistent visual sizing across editor controls while stripping legacy size-opt-in logic from the public API.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79590.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79590</guid>
+      <pubDate>Thu, 02 Jul 2026 17:29:19 +0000</pubDate>
+    </item>
+    <item>
+      <title>General: Bump the pinned hash for Gutenberg to `v23.3.0`.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/ca2129de238d5b018b0350171d051e13a88ac829</link>
+      <description>This commit synchronizes WordPress trunk with the Gutenberg `v23.3.0` release, updating the pinned commit SHA and refreshing internal dependency hashes. The bump introduces new optional block schema attributes (`opensInNewTab` and `description` on the Home Link block; `isDecorative` on the Image block), updates lightbox accessibility strings, and adds a backward-compatibility shim for an older navigation submenu icon function.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-ca2129de23.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-ca2129de23</guid>
+      <pubDate>Thu, 02 Jul 2026 17:40:02 +0000</pubDate>
+    </item>
+    <item>
+      <title>What’s new in Gutenberg 23.5? (July 1, 2026)</title>
+      <link>https://make.wordpress.org/core/2026/07/01/whats-new-in-gutenberg-23-5-july-1-2026/</link>
+      <description>Gutenberg 23.5 introduces experimental media editor cropping controls, brings the media modal to the Cover block, and replaces rigid device presets with a freely resizable canvas alongside dynamic breakpoint toggles. It also expands Global Styles with text shadow support, standardizes Icon block defaults, and enables per-post-type disabling of real-time collaboration.
+
+Digest entry: issues/dev-notes/make-core-124219.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124219</guid>
+      <pubDate>Thu, 02 Jul 2026 18:16:28 +0000</pubDate>
+    </item>
+    <item>
+      <title>WordPress 7.0.1 RC1 is now available</title>
+      <link>https://make.wordpress.org/core/2026/07/01/wordpress-7-0-1-rc1-is-now-available/</link>
+      <description>WordPress 7.0.1 RC1 is a bug-fix-only maintenance release for the 7.0 branch, targeting regressions and edge-case failures introduced during the 7.0 development cycle. The update resolves PHP 8.5 compatibility issues in `wp_get_attachment_image_src`, corrects CSS parsing and sanitization edge cases (`wp_kses`), restores a deprecated navigation block shim, and addresses several admin media UI and block editor rendering regressions. No new features or breaking changes are introduced.
+
+Digest entry: issues/dev-notes/make-core-124308.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124308</guid>
+      <pubDate>Thu, 02 Jul 2026 18:17:17 +0000</pubDate>
     </item>
   </channel>
 </rss>

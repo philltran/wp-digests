@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 29 Jun 2026 23:02:01 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 02 Jul 2026 18:20:26 +0000</lastBuildDate>
     <item>
       <title>REST API: Allow-list ability schema response keywords</title>
       <link>https://github.com/WordPress/wordpress-develop/commit/da7588be089fbaeb05ecb4d79dca3cf11815698d</link>
@@ -106,6 +106,69 @@ Digest entry: issues/wp-core/gh-wordpress-develop-bcf665d94c.md · Source: WordP
 Digest entry: issues/wp-core/gh-wordpress-develop-9569f22875.md · Source: WordPress/wordpress-develop</description>
       <guid isPermaLink="false">gh-wordpress-develop-9569f22875</guid>
       <pubDate>Mon, 29 Jun 2026 15:16:21 +0000</pubDate>
+    </item>
+    <item>
+      <title>HTML API: Preserve decoder match length on named-reference miss.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/2161d9bc24ad9d85a2b5aeb30e32903721b8a670</link>
+      <description>The `WP_HTML_Decoder` previously allowed a pass-by-reference match byte length parameter to be mutated even when no HTML named character reference matched. This commit ensures that failed character reference lookups leave the referenced variable unmodified, preventing inaccurate token offset tracking during internal HTML parsing.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-2161d9bc24.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-2161d9bc24</guid>
+      <pubDate>Thu, 02 Jul 2026 17:33:36 +0000</pubDate>
+    </item>
+    <item>
+      <title>REST API: Add dimension validation to sideload endpoint.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/27deb596c302868a509abe8ab9392854d24b49bc</link>
+      <description>This commit enforces strict dimension validation on the `wp/v2/media/&lt;id&gt;/sideload` REST API endpoint, preventing the silent storage of corrupt or dimension-mismatched images. A new internal validator ensures uploaded raster files match the requested image size constraints before metadata is written, rejecting zero/negative dimensions, enforcing exact matches for the `original` size, and capping registered sub-sizes to their configured maximums with a 1px rounding tolerance.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-27deb596c3.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-27deb596c3</guid>
+      <pubDate>Thu, 02 Jul 2026 17:34:58 +0000</pubDate>
+    </item>
+    <item>
+      <title>REST API: Expose output format and progressive flags on attachments.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/5231afc9a36ece00ca183d70510d4e3a903562d9</link>
+      <description>Two new readonly fields, `image_output_format` and `image_save_progressive`, are now exposed on individual image attachments via the REST API when requested in the `edit` context. This change shifts per-image output formatting and progressive encoding flags from the global REST index (`/wp/v2/`) to media endpoints, allowing developers to inspect the actual output MIME type and interlacing behavior resolved by the `image_editor_output_format` and `image_save_progressive` filters on a per-file basis.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-5231afc9a3.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-5231afc9a3</guid>
+      <pubDate>Thu, 02 Jul 2026 17:35:47 +0000</pubDate>
+    </item>
+    <item>
+      <title>REST API: Support registering one sideloaded file under multiple image sizes.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/f7a841388cfa9b445288dfaa4303796584f0a29c</link>
+      <description>The REST API's media sideload and finalize endpoints have been refactored to support efficient client-side media processing. The `image_size` parameter on the sideload endpoint now accepts either a string or an array of strings, allowing clients to register one uploaded file under multiple registered image sizes that share identical dimensions. Instead of synchronously updating full attachment metadata during sideloading, the endpoint returns lightweight sub-size data that clients accumulate and submit in a single batch to the `finalize` endpoint.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-f7a841388c.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-f7a841388c</guid>
+      <pubDate>Thu, 02 Jul 2026 17:37:04 +0000</pubDate>
+    </item>
+    <item>
+      <title>HTML API: Discourage public use of the `step()` method.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/aa4e8ec2fe1dd7c95e376cc87ba60e856eb2b81a</link>
+      <description>The `WP_HTML_Processor::step()` method has been formally marked as internal and discouraged for public use via a docblock update. This clarifies that `next_tag()` and `next_token()` are the intended iteration methods, steering developers away from lower-level stepping mechanisms in the HTML API without altering runtime behavior.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-aa4e8ec2fe.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-aa4e8ec2fe</guid>
+      <pubDate>Thu, 02 Jul 2026 17:38:34 +0000</pubDate>
+    </item>
+    <item>
+      <title>General: Bump the pinned hash for Gutenberg to `v23.3.0`.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/ca2129de238d5b018b0350171d051e13a88ac829</link>
+      <description>This commit synchronizes WordPress trunk with the Gutenberg `v23.3.0` release, updating the pinned commit SHA and refreshing internal dependency hashes. The bump introduces new optional block schema attributes (`opensInNewTab` and `description` on the Home Link block; `isDecorative` on the Image block), updates lightbox accessibility strings, and adds a backward-compatibility shim for an older navigation submenu icon function.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-ca2129de23.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-ca2129de23</guid>
+      <pubDate>Thu, 02 Jul 2026 17:40:02 +0000</pubDate>
+    </item>
+    <item>
+      <title>HTML API: Respect namespace in open element lookup.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/f149add5b5196da9c23c93bb9fdea6c787b55c21</link>
+      <description>The HTML API's open element stack lookup now explicitly validates the XML namespace before matching a tag name, preventing foreign elements (such as MathML or SVG) from incorrectly satisfying checks for native HTML elements. This fixes a parsing state machine bug where a `&lt;template&gt;` tag inside a `&lt;math&gt;` block could prematurely close the main document's template context. The change ensures that DOM tree structure and breadcrumb tracking remain accurate when processing mixed-content fragments containing namespace-scoped markup.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-f149add5b5.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-f149add5b5</guid>
+      <pubDate>Thu, 02 Jul 2026 17:40:42 +0000</pubDate>
     </item>
   </channel>
 </rss>

@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 29 Jun 2026 23:02:01 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 02 Jul 2026 18:20:26 +0000</lastBuildDate>
     <item>
       <title>Dev Chat Agenda – June 3, 2026</title>
       <link>https://make.wordpress.org/core/2026/06/03/dev-chat-agenda-june-03-2026/</link>
@@ -340,6 +340,51 @@ Digest entry: issues/dev-notes/make-core-122418.md · Source: Make WordPress Cor
 Digest entry: issues/dev-notes/make-core-123843.md · Source: Make WordPress Core</description>
       <guid isPermaLink="false">make-core-123843</guid>
       <pubDate>Mon, 29 Jun 2026 15:49:35 +0000</pubDate>
+    </item>
+    <item>
+      <title>Merge Proposal: Expanding WordPress Core Abilities</title>
+      <link>https://make.wordpress.org/core/2026/07/02/merge-proposal-expanding-wordpress-core-abilities/</link>
+      <description>WordPress 7.1 expands the Abilities API (initially shipped in 6.9) by introducing three read-only abilities: `core/read-settings`, `core/read-content`, and `core/read-users`. This establishes a canonical baseline for AI clients, agentic workflows, and future WebMCP integrations to safely query site configuration, post content, and user data without reinventing permission checks or schemas.
+
+Digest entry: issues/dev-notes/make-core-124315.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124315</guid>
+      <pubDate>Thu, 02 Jul 2026 18:15:01 +0000</pubDate>
+    </item>
+    <item>
+      <title>Dev Chat summary: July 1, 2026</title>
+      <link>https://make.wordpress.org/core/2026/07/01/summary-dev-chat-july-1-2026/</link>
+      <description>WordPress 7.1 development has formalized a roadmap proposal to hide the Classic Block from the block editor inserter by default. This shifts legacy text editing from an opt-out to an opt-in model, preserving shortcode and `the_content` rendering capabilities while prioritizing modern block-based authoring surfaces.
+
+Digest entry: issues/dev-notes/make-core-124340.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124340</guid>
+      <pubDate>Thu, 02 Jul 2026 18:15:47 +0000</pubDate>
+    </item>
+    <item>
+      <title>What’s new in Gutenberg 23.5? (July 1, 2026)</title>
+      <link>https://make.wordpress.org/core/2026/07/01/whats-new-in-gutenberg-23-5-july-1-2026/</link>
+      <description>Gutenberg 23.5 introduces experimental media editor cropping controls, brings the media modal to the Cover block, and replaces rigid device presets with a freely resizable canvas alongside dynamic breakpoint toggles. It also expands Global Styles with text shadow support, standardizes Icon block defaults, and enables per-post-type disabling of real-time collaboration.
+
+Digest entry: issues/dev-notes/make-core-124219.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124219</guid>
+      <pubDate>Thu, 02 Jul 2026 18:16:28 +0000</pubDate>
+    </item>
+    <item>
+      <title>WordPress 7.0.1 RC1 is now available</title>
+      <link>https://make.wordpress.org/core/2026/07/01/wordpress-7-0-1-rc1-is-now-available/</link>
+      <description>WordPress 7.0.1 RC1 is a bug-fix-only maintenance release for the 7.0 branch, targeting regressions and edge-case failures introduced during the 7.0 development cycle. The update resolves PHP 8.5 compatibility issues in `wp_get_attachment_image_src`, corrects CSS parsing and sanitization edge cases (`wp_kses`), restores a deprecated navigation block shim, and addresses several admin media UI and block editor rendering regressions. No new features or breaking changes are introduced.
+
+Digest entry: issues/dev-notes/make-core-124308.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124308</guid>
+      <pubDate>Thu, 02 Jul 2026 18:17:17 +0000</pubDate>
+    </item>
+    <item>
+      <title>Guidelines for Syncing Code From Gutenberg Into WordPress Develop</title>
+      <link>https://make.wordpress.org/core/2026/06/30/guidelines-for-syncing-code-from-gutenberg-into-wordpress-develop/</link>
+      <description>This post establishes the official workflow for syncing Gutenberg plugin code into the core `wordpress-develop` repository, shifting from npm package imports to downloading built assets via the `build-plugin-zip.yml` GitHub Actions workflow. It defines distinct alpha and beta/RC sync cadences, mandates pinning `package.json`'s `gutenberg.sha` to specific `wp/X.Y` branch SHAs during release stabilization, and standardizes Trac ticketing scopes and commit message templates for hash bumps.
+
+Digest entry: issues/dev-notes/make-core-124256.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124256</guid>
+      <pubDate>Thu, 02 Jul 2026 18:18:22 +0000</pubDate>
     </item>
   </channel>
 </rss>
