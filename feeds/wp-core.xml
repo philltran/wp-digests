@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 02 Jul 2026 18:20:26 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 09 Jul 2026 15:30:41 +0000</lastBuildDate>
     <item>
       <title>REST API: Allow-list ability schema response keywords</title>
       <link>https://github.com/WordPress/wordpress-develop/commit/da7588be089fbaeb05ecb4d79dca3cf11815698d</link>
@@ -169,6 +169,51 @@ Digest entry: issues/wp-core/gh-wordpress-develop-ca2129de23.md · Source: WordP
 Digest entry: issues/wp-core/gh-wordpress-develop-f149add5b5.md · Source: WordPress/wordpress-develop</description>
       <guid isPermaLink="false">gh-wordpress-develop-f149add5b5</guid>
       <pubDate>Thu, 02 Jul 2026 17:40:42 +0000</pubDate>
+    </item>
+    <item>
+      <title>HTML API: Apply deferred byte processing at read interfaces.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/60e382bfa7cd51130e14b29ea934a07e48379bde</link>
+      <description>The HTML API in `WP_HTML_Tag_Processor` now consistently applies deferred input-stream preprocessing at all read interfaces. This aligns attribute names, tag names, and source document reads with browser behavior by normalizing newlines (CRLF/CR → LF) and replacing NULL bytes (U+0000 → U+FFFD) before decoding or returning values.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-60e382bfa7.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-60e382bfa7</guid>
+      <pubDate>Thu, 09 Jul 2026 07:06:08 +0000</pubDate>
+    </item>
+    <item>
+      <title>HTML API: Apply HTML specification change to DOCTYPE parsing.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/8512f0f704af17ca9d256128eef3107b99bab74e</link>
+      <description>The HTML API's DOCTYPE parsing in `WP_HTML_Doctype_Info` was updated to align with the current WHATWG HTML specification, which removed the distinction between missing and empty SYSTEM identifiers when determining document rendering mode. Previously, an empty system identifier triggered limited-quirks mode, whereas now it (alongside a missing identifier) consistently yields quirks mode. This correction ensures WordPress's internal HTML serialization matches web standards and resolves edge-case DOCTYPE handling.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-8512f0f704.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-8512f0f704</guid>
+      <pubDate>Thu, 09 Jul 2026 07:06:43 +0000</pubDate>
+    </item>
+    <item>
+      <title>REST API: Sideload external images via a url parameter.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/7e625403f161e726c78417f924c7345fb2c9bdc4</link>
+      <description>The WordPress REST API now accepts a `url` parameter on the `POST /wp/v2/media` endpoint, allowing the server to fetch and sideload external images directly into the media library instead of requiring client-side browser uploads. This change resolves cross-origin isolation limitations that commonly block direct browser-to-remote-URL requests in modern browsers while preserving the existing multipart upload pipeline for standard file selections.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-7e625403f1.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-7e625403f1</guid>
+      <pubDate>Thu, 09 Jul 2026 07:07:28 +0000</pubDate>
+    </item>
+    <item>
+      <title>REST API: Expose size-aware encode quality on attachment responses.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/4d6a707e0254329b68d9301a97f177940315b17b</link>
+      <description>This commit introduces an `image_quality` field to the media attachment REST API response, exposing the resolved server-side image encode quality (1–100) based on registered sub-sizes and the `wp_editor_set_quality` filter. The new `wp_get_image_encode_quality()` function in `media.php` replicates the resolution logic of `WP_Image_Editor::set_quality()`, accounting for MIME type defaults (WebP: 86, others: 82), the legacy `jpeg_quality` filter, and dimension-aware overrides. This gives headless consumers accurate quality metadata without needing to instantiate an image editor on the client.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-4d6a707e02.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-4d6a707e02</guid>
+      <pubDate>Thu, 09 Jul 2026 07:08:41 +0000</pubDate>
+    </item>
+    <item>
+      <title>HTML API: Ensure slash in attribute value is not a self-closing flag.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/94f3236cc2eb1a7c03505843dd53a566d8ab7a45</link>
+      <description>The HTML API in `WP_HTML_Tag_Processor` has been corrected to properly handle trailing slashes inside unquoted attribute values. Previously, markup like `&lt;div id=test/&gt;` incorrectly triggered the self-closing flag logic, treating the `/` as a tag closer rather than part of the `id` attribute value. This fix ensures slash-only or trailing-slash attributes are parsed correctly without corrupting DOM structure or affecting void element expectations.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-94f3236cc2.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-94f3236cc2</guid>
+      <pubDate>Thu, 09 Jul 2026 07:09:33 +0000</pubDate>
     </item>
   </channel>
 </rss>

@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 02 Jul 2026 18:20:26 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 09 Jul 2026 15:30:41 +0000</lastBuildDate>
     <item>
       <title>Dev Chat Agenda – June 3, 2026</title>
       <link>https://make.wordpress.org/core/2026/06/03/dev-chat-agenda-june-03-2026/</link>
@@ -385,6 +385,33 @@ Digest entry: issues/dev-notes/make-core-124308.md · Source: Make WordPress Cor
 Digest entry: issues/dev-notes/make-core-124256.md · Source: Make WordPress Core</description>
       <guid isPermaLink="false">make-core-124256</guid>
       <pubDate>Thu, 02 Jul 2026 18:18:22 +0000</pubDate>
+    </item>
+    <item>
+      <title>Dev Chat Agenda – July 8, 2026</title>
+      <link>https://make.wordpress.org/core/2026/07/08/dev-chat-agenda-july-8-2026/</link>
+      <description>Announces the WordPress 7.1 development timeline and coordinates upcoming milestones, including Beta 1 release on July 15 and an August 3 deadline for publishing dev notes ahead of RC1. It also confirms that the classic block will remain visible in the inserter as part of the "Expanding WP Core Abilities" initiative.
+
+Digest entry: issues/dev-notes/make-core-124461.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124461</guid>
+      <pubDate>Thu, 09 Jul 2026 07:39:09 +0000</pubDate>
+    </item>
+    <item>
+      <title>Merge Proposal: Design System Theming</title>
+      <link>https://make.wordpress.org/core/2026/07/07/merge-proposal-design-system-theming/</link>
+      <description>This merge introduces a foundational admin theming system built on CSS custom properties and W3C-compliant design tokens. It registers a `wp-theme` stylesheet and a React `ThemeProvider` component to standardize styling across the WordPress admin interface. The change lays the infrastructure for extending user color schemes to the Site Editor in 7.1 while explicitly deferring advanced capabilities like full dark mode support to future releases.
+
+Digest entry: issues/dev-notes/make-core-124406.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124406</guid>
+      <pubDate>Thu, 09 Jul 2026 07:39:39 +0000</pubDate>
+    </item>
+    <item>
+      <title>The Classic block stays in the inserter for WordPress 7.1</title>
+      <link>https://make.wordpress.org/core/2026/07/07/the-classic-block-stays-in-the-inserter-for-wordpress-7-1/</link>
+      <description>The planned change to hide the Classic block from the default inserter in WordPress 7.1 has been reverted. The Classic block will continue to appear in the inserter, block library, and slash commands exactly as it does today. Consequently, the previously introduced `wp_classic_block_supports_inserter` filter was removed before shipping, eliminating any backward-compatibility footprint for developers to manage.
+
+Digest entry: issues/dev-notes/make-core-124413.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124413</guid>
+      <pubDate>Thu, 09 Jul 2026 07:40:10 +0000</pubDate>
     </item>
   </channel>
 </rss>

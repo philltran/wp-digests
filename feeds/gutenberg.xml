@@ -7,466 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 02 Jul 2026 18:20:26 +0000</lastBuildDate>
-    <item>
-      <title>#78531: Fix registered post meta scope</title>
-      <link>https://github.com/WordPress/gutenberg/pull/78531</link>
-      <description>Fixes a bug where a registered post meta schema for editor CRDT/collaboration state was exposed across all REST API contexts. The change restricts the meta's visibility to the `edit` context only, preventing editor-internal state data from leaking into standard `view` responses and aligning the schema with WP's default REST context scoping rules.
-
-Digest entry: issues/gutenberg/gh-gutenberg-78531.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-78531</guid>
-      <pubDate>Tue, 09 Jun 2026 02:30:41 +0000</pubDate>
-    </item>
-    <item>
-      <title>#78876: Fix playlist metadata edits recreating player</title>
-      <link>https://github.com/WordPress/gutenberg/pull/78876</link>
-      <description>Fixes a regression in the Playlist block where editing track metadata (title, artist, or artwork) caused the waveform audio player to destroy and reinitialize on every keystroke. This change decouples the player's lifecycle from non-critical metadata updates by switching to in-place DOM mutations for plain text edits, while preserving full reconstruction only when the audio `src` changes or artwork/artist fields are added or removed. The fix eliminates editor focus loss and visual flicker during metadata entry.
-
-Digest entry: issues/gutenberg/gh-gutenberg-78876.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-78876</guid>
-      <pubDate>Tue, 09 Jun 2026 02:31:28 +0000</pubDate>
-    </item>
-    <item>
-      <title>#78661: [Content Types]: Fix extra Page padding causing vertical scrollbar</title>
-      <link>https://github.com/WordPress/gutenberg/pull/78661</link>
-      <description>The Settings → Content Types dashboard screen was displaying an unnecessary vertical scrollbar because padding was applied directly to the `.content-types-page` container. This change removes that padding from the page wrapper and applies it to the tab wrapper instead, eliminating the viewport overflow while aligning the layout with other experimental screens.
-
-Digest entry: issues/gutenberg/gh-gutenberg-78661.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-78661</guid>
-      <pubDate>Tue, 09 Jun 2026 02:32:52 +0000</pubDate>
-    </item>
-    <item>
-      <title>#76147: Playlist Block: Add visualization style selector</title>
-      <link>https://github.com/WordPress/gutenberg/pull/76147</link>
-      <description>The Playlist block now exposes a “Visualization style” dropdown in the block inspector, enabling editors to control how audio waveforms are rendered. This change surfaces all six waveform visualization styles supported by the `@arraypress/waveform-player` library while preserving backwards compatibility through a default “bars” value.
-
-Digest entry: issues/gutenberg/gh-gutenberg-76147.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-76147</guid>
-      <pubDate>Tue, 09 Jun 2026 02:33:50 +0000</pubDate>
-    </item>
-    <item>
-      <title>#78815: Dashboard: event widget iteration</title>
-      <link>https://github.com/WordPress/gutenberg/pull/78815</link>
-      <description>The experimental Dashboard’s Events widget now persists location selection as a user attribute, restructures its layout for improved narrow-viewport resilience, and refines visual states to distinguish between viewing and modifying locations. These iterations streamline the discovery flow while centralizing location management in the dedicated settings panel.
-
-Digest entry: issues/gutenberg/gh-gutenberg-78815.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-78815</guid>
-      <pubDate>Tue, 09 Jun 2026 02:34:47 +0000</pubDate>
-    </item>
-    <item>
-      <title>#79103: Image block: don't show crop icon while image is uploading</title>
-      <link>https://github.com/WordPress/gutenberg/pull/79103</link>
-      <description>Resolves a race condition in the Image block where clicking the crop control during an active upload would incorrectly initialize the cropper with previous attachment metadata. The change suppresses the crop UI until the upload lifecycle completes, ensuring editor state aligns with media processing.
-
-Digest entry: issues/gutenberg/gh-gutenberg-79103.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-79103</guid>
-      <pubDate>Fri, 12 Jun 2026 00:45:53 +0000</pubDate>
-    </item>
-    <item>
-      <title>#78885: Popover: add open/close motion and fix close re-anchor</title>
-      <link>https://github.com/WordPress/gutenberg/pull/78885</link>
-      <description>Adds open/close animation to the `@wordpress/ui` `Popover` component. The update applies the shared `dropdown-motion` slide/fade profile to `Popover.Popup`, adds a backdrop opacity fade, and splits the popup DOM into a transformed motion layer (`.popup`) and an inner surface div (`.surface`) to prevent arrow alignment drift during transforms. While the PR title references a close-reposition fix, that change was explicitly excluded during review to address the root cause separately.
-
-Digest entry: issues/gutenberg/gh-gutenberg-78885.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-78885</guid>
-      <pubDate>Fri, 12 Jun 2026 00:48:05 +0000</pubDate>
-    </item>
-    <item>
-      <title>#77439: Try: Remove Tab (Tab list item) block </title>
-      <link>https://github.com/WordPress/gutenberg/pull/77439</link>
-      <description>Removes the `core/tab` block entirely, migrating tab button management from nested inner blocks to a declarative `tabs` attribute on the `core/tab-list` block. This shift simplifies editor styling workflows by allowing single-level CSS application to all tab buttons and prepares the component for Interactivity API–driven state management (e.g., active states). Existing content using `core/tab` will be affected by this breaking structural change.
-
-Digest entry: issues/gutenberg/gh-gutenberg-77439.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-77439</guid>
-      <pubDate>Fri, 12 Jun 2026 00:50:24 +0000</pubDate>
-    </item>
-    <item>
-      <title>#79101: Media Editor Modal: Add a loading and simple error state</title>
-      <link>https://github.com/WordPress/gutenberg/pull/79101</link>
-      <description>This update improves the Media Editor Modal's UX on slow or flaky connections by introducing explicit loading and error states for image cropping. Instead of displaying drag handles before the underlying image fully streams in, the modal now renders a spinner, fades the cropper in once pixels are ready, and gracefully handles failed loads with an alert message.
-
-Digest entry: issues/gutenberg/gh-gutenberg-79101.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-79101</guid>
-      <pubDate>Fri, 12 Jun 2026 00:51:07 +0000</pubDate>
-    </item>
-    <item>
-      <title>#78677: Fix: Custom HTML block preview keeps expanding when iframe uses height:100vh</title>
-      <link>https://github.com/WordPress/gutenberg/pull/78677</link>
-      <description>Fixes an infinite resize loop in the Custom HTML block preview when user-supplied HTML contains iframes using viewport-relative CSS units like `height: 100vh`. The SandBox component's sandbox stripping logic previously contained a malformed regex that failed to strip these values, causing the preview iframe to continuously expand based on its own calculated height. With the corrected pattern, viewport units are properly stripped before the first measurement, stabilizing the preview layout and restoring editor performance.
-
-Digest entry: issues/gutenberg/gh-gutenberg-78677.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-78677</guid>
-      <pubDate>Fri, 12 Jun 2026 00:51:45 +0000</pubDate>
-    </item>
-    <item>
-      <title>#79032: Theme: Add Figma scopes to element size tokens</title>
-      <link>https://github.com/WordPress/gutenberg/pull/79032</link>
-      <description>This change adds Figma design variable scopes to the WordPress Design System's dimension tokens in `packages/theme/tokens/dimension.json`. By appending a `$extensions` block with a `WIDTH_HEIGHT` scope, size variables (`5xs` through `lg`) are now correctly surfaced and selectable in Figma's layer dimension pickers. This alignment ensures designers can apply theme sizing directly within Figma without manual overrides or workarounds.
-
-Digest entry: issues/gutenberg/gh-gutenberg-79032.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-79032</guid>
-      <pubDate>Fri, 12 Jun 2026 00:52:10 +0000</pubDate>
-    </item>
-    <item>
-      <title>#79055: Update `@ariakit/react` to 0.4.29</title>
-      <link>https://github.com/WordPress/gutenberg/pull/79055</link>
-      <description>Update `@ariakit/react` to `^0.4.29` across `@wordpress/components` and `@wordpress/dataviews`. This upgrade incorporates an upstream Ariakit fix that moves focus to the newly selected tab upon controlled selection change, eliminating previously necessary manual focus-synchronization workarounds in the `Tabs` component.
-
-Digest entry: issues/gutenberg/gh-gutenberg-79055.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-79055</guid>
-      <pubDate>Fri, 12 Jun 2026 00:52:47 +0000</pubDate>
-    </item>
-    <item>
-      <title>#79079: Style Engine: Export public TypeScript types</title>
-      <link>https://github.com/WordPress/gutenberg/pull/79079</link>
-      <description>The `@wordpress/style-engine` package now explicitly exports the TypeScript signatures `Style`, `StyleOptions`, and `GeneratedCSSRule` from its main entry point. Previously, consumers had to rely on fragile deep imports from `src/types` to type against `compileCSS()` and `getCSSRules()`. Making these types public aligns the package with standard WordPress publishing patterns, improves developer experience for TypeScript projects, and eliminates non-standard deep-path imports.
-
-Digest entry: issues/gutenberg/gh-gutenberg-79079.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-79079</guid>
-      <pubDate>Fri, 12 Jun 2026 00:53:21 +0000</pubDate>
-    </item>
-    <item>
-      <title>#79049: Omnipresent toolbar: show site icon instead of dashicon if set</title>
-      <link>https://github.com/WordPress/gutenberg/pull/79049</link>
-      <description>The Gutenberg plugin’s omnipresent toolbar experiment now replaces the default admin bar site menu icon with the actual site icon when one is configured. This standardizes visual identity across frontend and editor views, resolving confusion from previously switching between generic dashicons based on context. It improves mobile viewport identification without altering the node label or core admin bar structure.
-
-Digest entry: issues/gutenberg/gh-gutenberg-79049.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-79049</guid>
-      <pubDate>Fri, 12 Jun 2026 00:54:07 +0000</pubDate>
-    </item>
-    <item>
-      <title>#79052: Math format: seed LaTeX input from the current selection</title>
-      <link>https://github.com/WordPress/gutenberg/pull/79052</link>
-      <description>Previously, applying the Math inline format ignored the editor’s active selection and opened an empty popover input. This enhancement seeds the LaTeX input field directly from any selected text, eliminating unnecessary manual entry. Clicking the toolbar button a second time now toggles the active math object back to its raw LaTeX source, preserving the text selection for immediate editing or re-formatting.
-
-Digest entry: issues/gutenberg/gh-gutenberg-79052.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-79052</guid>
-      <pubDate>Fri, 12 Jun 2026 00:54:45 +0000</pubDate>
-    </item>
-    <item>
-      <title>#79074: Rename `Toolbar in editor` experiment to match iteration issue</title>
-      <link>https://github.com/WordPress/gutenberg/pull/79074</link>
-      <description>Renamed the "Toolbar in editor" Gutenberg experiment to "Omnipresent Toolbar" (internal ID `gutenberg-omnibar`). This change aligns the experiment's terminology with its broader iteration issue, clarifying that it encompasses more than just showing the admin bar in fullscreen editors. The underlying functionality and UI behavior remain unchanged; only the identifiers and internal references have been updated.
-
-Digest entry: issues/gutenberg/gh-gutenberg-79074.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-79074</guid>
-      <pubDate>Fri, 12 Jun 2026 00:55:29 +0000</pubDate>
-    </item>
-    <item>
-      <title>#79060: Editor: Hide cmd palette shortcut in document bar when admin bar is shown</title>
-      <link>https://github.com/WordPress/gutenberg/pull/79060</link>
-      <description>The block editor's document bar now conditionally hides the ⌘K keyboard shortcut indicator when the experimental admin bar is active inside the editor. This prevents duplicate command palette buttons from appearing side-by-side when `window.__experimentalAdminBarInEditor` is enabled. The change isolates to a visual cleanup without altering the title's click behavior or other document bar interactions.
-
-Digest entry: issues/gutenberg/gh-gutenberg-79060.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-79060</guid>
-      <pubDate>Fri, 12 Jun 2026 00:55:57 +0000</pubDate>
-    </item>
-    <item>
-      <title>#79070: Media Editor: Keep the modal skeleton pinned in the editor flow</title>
-      <link>https://github.com/WordPress/gutenberg/pull/79070</link>
-      <description>Fixes a CSS specificity regression in the block editor's media modal where an external experiment's admin bar offset rule incorrectly pushed the internal skeleton down, clipping the fine-rotation ruler. The change anchors the `top: auto` reset to the modal frame using doubled class specificity so it always overrides external offsets, preserving the intended fullscreen editing layout.
-
-Digest entry: issues/gutenberg/gh-gutenberg-79070.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-79070</guid>
-      <pubDate>Fri, 12 Jun 2026 00:56:26 +0000</pubDate>
-    </item>
-    <item>
-      <title>#79056: Site Editor: Fix admin color scheme bleeding through the mobile content scrollbar gutter</title>
-      <link>https://github.com/WordPress/gutenberg/pull/79056</link>
-      <description>Fixes a visual regression in the Site Editor mobile layout where the admin color scheme background bled through the scrollbar gutter behind the content panel. The change moves the `&lt;ThemeProvider&gt;` wrapper to encompass the scroll container, ensuring the gutter inherits the neutral surface token and renders a clean white edge.
-
-Digest entry: issues/gutenberg/gh-gutenberg-79056.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-79056</guid>
-      <pubDate>Fri, 12 Jun 2026 00:57:33 +0000</pubDate>
-    </item>
-    <item>
-      <title>#78776: Preserve nested list when deleting a selection across sibling list items</title>
-      <link>https://github.com/WordPress/gutenberg/pull/78776</link>
-      <description>Fixes a bug in the block editor where deleting a multi-block text selection spanning sibling list items caused nested structures to be dropped. Previously, the merge operation only carried over block attributes from the surviving target block, discarding inner blocks from the deleted block. This update ensures that when two list items are merged via Backspace or Delete, their structural hierarchy is preserved on the resulting merged item.
-
-Digest entry: issues/gutenberg/gh-gutenberg-78776.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-78776</guid>
-      <pubDate>Fri, 12 Jun 2026 00:58:16 +0000</pubDate>
-    </item>
-    <item>
-      <title>#72402: `ColorPalette`: don't render when custom colors disabled and no colors passed</title>
-      <link>https://github.com/WordPress/gutenberg/pull/72402</link>
-      <description>The `ColorPalette` component now returns early when custom colors are disabled, no color presets exist, and no actions (like clear buttons) are configured. This prevents an empty UI wrapper from rendering in the Block Editor, eliminating unnecessary DOM nodes and visual artifacts when theme.json explicitly opts out of custom color selection.
-
-Digest entry: issues/gutenberg/gh-gutenberg-72402.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-72402</guid>
-      <pubDate>Fri, 12 Jun 2026 00:59:44 +0000</pubDate>
-    </item>
-    <item>
-      <title>#78959: UI: Update CSS cascade layers to use nesting</title>
-      <link>https://github.com/WordPress/gutenberg/pull/78959</link>
-      <description>Updates the CSS cascade layer structure in `@wordpress/ui` from a flat list of four prefixed layers (`wp-ui-utilities`, `wp-ui-components`, `wp-ui-compositions`, `wp-ui-overrides`) to a single top-level nested hierarchy under `wp-ui`. This refactor improves extensibility for applications defining custom cascade order, reduces layer ordering errors by centralizing the public-facing layer name, and better scopes shared style hierarchy within the package.
-
-Digest entry: issues/gutenberg/gh-gutenberg-78959.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-78959</guid>
-      <pubDate>Fri, 12 Jun 2026 01:00:22 +0000</pubDate>
-    </item>
-    <item>
-      <title>#77159: design-system-mcp: Add new package for design system MCP tooling</title>
-      <link>https://github.com/WordPress/gutenberg/pull/77159</link>
-      <description>Introduces the new `@wordpress/design-system-mcp` package, a local Model Context Protocol (MCP) server that exposes WordPress design system tokens and component metadata directly to AI development agents. This enables developers to programmatically query design tokens and block component specifications during AI-assisted coding workflows without requiring external hosting or session management.
-
-Digest entry: issues/gutenberg/gh-gutenberg-77159.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-77159</guid>
-      <pubDate>Fri, 12 Jun 2026 01:01:06 +0000</pubDate>
-    </item>
-    <item>
-      <title>#78977: Extract entity view config into a filterable API</title>
-      <link>https://github.com/WordPress/gutenberg/pull/78977</link>
-      <description>The DataViews configuration previously hardcoded inside the `Gutenberg_REST_View_Config_Controller_7_1` REST controller has been extracted into a standalone, filterable API. This change decouples the data model from the REST transport layer and introduces `gutenberg_get_entity_view_config()`, allowing third-party plugins and theme developers to override view settings per entity kind/name without modifying core files. The `/wp/v2/view-config` endpoint behavior and response shape remain completely unchanged.
-
-Digest entry: issues/gutenberg/gh-gutenberg-78977.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-78977</guid>
-      <pubDate>Fri, 12 Jun 2026 01:03:54 +0000</pubDate>
-    </item>
-    <item>
-      <title>#79004: Inserter: Fix error being thrown for spoken message when inserting default/direct block</title>
-      <link>https://github.com/WordPress/gutenberg/pull/79004</link>
-      <description>Fixes a TypeError thrown in the block editor inserter when inserting default or direct block types. Previously, accessing `allowedBlockType.title` failed when the block type was null/false, breaking screen reader announcements. The update safely resolves block labels using an experimental function and active variation titles, ensuring reliable accessibility feedback without crashing.
-
-Digest entry: issues/gutenberg/gh-gutenberg-79004.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-79004</guid>
-      <pubDate>Fri, 12 Jun 2026 01:05:20 +0000</pubDate>
-    </item>
-    <item>
-      <title>#78984: RTC: Allow disabling collaboration by post type</title>
-      <link>https://github.com/WordPress/gutenberg/pull/78984</link>
-      <description>Real-Time Collaboration (RTC) can now be disabled for specific post types without requiring a global toggle change. Previously, enabling collaboration at the site level applied to all synced post type entities; this change introduces a filter and associated UI updates to opt out individual post types from collaborative editing and background syncing.
-
-Digest entry: issues/gutenberg/gh-gutenberg-78984.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-78984</guid>
-      <pubDate>Fri, 12 Jun 2026 01:36:15 +0000</pubDate>
-    </item>
-    <item>
-      <title>#79077: Add React 19 as an experimental flag</title>
-      <link>https://github.com/WordPress/gutenberg/pull/79077</link>
-      <description>Introduces the `gutenberg-react-19` experimental flag to conditionally load React 19 as the bundled vendor runtime alongside the existing React 18 build. The change includes polyfills that simulate React 18's JSX behavior (e.g., `defaultProps` resolution, legacy `Symbol.for('react.element')` tagging) and addresses altered portal rendering in React 19. It also removes deprecated `findDOMNode`-related wrappers from the `@wordpress/element` package.
-
-Digest entry: issues/gutenberg/gh-gutenberg-79077.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-79077</guid>
-      <pubDate>Fri, 12 Jun 2026 01:36:59 +0000</pubDate>
-    </item>
-    <item>
-      <title>#79072: Navigation block: Fix responsive style states for typography settings</title>
-      <link>https://github.com/WordPress/gutenberg/pull/79072</link>
-      <description>Fixes responsive typography styles in the Navigation block by copying generated state classes (`wp-states-*`) from the outer `&lt;nav&gt;` wrapper to inner `&lt;ul class="wp-block-navigation__container"&gt;` elements. Previously, nested list containers intercepted font settings, causing breakpoint overrides (Desktop/Mobile/Tablet) to fail or leak across custom overlays.
-
-Digest entry: issues/gutenberg/gh-gutenberg-79072.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-79072</guid>
-      <pubDate>Fri, 12 Jun 2026 01:37:41 +0000</pubDate>
-    </item>
-    <item>
-      <title>#77260: Icons: Add APIs for collection and icon registration</title>
-      <link>https://github.com/WordPress/gutenberg/pull/77260</link>
-      <description>This change introduces a formalized PHP API for registering and managing SVG icons within collections. It shifts icon registration from internal class constructors to public wrapper functions, enabling plugin and theme developers to expose their own icon sets through a unified, namespaced system. Icons are now uniquely identified by `{collection-slug}/{icon-slug}` and can be queried via new REST endpoints, establishing the backend foundation for upcoming block editor icon picker features.
-
-Digest entry: issues/gutenberg/gh-gutenberg-77260.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-77260</guid>
-      <pubDate>Mon, 29 Jun 2026 14:49:20 +0000</pubDate>
-    </item>
-    <item>
-      <title>#77956: Modal: Render as a bottom sheet on mobile</title>
-      <link>https://github.com/WordPress/gutenberg/pull/77956</link>
-      <description>The `Modal` component in `@wordpress/components` now renders as a bottom sheet on mobile viewports (&lt;600px), anchored to the bottom of the viewport with edge-to-edge width and rounded top corners only. This layout shift improves mobile ergonomics by keeping primary CTAs within the thumb zone and preventing short-content modals from stretching to fill the entire screen. Desktop rendering, sizing, and animations remain completely unchanged.
-
-Digest entry: issues/gutenberg/gh-gutenberg-77956.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-77956</guid>
-      <pubDate>Mon, 29 Jun 2026 14:49:59 +0000</pubDate>
-    </item>
-    <item>
-      <title>#79149: Knowledge: Rename the Guidelines CPT storage primitive to Knowledge</title>
-      <link>https://github.com/WordPress/gutenberg/pull/79149</link>
-      <description>This pull request renames the experimental Guidelines content storage primitive to a "Knowledge" namespace across the Gutenberg plugin. It updates the custom post type (`wp_guideline` → `wp_knowledge`), associated taxonomy (`wp_guideline_type` → `wp_knowledge_type`), REST routes, capability filters, and built-in type slugs. The consolidation prepares the feature for potential graduation without altering its underlying behavior or data shape.
-
-Digest entry: issues/gutenberg/gh-gutenberg-79149.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-79149</guid>
-      <pubDate>Mon, 29 Jun 2026 14:50:56 +0000</pubDate>
-    </item>
-    <item>
-      <title>#79263: Knowledge: Dissolve the Guidelines singleton into per-scope rows</title>
-      <link>https://github.com/WordPress/gutenberg/pull/79263</link>
-      <description>The Gutenberg Knowledge layer for `Settings → Guidelines` is refactored from a singleton post holding all categories as `_guideline_*` meta into one published `wp_knowledge` row per scope (prefixed `guideline-`). The custom `/wp/v2/content-guidelines` REST controller and hand-rolled client store are removed. The admin interface remains visually identical, but all reads/writes now route through the standard `/wp/v2/knowledge` endpoint via `useEntityRecords`.
-
-Digest entry: issues/gutenberg/gh-gutenberg-79263.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-79263</guid>
-      <pubDate>Mon, 29 Jun 2026 14:51:32 +0000</pubDate>
-    </item>
-    <item>
-      <title>#79583: Tabs: RichText handlers for adding/removing tabs</title>
-      <link>https://github.com/WordPress/gutenberg/pull/79583</link>
-      <description>This merge enhances the core Tabs block editor by wiring up RichText handlers to tab labels, allowing editors to add tabs via Enter key or remove them via backspace. The underlying insert and remove logic was extracted from toolbar controls into a shared React hook to eliminate duplication and prevent unnecessary store subscriptions.
-
-Digest entry: issues/gutenberg/gh-gutenberg-79583.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-79583</guid>
-      <pubDate>Mon, 29 Jun 2026 14:52:08 +0000</pubDate>
-    </item>
-    <item>
-      <title>#79623: Icons Registry: Allow digits and underscores in icon slugs</title>
-      <link>https://github.com/WordPress/gutenberg/pull/79623</link>
-      <description>This PR relaxes the validation rules for icon slugs in the `WP_Icons_Registry_Gutenberg` class to permit digits and underscores within slugs. Previously, only lowercase letters and hyphens were allowed. This enhancement resolves real-world constraints where popular icon identifiers (e.g., `html5`, `500px`) contain digits that previously triggered validation failures.
-
-Digest entry: issues/gutenberg/gh-gutenberg-79623.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-79623</guid>
-      <pubDate>Mon, 29 Jun 2026 14:52:41 +0000</pubDate>
-    </item>
-    <item>
-      <title>#74744: Fix - Accordion: Text in a closed accordion panel cannot be found via the browser search</title>
-      <link>https://github.com/WordPress/gutenberg/pull/74744</link>
-      <description>The Accordion block now makes text inside closed panels indexable by browser search (`Ctrl+F`). Switching from `aria-hidden`/`inert` to `hidden="until-found"` keeps collapsed panels visually hidden while allowing the browser to scan their content; when a match is found, the panel automatically expands to reveal the text.
-
-Digest entry: issues/gutenberg/gh-gutenberg-74744.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-74744</guid>
-      <pubDate>Mon, 29 Jun 2026 14:53:25 +0000</pubDate>
-    </item>
-    <item>
-      <title>#75121: Integrate Resizable Editor with Device Preview and add Responsive editing</title>
-      <link>https://github.com/WordPress/gutenberg/pull/75121</link>
-      <description>This PR consolidates the block editor's device preview and resizable canvas into a single source of truth based on pixel width, enabling true responsive editing across post, template, pattern, and navigation editors. It deprecates the legacy `useResizeCanvas` hook (now reduced to a no-op) and shifts viewport/style state management from per-block to globally shared via new `core/block-editor` store actions and selectors. The device preview dropdown now acts as the primary control for setting canvas width and toggling responsive editing context, driving which breakpoint block inspector style changes apply to.
-
-Digest entry: issues/gutenberg/gh-gutenberg-75121.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-75121</guid>
-      <pubDate>Mon, 29 Jun 2026 14:54:40 +0000</pubDate>
-    </item>
-    <item>
-      <title>#79593: FontFamilyControl: Hard deprecate 40px default size</title>
-      <link>https://github.com/WordPress/gutenberg/pull/79593</link>
-      <description>Hard-deprecates the `__next40pxDefaultSize` prop on the `FontFamilyControl` component in `@wordpress/block-editor`, making the 40px default height permanent and removing the soft console warning introduced in WordPress 6.8. This cleanup ensures consistent typography sizing across the Block Editor while retiring legacy opt-in props.
-
-Digest entry: issues/gutenberg/gh-gutenberg-79593.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-79593</guid>
-      <pubDate>Mon, 29 Jun 2026 14:56:02 +0000</pubDate>
-    </item>
-    <item>
-      <title>#79470: Base Styles: Reapply wpds-var Sass helper</title>
-      <link>https://github.com/WordPress/gutenberg/pull/79470</link>
-      <description>The `@wordpress/theme` package now exports a generated Sass helper that injects compile-time fallback values for `--wpds-*` design tokens. This restores functionality previously reverted, ensuring `@wordpress/base-styles` and custom SCSS can safely reference design tokens without relying on the PostCSS token-fallback plugin or runtime CSS variable definitions.
-
-Digest entry: issues/gutenberg/gh-gutenberg-79470.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-79470</guid>
-      <pubDate>Mon, 29 Jun 2026 14:56:51 +0000</pubDate>
-    </item>
-    <item>
-      <title>#79452: Experimental: Expand DataForm inspector to patterns</title>
-      <link>https://github.com/WordPress/gutenberg/pull/79452</link>
-      <description>Expands the experimental `Editor Inspector: Use DataForm` feature to WordPress block patterns (`wp_block`). This change introduces dedicated client-side fields for pattern descriptions and sync status, registers a new server-side view configuration, and aligns the `wp_block` post summary with the unified DataForm architecture used across the site editor.
-
-Digest entry: issues/gutenberg/gh-gutenberg-79452.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-79452</guid>
-      <pubDate>Mon, 29 Jun 2026 14:57:36 +0000</pubDate>
-    </item>
-    <item>
-      <title>#79589: LineHeightControl: Hard deprecate 40px default size</title>
-      <link>https://github.com/WordPress/gutenberg/pull/79589</link>
-      <description>Hard deprecates the `__next40pxDefaultSize` prop on `LineHeightControl`, making the 40px line-height default permanent and removing console warnings for omitting it. This follows up on a soft deprecation introduced in WordPress 6.8, finalizing the typography control sizing update across the Block Editor.
-
-Digest entry: issues/gutenberg/gh-gutenberg-79589.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-79589</guid>
-      <pubDate>Mon, 29 Jun 2026 14:58:16 +0000</pubDate>
-    </item>
-    <item>
-      <title>#79550: TreeSelect: Hard deprecate 40px default size</title>
-      <link>https://github.com/WordPress/gutenberg/pull/79550</link>
-      <description>The `TreeSelect` component hard-deprecates the `__next40pxDefaultSize` prop, making the larger default height permanent and removing the opt-in runtime API. This cleanup finalizes the deprecation cycle that began in WordPress 6.7 and aligns with the scheduled removal before WordPress 7.1.
-
-Digest entry: issues/gutenberg/gh-gutenberg-79550.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-79550</guid>
-      <pubDate>Mon, 29 Jun 2026 14:59:22 +0000</pubDate>
-    </item>
-    <item>
-      <title>#73320: Global Styles: Add textShadow style support</title>
-      <link>https://github.com/WordPress/gutenberg/pull/73320</link>
-      <description>Adds native `text-shadow` CSS property support to the Global Styles pipeline via `theme.json`. This enhancement allows theme authors to define text shadows globally or per-block through typography settings, fulfilling a core part of the broader #47904 feature request without yet exposing a UI control.
-
-Digest entry: issues/gutenberg/gh-gutenberg-73320.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-73320</guid>
-      <pubDate>Mon, 29 Jun 2026 15:00:13 +0000</pubDate>
-    </item>
-    <item>
-      <title>#79582: Tabs: Fix rich text label comparison when syncing the list</title>
-      <link>https://github.com/WordPress/gutenberg/pull/79582</link>
-      <description>Fixes a runtime state-sync bug in the core Tabs block where rich text label comparisons incorrectly marked saved posts as dirty after editor reloads. The change replaces a deep-equality check with a serialized JSON comparison, ensuring structurally identical label arrays are recognized as equal without triggering unnecessary re-renders or save triggers.
-
-Digest entry: issues/gutenberg/gh-gutenberg-79582.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-79582</guid>
-      <pubDate>Mon, 29 Jun 2026 15:00:38 +0000</pubDate>
-    </item>
-    <item>
-      <title>#74257: Add icon state classes to Accordion block</title>
-      <link>https://github.com/WordPress/gutenberg/pull/74257</link>
-      <description>The Accordion Heading block now outputs CSS state classes (`.has-icon`, `.has-icon-left`, `.has-icon-right`) on the `.wp-block-accordion-heading` wrapper based on the `showIcon` and `iconPosition` attributes. This change exposes attribute-driven styling hooks in both editor and frontend markup, aligning the block with established Gutenberg patterns without altering existing schema or block structure.
-
-Digest entry: issues/gutenberg/gh-gutenberg-74257.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-74257</guid>
-      <pubDate>Mon, 29 Jun 2026 15:01:04 +0000</pubDate>
-    </item>
-    <item>
-      <title>#73997: Pattern editing: fade blocks outside the edited pattern in List View</title>
-      <link>https://github.com/WordPress/gutenberg/pull/73997</link>
-      <description>When editing a content-only pattern in the block editor, blocks outside the active pattern are now visually faded and disabled in List View. This enforces interaction boundaries that match canvas mode, preventing accidental focus traversal or selection outside the pattern until explicitly exited via the Escape key or by clicking an external block.
-
-Digest entry: issues/gutenberg/gh-gutenberg-73997.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-73997</guid>
-      <pubDate>Mon, 29 Jun 2026 15:01:40 +0000</pubDate>
-    </item>
-    <item>
-      <title>#78332: Icons: Add PHP method(s) for rendering inline SVG icons from the registry</title>
-      <link>https://github.com/WordPress/gutenberg/pull/78332</link>
-      <description>Introduces `wp_get_icon()` as a new PHP helper that retrieves inline SVG markup from the WordPress Icons Registry. It provides a server-side equivalent to the React `&lt;Icon&gt;` component, ensuring consistent sizing, CSS classes, and accessibility attributes across PHP templates and block contexts. This eliminates the need for themes and plugins to hand-roll icon rendering or manage external asset paths.
-
-Digest entry: issues/gutenberg/gh-gutenberg-78332.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-78332</guid>
-      <pubDate>Mon, 29 Jun 2026 15:02:39 +0000</pubDate>
-    </item>
-    <item>
-      <title>#79534: Divider: Restore lower border specificity</title>
-      <link>https://github.com/WordPress/gutenberg/pull/79534</link>
-      <description>Resolves a CSS specificity regression in the `Divider` component caused by a recent SCSS module migration. A prior update moved default border declarations into attribute selectors, inadvertently increasing their cascade weight and preventing legacy theme overrides from applying. This patch wraps the orientation-specific blocks in a `:where()` pseudo-class to restore lower specificity, ensuring custom border rules continue to take precedence.
-
-Digest entry: issues/gutenberg/gh-gutenberg-79534.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-79534</guid>
-      <pubDate>Mon, 29 Jun 2026 15:03:18 +0000</pubDate>
-    </item>
-    <item>
-      <title>#79554: Tab List: Fix render inline formatting on frontend</title>
-      <link>https://github.com/WordPress/gutenberg/pull/79554</link>
-      <description>Resolves a frontend rendering bug in the core Tab List block where inline formatting (bold, italic, line breaks) applied to tab labels was outputting raw HTML tags as visible text. The update modifies the block's metadata schema and save routine to properly decode and render rich-text markup on the live site.
-
-Digest entry: issues/gutenberg/gh-gutenberg-79554.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-79554</guid>
-      <pubDate>Mon, 29 Jun 2026 15:03:50 +0000</pubDate>
-    </item>
-    <item>
-      <title>#79540: Tabs: Fix dirty editor state on mount caused by tab-list sync</title>
-      <link>https://github.com/WordPress/gutenberg/pull/79540</link>
-      <description>Fixes a React StrictMode double-mount issue in the Tabs block that incorrectly marked posts as dirty on editor reload. The `useTabListItemsSync` effect previously wrote the `tabs` attribute on every mount because an initial `null` ref bypassed its change guard, causing the non-persistent flag to be consumed by other dispatches and resulting in false dirty state markers for developers testing under StrictMode.
-
-Digest entry: issues/gutenberg/gh-gutenberg-79540.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-79540</guid>
-      <pubDate>Mon, 29 Jun 2026 15:05:03 +0000</pubDate>
-    </item>
-    <item>
-      <title>#79517: Widget inserter: more accurate widget previews</title>
-      <link>https://github.com/WordPress/gutenberg/pull/79517</link>
-      <description>The widget dashboard inserter now renders accurate, framed previews of each widget instead of just scaling down raw markup. Previously, the picker cached unstyled widget bodies and applied a hardcoded `transform: scale(0.8)`, producing misaligned or truncated visuals. The update extracts shared rendering logic into a dedicated frame component so catalog previews visually match the final dashboard tile, including headers, icons, and proper spacing. Picker tile sizing also increased from 230px to 290px for better readability.
-
-Digest entry: issues/gutenberg/gh-gutenberg-79517.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-79517</guid>
-      <pubDate>Mon, 29 Jun 2026 15:05:39 +0000</pubDate>
-    </item>
-    <item>
-      <title>#79332: Media Editor: Fix crop canvas pinch zoom</title>
-      <link>https://github.com/WordPress/gutenberg/pull/79332</link>
-      <description>Fixes a touch gesture bug in the Gutenberg media editor crop modal where pinch-to-zoom caused visual drift and conflicted with crop resize handles. The patch ensures pinch zoom anchors to the initial pinch midpoint regardless of prior pan/zoom state, properly disambiguates pointer vs. touch event ownership, and disables crop handle interactions during active pinches to prevent gesture interference.
-
-Digest entry: issues/gutenberg/gh-gutenberg-79332.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-79332</guid>
-      <pubDate>Mon, 29 Jun 2026 15:06:14 +0000</pubDate>
-    </item>
+    <lastBuildDate>Thu, 09 Jul 2026 15:30:41 +0000</lastBuildDate>
     <item>
       <title>#77989: Add layout and block spacing support to Latest Posts block</title>
       <link>https://github.com/WordPress/gutenberg/pull/77989</link>
@@ -907,6 +448,465 @@ Digest entry: issues/gutenberg/gh-gutenberg-79638.md · Source: WordPress/gutenb
 Digest entry: issues/gutenberg/gh-gutenberg-79590.md · Source: WordPress/gutenberg</description>
       <guid isPermaLink="false">gh-gutenberg-79590</guid>
       <pubDate>Thu, 02 Jul 2026 17:29:19 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79984: Enable default gap processing on Gallery block</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79984</link>
+      <description>The Gallery block now enables default gap serialization, removing the previous `__experimentalSkipSerialization` flag that forced a custom output path. This change ensures viewport-specific block gaps are automatically serialized and that the `--wp--style--unstable-gallery-gap` CSS variable is correctly output within responsive media queries on both the frontend and PHP-rendered templates.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79984.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79984</guid>
+      <pubDate>Thu, 09 Jul 2026 06:23:19 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79981: Tabs: Fix active tab switching from a stale inner-block selection</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79981</link>
+      <description>Fixes a selection-state race condition in the `core/tabs` block where clicking another tab fails to switch panels if an inner block in the active panel remains selected. The underlying bug occurred because a sync effect in the tab-panel block detected a stale inner-block selection and overwrote the `editorActiveTabIndex`. Wrapping the update in a synchronous batch prevents the stale state from interfering, ensuring tab switching behaves predictably during editing.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79981.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79981</guid>
+      <pubDate>Thu, 09 Jul 2026 06:23:57 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79998: Responsive editing: Hide block toolbar slots when editing a responsive style state</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79998</link>
+      <description>When editing a block for a specific viewport, the block editor now hides non-essential toolbar slots. This prevents misleading UI since toolbar controls currently do not apply to responsive style states, unlike inspector controls.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79998.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79998</guid>
+      <pubDate>Thu, 09 Jul 2026 06:24:29 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79104: Allow setting viewport tablet and mobile values in theme.json</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79104</link>
+      <description>Adds support for configurable viewport breakpoints in `theme.json` via `settings.viewport.mobile` and `settings.viewport.tablet`, replacing previously hardcoded 480px/782px defaults. Theme and plugin authors can now define custom breakpoint widths using `px`, `em`, or `rem` units, directly controlling the media queries applied to responsive block styles, visibility states, and layout overrides in the block editor.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79104.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79104</guid>
+      <pubDate>Thu, 09 Jul 2026 06:25:07 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79985: GIF block variation: Remove icons from "Display as" toolbar buttons and only show when block can be inserted</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79985</link>
+      <description>This merge refines the animated GIF-to-video conversion controls in the block editor by removing toolbar icons and replacing hardcoded gallery checks with dynamic `canInsertBlockType` validation. Previously, the "Display as video" and "Display as GIF" buttons displayed both text and icons, diverging from standard toolbar conventions, and relied on a hardcoded check that failed to respect editor preferences or custom allowed-block configurations. The update aligns UI styling and enforces proper block-insertion rules so conversion controls remain hidden when the target block cannot be placed in the current context.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79985.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79985</guid>
+      <pubDate>Thu, 09 Jul 2026 06:25:46 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79497: Playlist block: Avoid laggy layout shift when changing tracks</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79497</link>
+      <description>The Playlist block's editor component no longer destroys and recreates the underlying `@arraypress/waveform-player` instance when track metadata or the audio source changes. This eliminates a visible layout shift and rendering jank that occurred while editing track titles, artists, or switching tracks in the block editor.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79497.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79497</guid>
+      <pubDate>Thu, 09 Jul 2026 06:26:24 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79999: Restore responsive editing viewport dropdown copy changes</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79999</link>
+      <description>Restores user-facing string translations in the block editor's responsive editing viewport dropdown that were inadvertently reverted due to a merge conflict resolution in #79104. The change updates three UI tooltips to explicitly reference "style changes" and "viewport", ensuring terminology accurately reflects the block styling context.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79999.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79999</guid>
+      <pubDate>Thu, 09 Jul 2026 06:26:54 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79948: Add ariaLabel supports for Tab List Block</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79948</link>
+      <description>Adds `ariaLabel` support to the core `tab-list` block, enabling editors to define a custom `aria-label` attribute for the `&lt;div role="tablist"&gt;` element. A server-rendered fallback of "Tabbed content" ensures the attribute is always present, aligning the Tabs block with APG component guidelines and improving screen reader navigation.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79948.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79948</guid>
+      <pubDate>Thu, 09 Jul 2026 06:27:39 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79937: Site Editor v2 experiment: hide admin bar in distraction-free mode</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79937</link>
+      <description>This change updates the inline CSS for the Site Editor v2 (Extensible Site Editor experiment) to hide the WordPress admin bar when distraction-free mode is active. Previously, the admin bar remained visible and retained its viewport height during this state. The update aligns the site editor's behavior with existing post-editor patterns by conditionally zeroing the `--wp-admin--admin-bar--height` CSS variable and hiding the `#wpadminbar` element via a `body:has()` selector.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79937.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79937</guid>
+      <pubDate>Thu, 09 Jul 2026 06:28:17 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79942: Playlist: Show album art thumbnails</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79942</link>
+      <description>The core Playlist block now correctly renders album art thumbnails next to track titles when the "Show images" setting is enabled. Previously, the block stored and exposed artwork metadata but failed to output it in both editor and server-side markup. This merge fixes the rendering gap and introduces an `imageAlt` attribute to improve accessibility for track cover images.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79942.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79942</guid>
+      <pubDate>Thu, 09 Jul 2026 06:28:59 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79910: Editor: Preload the view config form request for the DataForm inspector</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79910</link>
+      <description>This change optimizes the DataForm-based document inspector by preloading the `/wp/v2/view-config` form configuration request during editor kickoff. When the `gutenberg-dataform-inspector` experiment is active, the view config is now served directly from the HTTP preload cache rather than triggering a synchronous network round-trip on sidebar mount. This eliminates the UI flash where the document summary rendered as an empty form before flashing in once the response arrived.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79910.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79910</guid>
+      <pubDate>Thu, 09 Jul 2026 06:29:35 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79990: Widget Dashboard: reserve paint space for tile focus rings</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79990</link>
+      <description>The Widget Dashboard package now reserves top padding in its grid container to prevent outward focus rings on widget tiles from being clipped by `overflow: auto` scroll containers. It also standardizes all CSS module class selectors to kebab-case and removes the package's stylelint suppressions, aligning internal naming conventions with project-wide linting rules.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79990.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79990</guid>
+      <pubDate>Thu, 09 Jul 2026 06:30:16 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79908: Collaboration: only report changed properties from the default sync config</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79908</link>
+      <description>Fixes a Real-time Collaboration regression where syncing any taxonomy record (e.g., the default category) incorrectly marked it as edited, permanently flagging posts as dirty and silently changing the pre-publish panel button from "Publish" to "Save". The issue occurred because `defaultGetChangesFromCRDTDoc` returned the entire CRDT document map on every sync update without comparing properties against the current edited record. With this fix, only genuinely changed properties are reported as edits, preventing stale objects from incorrectly flagging records as dirty and eliminating browser unload warnings on reload.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79908.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79908</guid>
+      <pubDate>Thu, 09 Jul 2026 06:31:02 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79978: Media Inserter: Guard attach, detach, and invalidate behind a ! isExternalResource check</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79978</link>
+      <description>This change hardens the block editor's media inserter by gating the `attach`, `detach`, and `invalidate` methods behind an `isExternalResource` flag. Previously, any custom media category registering these callbacks could inadvertently trigger the core Attachments workflow. The fix ensures that attachment-based operations are exclusively applied to WordPress's built-in categories, preserving external resource sources from unintended side effects or API collisions.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79978.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79978</guid>
+      <pubDate>Thu, 09 Jul 2026 06:31:50 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79844: Media Modals: Invalidate attachment caches when closing the modal</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79844</link>
+      <description>When media is uploaded through the legacy wp.media modal, newly attached assets fail to appear in editor components relying on cached queries (e.g., the Dynamic Gallery block). This change extracts the attachment cache invalidation logic into a shared utility and calls it when the modal closes, ensuring getEntityRecords resolutions for postType/attachment are refreshed without requiring a full editor reload.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79844.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79844</guid>
+      <pubDate>Thu, 09 Jul 2026 06:32:33 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79920: SandBox: Inject resize script into head to stop it leaking as text</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79920</link>
+      <description>The SandBox component now injects its iframe resize helper script into the document &lt;head&gt; instead of the &lt;body&gt;. This prevents malformed user HTML—such as an unclosed attribute quote—from swallowing the inline script and leaking its source code as visible text in preview panes. To accommodate this structural shift, the script’s body-dependent setup is deferred until DOMContentLoaded, ensuring reliable execution regardless of parser state when content renders.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79920.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79920</guid>
+      <pubDate>Thu, 09 Jul 2026 06:33:23 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79972: Media: Fix fatal error from narrowed create_item_from_url() visibility</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79972</link>
+      <description>Resolves a fatal error in the standalone Gutenberg plugin caused by an incorrectly scoped REST controller method. The `create_item_from_url()` override in `Gutenberg_REST_Attachments_Controller` was declared `private`, violating PHP's rule that child classes cannot narrow parent method visibility. Matching the parent `protected` scope restores class loading and prevents cascading test suite failures and potential REST 500 errors.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79972.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79972</guid>
+      <pubDate>Thu, 09 Jul 2026 06:34:36 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79861: NumberControl: Hard deprecate 40px default size</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79861</link>
+      <description>The `NumberControl` component in `@wordpress/components` has hard-deprecated the `__next40pxDefaultSize` prop, permanently locking the control to a 40px height. This follow-up to an earlier opt-in standardization removes deprecation warnings and internal size-mismatch logic, ensuring the larger default is enforced across all call sites without console notices. Plugin and block developers will see no visual changes but should update type definitions or legacy prop passes accordingly.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79861.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79861</guid>
+      <pubDate>Thu, 09 Jul 2026 06:35:34 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79855: Block Editor: Share block-bindings context assembly between call sites</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79855</link>
+      <description>The Block Editor refactors context assembly for block bindings sources into a shared `getBlockBindingsContext` helper in `packages/block-editor/src/utils/block-bindings.ts`. This replaces an inline pattern in `block-edit/edit.js` that inadvertently assigned `undefined` values to declared-but-unprovided keys and risked mutating a shared module-level constant. The refactor ensures only present context entries are copied, returns a stable empty object when nothing matches, and provides a reusable foundation for upcoming innerBlocks binding resolvers.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79855.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79855</guid>
+      <pubDate>Thu, 09 Jul 2026 06:36:17 +0000</pubDate>
+    </item>
+    <item>
+      <title>#74866: Latest Posts: Parse blocks in full content display</title>
+      <link>https://github.com/WordPress/gutenberg/pull/74866</link>
+      <description>When "Show full post" is enabled in the Latest Posts block, embedded blocks within displayed posts were previously output as raw markup without being parsed. This change introduces `do_blocks()` processing for full post content, ensuring videos, galleries, and other nested blocks render with proper constraints and styles. It also adds recursion protection to prevent memory exhaustion when a Latest Posts block inadvertently lists itself.
+
+Digest entry: issues/gutenberg/gh-gutenberg-74866.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-74866</guid>
+      <pubDate>Thu, 09 Jul 2026 06:37:10 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79834: Playlist: seek value text localization</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79834</link>
+      <description>Upgrades the `@arraypress/waveform-player` dependency to v1.20.0 and migrates Playlist seek slider localization entirely into the upstream library. The change eliminates a previous client-side workaround that intercepted time updates to inject an English "X of Y" string, replacing it with a native template interpolation that properly outputs localized `aria-valuetext` for screen readers.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79834.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79834</guid>
+      <pubDate>Thu, 09 Jul 2026 06:37:57 +0000</pubDate>
+    </item>
+    <item>
+      <title>#78282: Block Supports: Prevent Additional CSS duplication inside Query Loop</title>
+      <link>https://github.com/WordPress/gutenberg/pull/78282</link>
+      <description>Prevents duplicate inline CSS output when blocks with Additional Custom CSS are rendered multiple times inside a Query Loop. The change ensures identical CSS rules are injected into the DOM exactly once, eliminating redundant markup and reducing render payload for looped templates.
+
+Digest entry: issues/gutenberg/gh-gutenberg-78282.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-78282</guid>
+      <pubDate>Thu, 09 Jul 2026 06:38:38 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79903: Widget Dashboard: remove layout-settings editing</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79903</link>
+      <description>The Widget Dashboard package removes all in-dashboard UI for editing layout settings, stripping out the 'Layout settings' toolbar button, the model-switcher drawer, and corresponding command palette commands. The `gridSettings` prop is now strictly read-only rendering configuration; host consumers are fully responsible for persisting and applying grid model preferences outside the dashboard.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79903.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79903</guid>
+      <pubDate>Thu, 09 Jul 2026 06:39:17 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79809: View Config: Add version handling</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79809</link>
+      <description>Introduces versioned patching for the server-side view configuration API used by DataViews-powered screens (e.g., Pages list, Quick Edit). The `get_entity_view_config_{$kind}_{$name}` filter now receives a `Gutenberg_View_Config_Data` container instead of a raw array, providing methods like `update_properties()`, `update_view_list_items()`, and `update_form_fields()` that apply version-tagged patches. This prevents imperative array manipulation from breaking on future schema changes and ensures patches compose safely across core and plugins.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79809.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79809</guid>
+      <pubDate>Thu, 09 Jul 2026 06:39:59 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79887: HTML Block: Preserve innerContent when transforming to group, columns</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79887</link>
+      <description>This PR fixes a data-loss bug where transforming an HTML block into Group, Columns, Quote, or Widget Group blocks discards the original markup. Previously, block transforms manually reconstructed child blocks using `createBlock()` with explicit attributes and innerBlocks, which ignored the newer `innerContent` parameter used by the HTML block for serialized content. The change centralizes block reconstruction around a sanitization-aware utility that properly preserves all block metadata during transform and drag-and-drop grouping.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79887.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79887</guid>
+      <pubDate>Thu, 09 Jul 2026 06:40:40 +0000</pubDate>
+    </item>
+    <item>
+      <title>#78796: Dynamic Gallery Block: Attempt a dynamic mode of the gallery block</title>
+      <link>https://github.com/WordPress/gutenberg/pull/78796</link>
+      <description>Adds an experimental dynamic mode to the `core/gallery` block, enabling it to render media items attached to the current post rather than relying exclusively on static inner blocks. This introduces a `dynamicContent` attribute to store query arguments and ordering preferences, while providing an editor preview pipeline and server-side rendering that mirrors classic shortcode behavior.
+
+Digest entry: issues/gutenberg/gh-gutenberg-78796.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-78796</guid>
+      <pubDate>Thu, 09 Jul 2026 06:41:18 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79345: DataViews: Back richtext control with a @wordpress/components shell (alt to #78471)</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79345</link>
+      <description>The `@wordpress/rich-text-control` package has been removed and its core UI shell migrated into `@wordpress/components` as a private API. This restructuring establishes a strict separation between a presentational form field (hosted in `components`) and the rich-text wiring logic, which is now owned by the consumer (typically `@wordpress/dataviews`). The change decouples the editable control from direct `@wordpress/rich-text` dependencies, enabling reuse across standalone form contexts while consolidating keyboard dispatch glue into the `rich-text` package.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79345.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79345</guid>
+      <pubDate>Thu, 09 Jul 2026 06:42:05 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79409: Image: sideload external images on the server when uploading to the library</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79409</link>
+      <description>Extends the POST /wp/v2/media REST endpoint to accept an optional url parameter, shifting external image uploads from client-side browser fetches to server-side sideloading via media_handle_sideload(). This change fixes silent CORS failures in cross-origin isolated editors (client-side media processing) by letting WordPress core handle the remote download, eliminating the need for permissive hosting headers. The previously used client-side fetch helper is removed as it is no longer necessary.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79409.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79409</guid>
+      <pubDate>Thu, 09 Jul 2026 06:42:48 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79797: SelectControl: Hard deprecate 40px default size</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79797</link>
+      <description>The `SelectControl` component now makes the 40px default height unconditional, effectively hard-deprecating the previously opt-in `__next40pxDefaultSize` prop. This change completes a broader editor UI standardization campaign by removing legacy size migration helpers and locking the updated layout as the baseline. Plugin and block authors should stop passing the prop to ensure forward compatibility and align with current design system expectations.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79797.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79797</guid>
+      <pubDate>Thu, 09 Jul 2026 06:43:31 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79798: Block position: Allow options dropdown to flip</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79798</link>
+      <description>Fixes a clipped dropdown bug in the block editor's Position control by migrating `CustomSelectControl` to the portal-based `SelectControl` from `@wordpress/ui`. The previous component forced the popover downward, causing it to shrink and clip at the bottom of low-viewport screens; the new implementation automatically flips and resizes to remain fully visible within the inspector sidebar.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79798.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79798</guid>
+      <pubDate>Thu, 09 Jul 2026 06:44:16 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79591: RTC: Fix autosave update with no content</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79591</link>
+      <description>Real-Time Collaboration (RTC) previously triggered a false-positive “There is an autosave of this post that is more recent than the version below” notice when an autosave fired without changing any post content or revisioned meta. This fix prevents the REST autosaves controller from persisting redundant revisions for no-op payloads, eliminating spurious warnings caused purely by timestamp increments.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79591.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79591</guid>
+      <pubDate>Thu, 09 Jul 2026 06:44:55 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79894: Classic block: Remove migration notice and restore inserter availability</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79894</link>
+      <description>This pull request reverts experimental deprecation work for the Classic block by removing its migration notice and restoring full inserter availability. The `window.__needsClassicBlock` runtime gate is dropped, editor UX returns to a pre-experiment state featuring a “Convert to blocks” toolbar button, and the legacy `wp_classic_block_supports_inserter` filter is permanently removed.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79894.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79894</guid>
+      <pubDate>Thu, 09 Jul 2026 06:45:42 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79808: Widgets: auto-save inline attribute edits</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79808</link>
+      <description>Introduces a shared, debounced auto-save mechanism (5-second delay) for inline attribute edits in the widget dashboard, ensuring staged layout and attribute changes persist when the user pauses typing or navigates away. It also fixes the Events location picker to only stage deliberate selections (`item-press`, `clear-press`, geolocation), preventing partial query text from being saved as a location.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79808.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79808</guid>
+      <pubDate>Thu, 09 Jul 2026 06:46:16 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79556: Vips: preserve bit depth of high-bit-depth AVIF in sub-sizes</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79556</link>
+      <description>The Vips client-side media package now preserves the original 10/12-bit depth of high-bit-depth AVIF images during resize operations, preventing silent flattening to 8-bit sRGB in generated sub-sizes. Previously, decoding succeeded but thumbnail processing and missing save options caused precision loss or bit-depth inflation. This fix aligns sub-size output with the source bit depth for HDR content without altering existing 8-bit or animated workflows.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79556.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79556</guid>
+      <pubDate>Thu, 09 Jul 2026 06:47:12 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79860: Packages: Update Ariakit to 0.4.32</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79860</link>
+      <description>Updates the `@ariakit/react` dependency from `0.4.29` to `0.4.32` across `@wordpress/components` and `@wordpress/dataviews`. This resolves a pressed-state handling bug in Command-based widgets (refs #79727) and incorporates upstream patches for focus management, keyboard navigation, dialog/popover edge cases, combobox item matching, and composite list roving tabindex behavior.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79860.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79860</guid>
+      <pubDate>Thu, 09 Jul 2026 06:47:56 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79615: Responsive style states: Update responsive editing help text and avoid showing desktop badge</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79615</link>
+      <description>This pull request refines the Block Editor’s responsive editing UX by updating copy to clarify that style edits are viewport-specific, and hiding the redundant “Desktop” badge in the block inspector when desktop is selected. The change improves behavioral clarity for the recently introduced responsive style states feature without altering underlying state management or data flow.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79615.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79615</guid>
+      <pubDate>Thu, 09 Jul 2026 06:48:33 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79546: DataViews: Fix infinite-scroll jump on async page loads</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79546</link>
+      <description>Fixes a scroll-jump bug in the DataViews `List` layout when using infinite scrolling over async network requests. The issue was caused by the scroll-anchor restoration logic discarding user scrolling during load gaps, and the footer resizing the container mid-load. The fix captures the container's `scrollTop` at anchor capture, compensates for user-induced scroll deltas on restore, and prevents the footer from mounting/unmounting during page loads while keeping a fixed-height loading spinner in place.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79546.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79546</guid>
+      <pubDate>Thu, 09 Jul 2026 06:49:22 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79191: Block Editor: Allow overriding `disableContentOnlyForTemplateParts` setting</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79191</link>
+      <description>The Block Editor now correctly respects the `disableContentOnlyForTemplateParts` setting when passed via the `block_editor_settings_all` PHP filter. Previously, this setting was silently ignored during editor initialization, preventing theme developers from overriding WordPress 7.0’s `contentOnly` lock on Template Parts to restore standard inner-block editing.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79191.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79191</guid>
+      <pubDate>Thu, 09 Jul 2026 06:50:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>#76565: RTC: Implement front-end peer limits</title>
+      <link>https://github.com/WordPress/gutenberg/pull/76565</link>
+      <description>Real-time collaboration (RTC) in the block editor now enforces a client-side limit on concurrent editors per document, defaulting to three peers. This prevents server resource exhaustion without requiring PHP backport changes by inspecting awareness state returned from the sync provider and disconnecting excess clients. A `connection-limit-exceeded` error is emitted when the threshold is breached, triggering a modal that blocks further edits until a peer disconnects or the user retries.
+
+Digest entry: issues/gutenberg/gh-gutenberg-76565.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-76565</guid>
+      <pubDate>Thu, 09 Jul 2026 06:50:54 +0000</pubDate>
+    </item>
+    <item>
+      <title>#76518: Real Time Collaboration: Introduce filters for the polling intervals.</title>
+      <link>https://github.com/WordPress/gutenberg/pull/76518</link>
+      <description>This change introduces four JavaScript filters to the Real Time Collaboration (RTC) client, allowing developers and hosting providers to tune the frequency of polling requests. The default polling rate can reach up to four times per second, which risks overloading low-resource or shared hosting environments when multiple editors are active. By exposing these intervals as filterable values, server load can be reduced without modifying core synchronization logic.
+
+Digest entry: issues/gutenberg/gh-gutenberg-76518.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-76518</guid>
+      <pubDate>Thu, 09 Jul 2026 06:51:38 +0000</pubDate>
+    </item>
+    <item>
+      <title>#76716: Add backport for WP_ALLOW_COLLABORATION</title>
+      <link>https://github.com/WordPress/gutenberg/pull/76716</link>
+      <description>Backports WordPress core's Real-Time Collaboration (RTC) configuration to the Gutenberg 7.0 branch, introducing the `WP_ALLOW_COLLABORATION` constant and new helper functions. This shifts the default state of the `wp_collaboration_enabled` option from `false` to `true`, effectively enabling real-time collaboration out of the box while preserving an environment-level kill switch.
+
+Digest entry: issues/gutenberg/gh-gutenberg-76716.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-76716</guid>
+      <pubDate>Thu, 09 Jul 2026 06:52:19 +0000</pubDate>
+    </item>
+    <item>
+      <title>#76947: RTC: Add optional `shouldSync` function to entity sync config</title>
+      <link>https://github.com/WordPress/gutenberg/pull/76947</link>
+      <description>Introduces an optional `shouldSync` callback to the Core Data entity sync configuration, allowing conditional gating of Real-Time Collaboration (RTC) for specific entities or collections. This prevents unnecessary synchronization overhead when loading static or non-collaborative content, such as pre-existing comments on a post.
+
+Digest entry: issues/gutenberg/gh-gutenberg-76947.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-76947</guid>
+      <pubDate>Thu, 09 Jul 2026 06:53:25 +0000</pubDate>
+    </item>
+    <item>
+      <title>#74913: Media: Add hooks and extension points for client-side media processing</title>
+      <link>https://github.com/WordPress/gutenberg/pull/74913</link>
+      <description>Adds extension points for client-side media processing to ensure server-side attachment hooks continue firing after browser-based image resizing and thumbnail generation. Introduces a new REST endpoint (`POST /wp/v2/media/{id}/finalize`) that re-triggers `wp_generate_attachment_metadata` with `$context === 'update'`, alongside a new `OperationType.Finalize` pipeline operation in the JS media upload store. This prevents plugins relying on server-side post-processing (watermarking, CDN sync, custom sizes) from breaking when client-side processing is enabled.
+
+Digest entry: issues/gutenberg/gh-gutenberg-74913.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-74913</guid>
+      <pubDate>Thu, 09 Jul 2026 06:54:26 +0000</pubDate>
+    </item>
+    <item>
+      <title>#76853: RTC: Change SyncConnectionModal to isSyncConnectionErrorHandled filter and drop IS_GUTENBERG_PLUGIN check</title>
+      <link>https://github.com/WordPress/gutenberg/pull/76853</link>
+      <description>Decouples the Real-Time Collaboration (RTC) sync connection error modal from the Gutenberg plugin dependency by removing the `IS_GUTENBERG_PLUGIN` conditional check. The change renames the existing filter to `isSyncConnectionErrorHandled` and restructures it as a signal pattern, allowing any plugin or theme to intercept connection failures and render custom UI without requiring the Gutenberg plugin to be active.
+
+Digest entry: issues/gutenberg/gh-gutenberg-76853.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-76853</guid>
+      <pubDate>Thu, 09 Jul 2026 06:55:16 +0000</pubDate>
+    </item>
+    <item>
+      <title>#76939: RTC: Add filterable flag for meta box RTC compatibility</title>
+      <link>https://github.com/WordPress/gutenberg/pull/76939</link>
+      <description>Introduces a new `__rtc_compatible_meta_box` argument for `add_meta_box()`, allowing developers to opt legacy meta boxes out of the Real-Time Collaboration (RTC) single-user lockout behavior. Previously, the presence of any classic meta box would trigger a modal warning and force the editor into a single-user mode; this change enables collaboration to remain active for explicitly compatible meta boxes.
+
+Digest entry: issues/gutenberg/gh-gutenberg-76939.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-76939</guid>
+      <pubDate>Thu, 09 Jul 2026 06:56:16 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79796: CustomSelectControl: Hard deprecate 40px default size</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79796</link>
+      <description>Hard deprecates the `__next40pxDefaultSize` prop on `CustomSelectControl`, making the 40px default height unconditional. The opt-in transition period has concluded, so the prop no longer affects rendering logic and can be safely removed from all call sites.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79796.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79796</guid>
+      <pubDate>Thu, 09 Jul 2026 06:56:56 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79830: Widgets: add a declarative `help` metadata field, surfaced as a header infotip</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79830</link>
+      <description>Adds an optional `help` metadata field to the experimental widget system, enabling developers to declare short contextual notes (`content`) and supplementary links (`links`). The field flows from `widget.json` through the build manifest and PHP registry, is sanitized and translated server-side, and is exposed via the `/wp/v2/widget-modules` REST controller. On the frontend, the dashboard header surfaces it as a clickable infotip popover, filling a gap where widgets previously only offered `title` and `description`.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79830.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79830</guid>
+      <pubDate>Thu, 09 Jul 2026 06:57:48 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79671: UI: Add Skeleton component</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79671</link>
+      <description>Adds a new `Skeleton` component to the `@wordpress/ui` package to provide a consistent, accessible loading placeholder across the block editor. The component renders a pulsing div that adapts to WP Design System tokens and respects system `prefers-reduced-motion` preferences, allowing plugin and theme authors to standardize UI state transitions without building ad-hoc loaders.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79671.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79671</guid>
+      <pubDate>Thu, 09 Jul 2026 06:58:40 +0000</pubDate>
+    </item>
+    <item>
+      <title>#75859: Block Supports: Add background gradient support that can combine with background images</title>
+      <link>https://github.com/WordPress/gutenberg/pull/75859</link>
+      <description>Introduces `background.gradient` as a new block support, enabling blocks to render gradients in the Background panel and combine them with background images via a single `background-image` CSS property. Previously, gradients were isolated to the Color panel as a standalone `background` shorthand that could conflict with or override explicit `background-image` declarations.
+
+Digest entry: issues/gutenberg/gh-gutenberg-75859.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-75859</guid>
+      <pubDate>Thu, 09 Jul 2026 06:59:49 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79391: Verse block: add background gradient support</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79391</link>
+      <description>Adds modern `background.gradient` support to the core Verse block, replacing legacy color-based gradient handling. This resolves a CSS conflict where gradients and background images were serialized as separate declarations, causing the image override to break the intended visual layering.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79391.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79391</guid>
+      <pubDate>Thu, 09 Jul 2026 07:00:14 +0000</pubDate>
+    </item>
+    <item>
+      <title>#78420: Media: Return the filtered `wp_editor_set_quality` value in the upload response</title>
+      <link>https://github.com/WordPress/gutenberg/pull/78420</link>
+      <description>Adds a size-aware `image_quality` field to the attachment REST API response so client-side media processing respects server-side quality filters. Previously, browser-generated sub-sizes and transcodes ignored `wp_editor_set_quality` and `jpeg_quality`, falling back to a hardcoded default. This change ensures consistent encode quality across both server-rendered and client-resized images without requiring manual filter overrides.
+
+Digest entry: issues/gutenberg/gh-gutenberg-78420.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-78420</guid>
+      <pubDate>Thu, 09 Jul 2026 07:01:24 +0000</pubDate>
     </item>
   </channel>
 </rss>

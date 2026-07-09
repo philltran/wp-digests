@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 02 Jul 2026 18:20:26 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 09 Jul 2026 15:30:41 +0000</lastBuildDate>
     <item>
       <title>#65333: Deprecate Product Editor v2</title>
       <link>https://github.com/woocommerce/woocommerce/pull/65333</link>
@@ -313,6 +313,42 @@ Digest entry: issues/dev-notes/make-core-124219.md · Source: Make WordPress Cor
 Digest entry: issues/dev-notes/make-core-124308.md · Source: Make WordPress Core</description>
       <guid isPermaLink="false">make-core-124308</guid>
       <pubDate>Thu, 02 Jul 2026 18:17:17 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79861: NumberControl: Hard deprecate 40px default size</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79861</link>
+      <description>The `NumberControl` component in `@wordpress/components` has hard-deprecated the `__next40pxDefaultSize` prop, permanently locking the control to a 40px height. This follow-up to an earlier opt-in standardization removes deprecation warnings and internal size-mismatch logic, ensuring the larger default is enforced across all call sites without console notices. Plugin and block developers will see no visual changes but should update type definitions or legacy prop passes accordingly.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79861.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79861</guid>
+      <pubDate>Thu, 09 Jul 2026 06:35:34 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79797: SelectControl: Hard deprecate 40px default size</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79797</link>
+      <description>The `SelectControl` component now makes the 40px default height unconditional, effectively hard-deprecating the previously opt-in `__next40pxDefaultSize` prop. This change completes a broader editor UI standardization campaign by removing legacy size migration helpers and locking the updated layout as the baseline. Plugin and block authors should stop passing the prop to ensure forward compatibility and align with current design system expectations.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79797.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79797</guid>
+      <pubDate>Thu, 09 Jul 2026 06:43:31 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79796: CustomSelectControl: Hard deprecate 40px default size</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79796</link>
+      <description>Hard deprecates the `__next40pxDefaultSize` prop on `CustomSelectControl`, making the 40px default height unconditional. The opt-in transition period has concluded, so the prop no longer affects rendering logic and can be safely removed from all call sites.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79796.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79796</guid>
+      <pubDate>Thu, 09 Jul 2026 06:56:56 +0000</pubDate>
+    </item>
+    <item>
+      <title>The Classic block stays in the inserter for WordPress 7.1</title>
+      <link>https://make.wordpress.org/core/2026/07/07/the-classic-block-stays-in-the-inserter-for-wordpress-7-1/</link>
+      <description>The planned change to hide the Classic block from the default inserter in WordPress 7.1 has been reverted. The Classic block will continue to appear in the inserter, block library, and slash commands exactly as it does today. Consequently, the previously introduced `wp_classic_block_supports_inserter` filter was removed before shipping, eliminating any backward-compatibility footprint for developers to manage.
+
+Digest entry: issues/dev-notes/make-core-124413.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124413</guid>
+      <pubDate>Thu, 09 Jul 2026 07:40:10 +0000</pubDate>
     </item>
   </channel>
 </rss>
