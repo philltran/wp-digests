@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 09 Jul 2026 15:30:41 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 20 Jul 2026 05:56:57 +0000</lastBuildDate>
     <item>
       <title>#65441: [dev] Update .ai/skills/woocommerce-performance/options-cache-priming.md</title>
       <link>https://github.com/woocommerce/woocommerce/pull/65441</link>
@@ -151,6 +151,87 @@ Digest entry: issues/woocommerce/gh-woocommerce-66036.md · Source: woocommerce/
 Digest entry: issues/woocommerce/gh-woocommerce-64407.md · Source: woocommerce/woocommerce</description>
       <guid isPermaLink="false">gh-woocommerce-64407</guid>
       <pubDate>Mon, 29 Jun 2026 15:12:37 +0000</pubDate>
+    </item>
+    <item>
+      <title>#66669: [Backport to release/11.0] docs: widen AGENTS.md backward-compatibility guardrail beyond PHP signatures</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/66669</link>
+      <description>WooCommerce updated its `AGENTS.md` backward-compatibility guidelines to explicitly cover non-PHP-surface contracts. The change expands the required backward-compatibility impact statement to include hook and filter signature/timing changes, assumptions about global state and execution scope, multisite behavior, and WordPress install layout. This ensures developers and integrated AI agents evaluate the full compatibility surface before modifying externally exposed behavior.
+
+Digest entry: issues/woocommerce/gh-woocommerce-66669.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-66669</guid>
+      <pubDate>Mon, 20 Jul 2026 04:38:43 +0000</pubDate>
+    </item>
+    <item>
+      <title>#66572: docs: widen AGENTS.md backward-compatibility guardrail beyond PHP signatures</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/66572</link>
+      <description>WooCommerce expanded its `AGENTS.md` backward-compatibility guardrails to cover the full WordPress platform surface, not just PHP function and class signatures. The update explicitly treats hook and filter contracts, global state assumptions, multisite topology, and install layout as binding compatibility boundaries that require impact statements before modification. This ensures developers and automated coding agents systematically evaluate external-facing changes to prevent regressions in third-party integrations.
+
+Digest entry: issues/woocommerce/gh-woocommerce-66572.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-66572</guid>
+      <pubDate>Mon, 20 Jul 2026 04:39:40 +0000</pubDate>
+    </item>
+    <item>
+      <title>#66550: Restore deprecated product gallery image count helper</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/66550</link>
+      <description>WooCommerce restored the deprecated `ProductGalleryUtils::get_product_gallery_image_count()` compatibility method after it was removed during the product gallery videos refactor. The shim prevents fatal errors for external code still calling the old method and emits a deprecation notice pointing to the replacement `get_product_gallery_media_count()`.
+
+Digest entry: issues/woocommerce/gh-woocommerce-66550.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-66550</guid>
+      <pubDate>Mon, 20 Jul 2026 04:41:04 +0000</pubDate>
+    </item>
+    <item>
+      <title>#65781: Skip block registration on non-rendering requests</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/65781</link>
+      <description>WooCommerce now skips block and pattern registration on requests that never render blocks, including the Store API, WooCommerce REST namespaces, cron, AJAX, XML-RPC, favicon, robots.txt, XML sitemaps, and WooCommerce admin pages. The change also fixes `is_store_api_request()` to correctly detect plain-permalink Store API calls via `?rest_route=`. A new `woocommerce_should_register_blocks` filter allows extensions to override the skip behavior if they need to render blocks in these contexts.
+
+Digest entry: issues/woocommerce/gh-woocommerce-65781.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-65781</guid>
+      <pubDate>Mon, 20 Jul 2026 04:42:31 +0000</pubDate>
+    </item>
+    <item>
+      <title>#66320: Fix Revenue report double-counting returns on partial-then-full refunds</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/66320</link>
+      <description>Fixes a bug in WooCommerce Analytics where the Revenue report double-counted returns when an order received a partial refund followed by a full refund. Previously, the full-refund row in `wc_order_stats` recorded the entire parent order total regardless of prior partial refunds, causing the Returns metric to overstate the actual refunded amount. The fix adjusts how full-refund rows calculate their totals and how refund rows are classified in the aggregation query.
+
+Digest entry: issues/woocommerce/gh-woocommerce-66320.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-66320</guid>
+      <pubDate>Mon, 20 Jul 2026 04:43:41 +0000</pubDate>
+    </item>
+    <item>
+      <title>#65472: Load stable WC Admin features directly</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/65472</link>
+      <description>WooCommerce 11.1 retires a large set of stable WooCommerce Admin feature flags from the legacy configuration pipeline (`core.json`, `development.json`, and `window.wcAdminFeatures`). Stable features are now loaded directly by the `Features` class, bypassing the old flag-based gating system. This change simplifies the admin feature architecture and removes experimental toggles for core functionality while providing deprecated compatibility shims to prevent immediate breakage for custom code.
+
+Digest entry: issues/woocommerce/gh-woocommerce-65472.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-65472</guid>
+      <pubDate>Mon, 20 Jul 2026 04:45:25 +0000</pubDate>
+    </item>
+    <item>
+      <title>#66322: Remove Sample badge from products generated during the CYS flow</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/66322</link>
+      <description>WooCommerce 11.1.0 removes the legacy "Sample" badge and associated `_headstart_post` postmeta logic used during the Customize Your Store (CYS) flow. The change cleans up deprecated admin rendering, deprecates the `OnboardingProducts` REST controller and `UpdateProducts` class, and introduces a database migration to purge leftover `_headstart_post` meta from existing stores.
+
+Digest entry: issues/woocommerce/gh-woocommerce-66322.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-66322</guid>
+      <pubDate>Mon, 20 Jul 2026 04:46:51 +0000</pubDate>
+    </item>
+    <item>
+      <title>#65286: Fix: Shop Manager role cannot reorder Local Pickup locations (#59894)</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/65286</link>
+      <description>WooCommerce now exposes a dedicated `POST /wc/v3/pickup-locations` REST endpoint for saving Local Pickup settings, resolving a `403 Forbidden` error that Shop Managers encountered when reordering or editing locations. Previously, the blocks frontend posted directly to WordPress core’s `/wp/v2/settings` route, which requires the `manage_options` capability that Shop Managers lack. The new endpoint uses WooCommerce’s standard `manage_woocommerce` permission check and includes explicit sanitization for nested location payloads.
+
+Digest entry: issues/woocommerce/gh-woocommerce-65286.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-65286</guid>
+      <pubDate>Mon, 20 Jul 2026 04:48:02 +0000</pubDate>
+    </item>
+    <item>
+      <title>#65636: Add deprecated WC Admin feature flag shims</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/65636</link>
+      <description>WooCommerce 11.1 introduces backward-compatibility shims for retired WC Admin feature flags that were removed from the active feature registry in a prior release. These shims intercept access via `Features::is_enabled()`, `Features::exists()`, `window.wcAdminFeatures`, and `isFeatureEnabled()`, returning the legacy `true` value while emitting deprecation warnings. This prevents third-party extensions that still reference retired flags from breaking immediately, while clearly signaling that these flags are deprecated and will be removed in a future version.
+
+Digest entry: issues/woocommerce/gh-woocommerce-65636.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-65636</guid>
+      <pubDate>Mon, 20 Jul 2026 04:49:04 +0000</pubDate>
     </item>
   </channel>
 </rss>

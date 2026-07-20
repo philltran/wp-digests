@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 09 Jul 2026 15:30:41 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 20 Jul 2026 05:56:57 +0000</lastBuildDate>
     <item>
       <title>REST API: Allow-list ability schema response keywords</title>
       <link>https://github.com/WordPress/wordpress-develop/commit/da7588be089fbaeb05ecb4d79dca3cf11815698d</link>
@@ -214,6 +214,87 @@ Digest entry: issues/wp-core/gh-wordpress-develop-4d6a707e02.md · Source: WordP
 Digest entry: issues/wp-core/gh-wordpress-develop-94f3236cc2.md · Source: WordPress/wordpress-develop</description>
       <guid isPermaLink="false">gh-wordpress-develop-94f3236cc2</guid>
       <pubDate>Thu, 09 Jul 2026 07:09:33 +0000</pubDate>
+    </item>
+    <item>
+      <title>REST API: Ensure errors in batch requests propogate.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/1000ed164983a2733e974861aa7332234bf23d16</link>
+      <description>This commit fixes a bug in the REST API batch endpoint where validation errors for individual sub-requests were silently dropped from the response. When a batch request contains invalid items, those errors are now correctly collected and returned alongside successful results, ensuring clients receive complete error feedback.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-1000ed1649.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-1000ed1649</guid>
+      <pubDate>Mon, 20 Jul 2026 01:45:57 +0000</pubDate>
+    </item>
+    <item>
+      <title>REST API: sub-requests must always use dispatch.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/fa72c12879fbfda17d450fc1fd919f698f549f4d</link>
+      <description>WordPress now strictly prevents nested REST request cycles by short-circuiting when a dispatch is already in progress. Guards were added to `rest_api_loaded()` and `WP_REST_Server::serve_request()` to detect `$GLOBALS['wp_rest_server']-&gt;is_dispatching()` and abort any new top-level cycle. This enforces that internal sub-requests must use the existing server’s `dispatch()` method, eliminating double execution of routes, hooks, and potential fatal errors from nested `die()` calls.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-fa72c12879.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-fa72c12879</guid>
+      <pubDate>Mon, 20 Jul 2026 01:46:43 +0000</pubDate>
+    </item>
+    <item>
+      <title>REST API: Reject non-string custom CSS in the global styles controller</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/4c7af097421fc573824b854ac88422366e32a047</link>
+      <description>This commit introduces input validation for the `styles` field in the Global Styles REST API controller to prevent a PHP 8+ `TypeError`. Prior to this change, sending non-string values (like arrays or integers) via a `PUT` request to `/wp/v2/global-styles/` would bypass schema constraints and trigger a fatal error inside `validate_custom_css()`. The fix enforces a strict string type check, returning a `400` error instead of crashing the request.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-4c7af09742.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-4c7af09742</guid>
+      <pubDate>Mon, 20 Jul 2026 01:47:43 +0000</pubDate>
+    </item>
+    <item>
+      <title>HTML API: Ensure carriage returns are serialized in HTML.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/0c5aa8e95a233efa01aa648904c32dada836d025</link>
+      <description>The `WP_HTML_Processor` class now explicitly serializes decoded carriage returns (`\r` / U+000D) as `&amp;#xD;` character references during HTML normalization and output. Previously, the API’s serialization path inconsistently handled these characters, which could cause round-tripped HTML to differ from its source. This ensures that serializing or normalizing an HTML document preserves carriage returns exactly as specified by the HTML parsing standard.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-0c5aa8e95a.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-0c5aa8e95a</guid>
+      <pubDate>Mon, 20 Jul 2026 01:48:43 +0000</pubDate>
+    </item>
+    <item>
+      <title>HTML API: Preserve raw text contents in serialization.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/17c99e53743755ad0d2bc4336f90e4bda50bd025</link>
+      <description>The WordPress HTML API now correctly preserves the literal contents of `iframe`, `noembed`, `noframes`, and `xmp` elements during serialization instead of stripping them out. This change also enables programmatic modification of these elements' text content via `WP_HTML_Tag_Processor::set_modifiable_text()`. Previously, raw text elements were serialized as empty because the serializer explicitly zeroed out their text nodes, breaking round-trip parsing and regeneration workflows.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-17c99e5374.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-17c99e5374</guid>
+      <pubDate>Mon, 20 Jul 2026 01:49:29 +0000</pubDate>
+    </item>
+    <item>
+      <title>HTML API: Ensure attribute value prefix matches the full search text.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/717e02d153bea3f5bce1133aed130dbfd5208207</link>
+      <description>The `WP_HTML_Decoder::attribute_starts_with()` method has been fixed to correctly verify that the entire search prefix matches the decoded attribute value. Previously, the method incorrectly returned `true` if the attribute value was exhausted before the search string was fully consumed, causing false-positive prefix matches.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-717e02d153.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-717e02d153</guid>
+      <pubDate>Mon, 20 Jul 2026 01:50:50 +0000</pubDate>
+    </item>
+    <item>
+      <title>HTML API: Update SELECT element parsing according to specification.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/234ae9bd59e7c7a101725add25e955a354ae6017</link>
+      <description>WordPress's HTML API parser has been updated to align with recent HTML Standard changes regarding customizable `&lt;select&gt;` elements. The legacy "select scope" concept and dedicated "in select" insertion modes have been removed, replaced with standard stack-based scope checks. This adjustment ensures tokenization and insertion logic for `&lt;select&gt;`, `&lt;option&gt;`, and `&lt;optgroup&gt;` tags match modern browser behavior, particularly in nested or fragment parsing scenarios.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-234ae9bd59.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-234ae9bd59</guid>
+      <pubDate>Mon, 20 Jul 2026 01:51:54 +0000</pubDate>
+    </item>
+    <item>
+      <title>Users: Improve interfaces for deleting users.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/3ec27264267f3aeae8c3485cb9012441c2a88d12</link>
+      <description>The user deletion interface has been rewritten to enforce per-site content decisions in multisite, improve form accessibility, and add strict client- and server-side validation. The form now excludes users marked for deletion from reassignment dropdowns, syncs radio and select controls, and replaces disabled-submit patterns with a focusable, screen-reader-friendly error summary. Server-side validation was added to prevent invalid reassignments when JavaScript is bypassed.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-3ec2726426.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-3ec2726426</guid>
+      <pubDate>Mon, 20 Jul 2026 01:52:52 +0000</pubDate>
+    </item>
+    <item>
+      <title>HTML API: Add HTML processing instruction support.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/ca99fefd1e2593af34f4615786756e6c693d8767</link>
+      <description>The HTML API now natively parses, navigates, and serializes HTML processing instructions (`&lt;?...?&gt;`). This aligns `WP_HTML_Tag_Processor` and `WP_HTML_Processor` with updated WHATWG HTML spec tokenization rules, treating valid processing instructions as distinct tokens rather than legacy bogus comments.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-ca99fefd1e.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-ca99fefd1e</guid>
+      <pubDate>Mon, 20 Jul 2026 01:53:56 +0000</pubDate>
     </item>
   </channel>
 </rss>
