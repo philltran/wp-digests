@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 20 Jul 2026 05:56:57 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 22 Jul 2026 03:03:36 +0000</lastBuildDate>
     <item>
       <title>Dev Chat Agenda – June 3, 2026</title>
       <link>https://make.wordpress.org/core/2026/06/03/dev-chat-agenda-june-03-2026/</link>
@@ -430,6 +430,24 @@ Digest entry: issues/dev-notes/make-core-124564.md · Source: Make WordPress Cor
 Digest entry: issues/dev-notes/make-core-124509.md · Source: Make WordPress Core</description>
       <guid isPermaLink="false">make-core-124509</guid>
       <pubDate>Mon, 20 Jul 2026 05:11:03 +0000</pubDate>
+    </item>
+    <item>
+      <title>Dev Chat summary: July 21, 2026</title>
+      <link>https://make.wordpress.org/core/2026/07/21/summary-dev-chat-july-21-2026/</link>
+      <description>WordPress Core is introducing opt-in interactive, runnable PHP code examples in the developer documentation for version 7.1. Instead of static indented PHPDoc snippets, documentation authors can now use ` ```php interactive ` code fences to embed live Playground-powered examples that execute directly in the browser. This change modernizes how Core APIs are demonstrated and removes the friction of manually testing code examples.
+
+Digest entry: issues/dev-notes/make-core-124734.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124734</guid>
+      <pubDate>Tue, 21 Jul 2026 22:41:45 +0000</pubDate>
+    </item>
+    <item>
+      <title>Dev Chat Agenda – July 21, 2026</title>
+      <link>https://make.wordpress.org/core/2026/07/21/dev-chat-agenda-july-21-2026/</link>
+      <description>This Make WordPress Core post is a dev chat agenda announcing the WP 7.0.2 urgent security release and the upcoming 7.1 Beta 3 launch. It outlines ticket triage priorities for the 7.1 milestone and lists four specific Trac tickets (#65417, #62407, #65345, #64972) that may be merged before Beta 4. No code changes, API modifications, or implementation details are included in the post itself.
+
+Digest entry: issues/dev-notes/make-core-124715.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124715</guid>
+      <pubDate>Tue, 21 Jul 2026 22:42:29 +0000</pubDate>
     </item>
   </channel>
 </rss>

@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 20 Jul 2026 05:56:57 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 22 Jul 2026 03:03:37 +0000</lastBuildDate>
     <item>
       <title>#65333: Deprecate Product Editor v2</title>
       <link>https://github.com/woocommerce/woocommerce/pull/65333</link>
@@ -448,6 +448,24 @@ Digest entry: issues/woocommerce/gh-woocommerce-65286.md · Source: woocommerce/
 Digest entry: issues/woocommerce/gh-woocommerce-65636.md · Source: woocommerce/woocommerce</description>
       <guid isPermaLink="false">gh-woocommerce-65636</guid>
       <pubDate>Mon, 20 Jul 2026 04:49:04 +0000</pubDate>
+    </item>
+    <item>
+      <title>#79320: Icons: self declare color</title>
+      <link>https://github.com/WordPress/gutenberg/pull/79320</link>
+      <description>The `@wordpress/icons` package now injects `fill="currentColor"` directly into the outer `&lt;svg&gt;` element of all 330 shipped icons. This ensures every icon inherits the CSS `color` property from its parent by default, making color customization more reliable across icons that use `fill`, `stroke`, or mixed attributes. The change is a documented breaking shift for developers who previously relied on CSS `fill` rules to tint icons.
+
+Digest entry: issues/gutenberg/gh-gutenberg-79320.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-79320</guid>
+      <pubDate>Tue, 21 Jul 2026 22:59:16 +0000</pubDate>
+    </item>
+    <item>
+      <title>#64758: Move global admin notices into Site Health</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/64758</link>
+      <description>WooCommerce has migrated a large set of global admin notices into the WordPress Site Health Status screen and moved background regeneration progress indicators to the Status &gt; Tools table. This reduces dashboard noise by surfacing diagnostic checks (SSL, uploads protection, template staleness, MaxMind licensing, HPOS sync, base tables, and WooCommerce.com plugin risk) where they align with WordPress’s native severity badges and action-link patterns. Operational statuses like thumbnail and product lookup table regeneration now display inline with their respective tools and poll for live progress updates.
+
+Digest entry: issues/woocommerce/gh-woocommerce-64758.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-64758</guid>
+      <pubDate>Wed, 22 Jul 2026 00:53:01 +0000</pubDate>
     </item>
   </channel>
 </rss>

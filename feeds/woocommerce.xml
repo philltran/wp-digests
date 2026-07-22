@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 20 Jul 2026 05:56:57 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 22 Jul 2026 03:03:36 +0000</lastBuildDate>
     <item>
       <title>#65441: [dev] Update .ai/skills/woocommerce-performance/options-cache-priming.md</title>
       <link>https://github.com/woocommerce/woocommerce/pull/65441</link>
@@ -232,6 +232,33 @@ Digest entry: issues/woocommerce/gh-woocommerce-65286.md · Source: woocommerce/
 Digest entry: issues/woocommerce/gh-woocommerce-65636.md · Source: woocommerce/woocommerce</description>
       <guid isPermaLink="false">gh-woocommerce-65636</guid>
       <pubDate>Mon, 20 Jul 2026 04:49:04 +0000</pubDate>
+    </item>
+    <item>
+      <title>#64582: Fix `robots.txt` hardcoding `/wp-content/uploads/` path</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/64582</link>
+      <description>WooCommerce's `robots_txt()` method previously generated `Disallow` rules for its internal directories using a hardcoded `/wp-content/uploads/` path combined with the WordPress install URL. This broke `robots.txt` output on sites that relocate `wp-content`, use the `UPLOADS` constant, set a custom `upload_path`, or run WordPress in a subdirectory. The fix derives the uploads base path directly from `wp_get_upload_dir()['baseurl']`, ensuring the generated `Disallow` directives always point to the actual uploads location.
+
+Digest entry: issues/woocommerce/gh-woocommerce-64582.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-64582</guid>
+      <pubDate>Tue, 21 Jul 2026 22:03:14 +0000</pubDate>
+    </item>
+    <item>
+      <title>#64758: Move global admin notices into Site Health</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/64758</link>
+      <description>WooCommerce has migrated a large set of global admin notices into the WordPress Site Health Status screen and moved background regeneration progress indicators to the Status &gt; Tools table. This reduces dashboard noise by surfacing diagnostic checks (SSL, uploads protection, template staleness, MaxMind licensing, HPOS sync, base tables, and WooCommerce.com plugin risk) where they align with WordPress’s native severity badges and action-link patterns. Operational statuses like thumbnail and product lookup table regeneration now display inline with their respective tools and poll for live progress updates.
+
+Digest entry: issues/woocommerce/gh-woocommerce-64758.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-64758</guid>
+      <pubDate>Wed, 22 Jul 2026 00:53:01 +0000</pubDate>
+    </item>
+    <item>
+      <title>#65469: Fix order totals only filling half width on edit order screen (on mobile)</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/65469</link>
+      <description>WooCommerce now renders the order totals and applied coupons sections as full-width stacked columns on the admin order edit screen when the viewport is 782px or narrower. Previously, these sections were constrained to 50% width side-by-side, causing cramped layouts and awkward text wrapping on mobile devices. This responsive CSS adjustment improves readability and usability for store managers editing orders on smaller screens.
+
+Digest entry: issues/woocommerce/gh-woocommerce-65469.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-65469</guid>
+      <pubDate>Wed, 22 Jul 2026 00:55:38 +0000</pubDate>
     </item>
   </channel>
 </rss>
