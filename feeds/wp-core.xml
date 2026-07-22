@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 22 Jul 2026 03:03:36 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 22 Jul 2026 19:02:20 +0000</lastBuildDate>
     <item>
       <title>REST API: Allow-list ability schema response keywords</title>
       <link>https://github.com/WordPress/wordpress-develop/commit/da7588be089fbaeb05ecb4d79dca3cf11815698d</link>
@@ -313,6 +313,15 @@ Digest entry: issues/wp-core/gh-wordpress-develop-e26ca28569.md · Source: WordP
 Digest entry: issues/wp-core/gh-wordpress-develop-128db3cbea.md · Source: WordPress/wordpress-develop</description>
       <guid isPermaLink="false">gh-wordpress-develop-128db3cbea</guid>
       <pubDate>Wed, 22 Jul 2026 02:57:46 +0000</pubDate>
+    </item>
+    <item>
+      <title>General: Bump the pinned hash for Gutenberg to `e73c3c4`.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/1988bb7094554e1d9da43809695a09051f6c8a37</link>
+      <description>This commit updates the pinned Gutenberg repository hash in WordPress core, pulling in a batch of editor and block improvements. The most notable outward-facing change is the deprecation of two navigation block helper functions (`block_core_navigation_link_build_css_font_sizes` and `block_core_navigation_link_render_submenu_icon`) in favor of updated internal rendering logic. It also refactors how the Navigation block applies layout and state classes to inner containers, introduces viewport-aware custom property generation for responsive navigation layouts, and fixes several client-side media upload and editor UI behaviors.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-1988bb7094.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-1988bb7094</guid>
+      <pubDate>Wed, 22 Jul 2026 17:49:04 +0000</pubDate>
     </item>
   </channel>
 </rss>

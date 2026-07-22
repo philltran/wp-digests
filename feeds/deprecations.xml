@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 22 Jul 2026 03:03:37 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 22 Jul 2026 19:02:20 +0000</lastBuildDate>
     <item>
       <title>#65333: Deprecate Product Editor v2</title>
       <link>https://github.com/woocommerce/woocommerce/pull/65333</link>
@@ -466,6 +466,42 @@ Digest entry: issues/gutenberg/gh-gutenberg-79320.md · Source: WordPress/gutenb
 Digest entry: issues/woocommerce/gh-woocommerce-64758.md · Source: woocommerce/woocommerce</description>
       <guid isPermaLink="false">gh-woocommerce-64758</guid>
       <pubDate>Wed, 22 Jul 2026 00:53:01 +0000</pubDate>
+    </item>
+    <item>
+      <title>#66880: Add check to background Stripe installer redirect</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/66880</link>
+      <description>WooCommerce hardens the legacy `?wc-install-plugin-redirect=woocommerce-gateway-stripe` admin redirect by requiring a valid nonce and capability check before proceeding. The change also deprecates `WC_Install::background_installer()` and `WC_Install::theme_background_installer()` in version 11.1.0, as these methods are no longer called internally but remain public for backward compatibility. This prevents unauthorized or forged redirect requests while formally signaling that the background installer pattern is retired.
+
+Digest entry: issues/woocommerce/gh-woocommerce-66880.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-66880</guid>
+      <pubDate>Wed, 22 Jul 2026 17:45:59 +0000</pubDate>
+    </item>
+    <item>
+      <title>#66321: Avoid repeated payment provider checks in admin requests</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/66321</link>
+      <description>WooCommerce now caches payment provider lists and gateway details at the request level to eliminate redundant account state checks and extension matching on every admin page load. Previously, classes like `Payments::get_payment_providers()` and `PaymentsProviders::get_payment_gateway_details()` recomputed expensive gateway enumeration, account checks, and suggestion matching on each call, causing significant TTFB delays on stores with incomplete setup task lists. The change introduces request-scoped memoization via `wp_cache_add_non_persistent_groups`, drastically reducing database and external API calls while preserving per-user state and ordering behavior.
+
+Digest entry: issues/woocommerce/gh-woocommerce-66321.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-66321</guid>
+      <pubDate>Wed, 22 Jul 2026 17:47:19 +0000</pubDate>
+    </item>
+    <item>
+      <title>General: Bump the pinned hash for Gutenberg to `e73c3c4`.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/1988bb7094554e1d9da43809695a09051f6c8a37</link>
+      <description>This commit updates the pinned Gutenberg repository hash in WordPress core, pulling in a batch of editor and block improvements. The most notable outward-facing change is the deprecation of two navigation block helper functions (`block_core_navigation_link_build_css_font_sizes` and `block_core_navigation_link_render_submenu_icon`) in favor of updated internal rendering logic. It also refactors how the Navigation block applies layout and state classes to inner containers, introduces viewport-aware custom property generation for responsive navigation layouts, and fixes several client-side media upload and editor UI behaviors.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-1988bb7094.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-1988bb7094</guid>
+      <pubDate>Wed, 22 Jul 2026 17:49:04 +0000</pubDate>
+    </item>
+    <item>
+      <title>What’s new in Gutenberg 23.6? (July 22, 2026)</title>
+      <link>https://make.wordpress.org/core/2026/07/22/whats-new-in-gutenberg-23-6-july-22-2026/</link>
+      <description>Gutenberg 23.6 stabilizes the Playlist and Tabs blocks, introduces a dynamic variation for the Gallery block, and adds a custom icon registration API with collection support. The release also brings inline notes and @mention autocomplete to the Notes system, allows theme authors to customize editor viewport breakpoints via theme.json, and hard-deprecates the legacy __next40pxDefaultSize prop across dozens of UI components. These changes shift several experimental features into production and modernize the editor’s theming and collaboration workflows.
+
+Digest entry: issues/dev-notes/make-core-124627.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124627</guid>
+      <pubDate>Wed, 22 Jul 2026 18:00:23 +0000</pubDate>
     </item>
   </channel>
 </rss>

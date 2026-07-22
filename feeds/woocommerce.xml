@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 22 Jul 2026 03:03:36 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 22 Jul 2026 19:02:20 +0000</lastBuildDate>
     <item>
       <title>#65441: [dev] Update .ai/skills/woocommerce-performance/options-cache-priming.md</title>
       <link>https://github.com/woocommerce/woocommerce/pull/65441</link>
@@ -259,6 +259,24 @@ Digest entry: issues/woocommerce/gh-woocommerce-64758.md · Source: woocommerce/
 Digest entry: issues/woocommerce/gh-woocommerce-65469.md · Source: woocommerce/woocommerce</description>
       <guid isPermaLink="false">gh-woocommerce-65469</guid>
       <pubDate>Wed, 22 Jul 2026 00:55:38 +0000</pubDate>
+    </item>
+    <item>
+      <title>#66880: Add check to background Stripe installer redirect</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/66880</link>
+      <description>WooCommerce hardens the legacy `?wc-install-plugin-redirect=woocommerce-gateway-stripe` admin redirect by requiring a valid nonce and capability check before proceeding. The change also deprecates `WC_Install::background_installer()` and `WC_Install::theme_background_installer()` in version 11.1.0, as these methods are no longer called internally but remain public for backward compatibility. This prevents unauthorized or forged redirect requests while formally signaling that the background installer pattern is retired.
+
+Digest entry: issues/woocommerce/gh-woocommerce-66880.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-66880</guid>
+      <pubDate>Wed, 22 Jul 2026 17:45:59 +0000</pubDate>
+    </item>
+    <item>
+      <title>#66321: Avoid repeated payment provider checks in admin requests</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/66321</link>
+      <description>WooCommerce now caches payment provider lists and gateway details at the request level to eliminate redundant account state checks and extension matching on every admin page load. Previously, classes like `Payments::get_payment_providers()` and `PaymentsProviders::get_payment_gateway_details()` recomputed expensive gateway enumeration, account checks, and suggestion matching on each call, causing significant TTFB delays on stores with incomplete setup task lists. The change introduces request-scoped memoization via `wp_cache_add_non_persistent_groups`, drastically reducing database and external API calls while preserving per-user state and ordering behavior.
+
+Digest entry: issues/woocommerce/gh-woocommerce-66321.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-66321</guid>
+      <pubDate>Wed, 22 Jul 2026 17:47:19 +0000</pubDate>
     </item>
   </channel>
 </rss>

@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 22 Jul 2026 03:03:36 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 22 Jul 2026 19:02:20 +0000</lastBuildDate>
     <item>
       <title>Dev Chat Agenda – June 3, 2026</title>
       <link>https://make.wordpress.org/core/2026/06/03/dev-chat-agenda-june-03-2026/</link>
@@ -448,6 +448,24 @@ Digest entry: issues/dev-notes/make-core-124734.md · Source: Make WordPress Cor
 Digest entry: issues/dev-notes/make-core-124715.md · Source: Make WordPress Core</description>
       <guid isPermaLink="false">make-core-124715</guid>
       <pubDate>Tue, 21 Jul 2026 22:42:29 +0000</pubDate>
+    </item>
+    <item>
+      <title>Client-Side Media Processing in WordPress 7.1</title>
+      <link>https://make.wordpress.org/core/2026/07/22/client-side-media-processing-in-wordpress-7-1/</link>
+      <description>WordPress 7.1 introduces client-side media processing, shifting image compression, resizing, format conversion, rotation, and thumbnail generation from PHP to the browser using a WebAssembly build of libvips. This offloads heavy image work to the user’s device, eliminating PHP memory limits, reducing server CPU load, and delivering consistently optimized output across all hosting environments. The feature activates automatically in supporting browsers and falls back transparently to server-side processing when unsupported.
+
+Digest entry: issues/dev-notes/make-core-124446.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124446</guid>
+      <pubDate>Wed, 22 Jul 2026 17:58:54 +0000</pubDate>
+    </item>
+    <item>
+      <title>What’s new in Gutenberg 23.6? (July 22, 2026)</title>
+      <link>https://make.wordpress.org/core/2026/07/22/whats-new-in-gutenberg-23-6-july-22-2026/</link>
+      <description>Gutenberg 23.6 stabilizes the Playlist and Tabs blocks, introduces a dynamic variation for the Gallery block, and adds a custom icon registration API with collection support. The release also brings inline notes and @mention autocomplete to the Notes system, allows theme authors to customize editor viewport breakpoints via theme.json, and hard-deprecates the legacy __next40pxDefaultSize prop across dozens of UI components. These changes shift several experimental features into production and modernize the editor’s theming and collaboration workflows.
+
+Digest entry: issues/dev-notes/make-core-124627.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124627</guid>
+      <pubDate>Wed, 22 Jul 2026 18:00:23 +0000</pubDate>
     </item>
   </channel>
 </rss>
