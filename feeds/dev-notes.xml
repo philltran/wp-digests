@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 22 Jul 2026 19:02:20 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 24 Jul 2026 00:33:50 +0000</lastBuildDate>
     <item>
       <title>Dev Chat Agenda – June 3, 2026</title>
       <link>https://make.wordpress.org/core/2026/06/03/dev-chat-agenda-june-03-2026/</link>
@@ -466,6 +466,42 @@ Digest entry: issues/dev-notes/make-core-124446.md · Source: Make WordPress Cor
 Digest entry: issues/dev-notes/make-core-124627.md · Source: Make WordPress Core</description>
       <guid isPermaLink="false">make-core-124627</guid>
       <pubDate>Wed, 22 Jul 2026 18:00:23 +0000</pubDate>
+    </item>
+    <item>
+      <title>Editor components updates in WordPress 7.1</title>
+      <link>https://make.wordpress.org/core/2026/07/23/editor-components-updates-in-wordpress-7-1/</link>
+      <description>WordPress 7.1 finalizes the 40px default height rollout for form controls in `@wordpress/components`, removes the deprecated `Navigation` component and `__experimentalApplyValueToSides` utility, and shifts internal styling from Emotion to SCSS modules. These changes eliminate legacy opt-in props, enforce consistent spacing, and simplify the component library's styling architecture. Plugin and theme developers must update their component usage to avoid relying on removed APIs or deprecated styling patterns.
+
+Digest entry: issues/dev-notes/make-core-124581.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124581</guid>
+      <pubDate>Fri, 24 Jul 2026 00:16:20 +0000</pubDate>
+    </item>
+    <item>
+      <title>Editable blocks inside the Custom HTML block</title>
+      <link>https://make.wordpress.org/core/2026/07/23/editable-blocks-inside-the-custom-html-block/</link>
+      <description>WordPress 7.1 enables the `core/html` block to contain editable inner blocks alongside static HTML markup. When rendered in the editor, the static HTML remains inert while inner blocks are editable in place but locked to prevent structural changes. This change also introduces an `innerContent` field to `wp.blocks.registerBlockVariation`, allowing developers to define fixed markup shells with designated editable slots for `core/html` variations without building a custom block.
+
+Digest entry: issues/dev-notes/make-core-124817.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124817</guid>
+      <pubDate>Fri, 24 Jul 2026 00:17:14 +0000</pubDate>
+    </item>
+    <item>
+      <title>Media Library infinite scrolling is now enabled by default, with a per-user opt-out</title>
+      <link>https://make.wordpress.org/core/2026/07/23/media-library-infinite-scrolling-is-now-enabled-by-default-with-a-per-user-opt-out/</link>
+      <description>In WordPress 7.1, infinite scrolling in the Media Library grid and Media Modal is now enabled by default, reversing the `false` default introduced in 5.8. This change removes the "Load more" button friction for users managing large libraries while preserving a per-user opt-out. The behavior is controlled by the `media_library_infinite_scrolling` filter, which now defaults to `true`, and respects a new user profile setting.
+
+Digest entry: issues/dev-notes/make-core-124703.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124703</guid>
+      <pubDate>Fri, 24 Jul 2026 00:18:17 +0000</pubDate>
+    </item>
+    <item>
+      <title>Text Shadow Support in Global Styles</title>
+      <link>https://make.wordpress.org/core/2026/07/23/text-shadow-support-in-global-styles/</link>
+      <description>WordPress 7.1 adds native `textShadow` support to `theme.json`, allowing developers to declare CSS `text-shadow` values directly in Global Styles without custom CSS or plugins. The property is recognized under `styles.typography`, per-block `styles.blocks.&lt;block&gt;.typography`, and element states like `:hover`. This delivers the foundational layer for typography shadows, with a UI and presets deferred to a subsequent release.
+
+Digest entry: issues/dev-notes/make-core-124682.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124682</guid>
+      <pubDate>Fri, 24 Jul 2026 00:19:11 +0000</pubDate>
     </item>
   </channel>
 </rss>

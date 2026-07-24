@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 22 Jul 2026 19:02:20 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 24 Jul 2026 00:33:50 +0000</lastBuildDate>
     <item>
       <title>WordPress 7.0.2 Release</title>
       <link>https://wordpress.org/news/2026/07/wordpress-7-0-2-release/</link>
@@ -349,6 +349,51 @@ Digest entry: issues/security/wfi-bd087d06-5395-4dfd-a288-2c3271a62842.md · Sou
 Digest entry: issues/security/wfi-df8326b6-a443-4f76-a755-49f89af74d7e.md · Source: Wordfence Intelligence</description>
       <guid isPermaLink="false">wfi-df8326b6-a443-4f76-a755-49f89af74d7e</guid>
       <pubDate>Tue, 21 Jul 2026 17:48:05 +0000</pubDate>
+    </item>
+    <item>
+      <title>A New Threat Landscape Meets A New Kind of Defender</title>
+      <link>https://www.wordfence.com/blog/2026/07/a-new-threat-landscape-meets-a-new-kind-of-defender/</link>
+      <description>Wordfence reports the autonomous discovery of a critical WordPress Core remote code execution (RCE) vulnerability—the first of its kind in a decade—using an AI research system called PRISM. The finding underscores a shift in the threat landscape where AI-adapted prompts are rapidly identifying high-severity core flaws. Wordfence also deployed Eclipse, an AI-assisted triage pipeline, to accelerate confidential disclosure and firewall rule deployment.
+
+Digest entry: issues/security/wordfence-blog-42539.md · Source: Wordfence Blog</description>
+      <guid isPermaLink="false">wordfence-blog-42539</guid>
+      <pubDate>Fri, 24 Jul 2026 00:20:18 +0000</pubDate>
+    </item>
+    <item>
+      <title>Customer Support Ticket System &amp; Helpdesk &lt;= 6.0.5 - Unauthenticated Code Injection via 'path' Parameter</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/f9e2ad4b-716a-4a2d-87c0-2f351bd13884</link>
+      <description>The Customer Support Ticket System &amp; Helpdesk plugin contained an unauthenticated code injection vulnerability in versions up to 6.0.5. Attackers could exploit the `path` parameter to invoke arbitrary PHP functions due to insufficient validation of dynamic function calls. The issue was resolved in version 6.0.6 by validating the parameter before execution, eliminating the remote code execution risk.
+
+Digest entry: issues/security/wfi-f9e2ad4b-716a-4a2d-87c0-2f351bd13884.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-f9e2ad4b-716a-4a2d-87c0-2f351bd13884</guid>
+      <pubDate>Fri, 24 Jul 2026 00:21:11 +0000</pubDate>
+    </item>
+    <item>
+      <title>GoDAM &lt;= 1.12.2 - Unauthenticated Arbitrary File Upload via WPForms File Upload Field</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/ce3ae202-1227-4247-9133-5c7284392c9f</link>
+      <description>The GoDAM plugin (≤1.12.2) contained a critical unauthenticated arbitrary file upload vulnerability. The `save_video_file()` function incorrectly validated uploaded files by trusting the client-supplied `Content-Type` header instead of performing server-side MIME detection, allowing attackers to upload executable scripts directly to a web-accessible directory. Patched in version 2.0.0, this fix closes a direct path to remote code execution on affected sites.
+
+Digest entry: issues/security/wfi-ce3ae202-1227-4247-9133-5c7284392c9f.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-ce3ae202-1227-4247-9133-5c7284392c9f</guid>
+      <pubDate>Fri, 24 Jul 2026 00:21:59 +0000</pubDate>
+    </item>
+    <item>
+      <title>MountDev AI MCP Connector for WordPress &lt;= 1.6.1 - Unauthenticated Privilege Escalation via OAuth Authorization Endpoint</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/ce8ec66f-5efc-4354-8871-8e35ab4e51fc</link>
+      <description>The MountDev AI MCP Connector for WordPress plugin contained a critical authorization bypass that allowed unauthenticated attackers to escalate to administrator-equivalent access. The flaw stemmed from the plugin failing to verify user permissions on its OAuth authorization endpoint, combined with an open Dynamic Client Registration endpoint that accepted arbitrary redirect URIs. Attackers could complete the full OAuth flow without administrator interaction to obtain an admin-bound bearer token, exposing the plugin’s MCP tool surface and underlying WordPress data.
+
+Digest entry: issues/security/wfi-ce8ec66f-5efc-4354-8871-8e35ab4e51fc.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-ce8ec66f-5efc-4354-8871-8e35ab4e51fc</guid>
+      <pubDate>Fri, 24 Jul 2026 00:22:52 +0000</pubDate>
+    </item>
+    <item>
+      <title>SAML Single Sign On &lt;= 5.4.4 - Unauthenticated Authentication Bypass via SAMLResponse Parameter</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/b412f60f-61ea-47b1-a3ef-17275f7951df</link>
+      <description>The SAML Single Sign On – SSO Login plugin (≤5.4.4) contained a critical authentication bypass vulnerability. A loose boolean evaluation of `openssl_verify()` in `mo_saml_validate_signature()` incorrectly treated OpenSSL error returns (-1) as successful signature verification. This allowed unauthenticated attackers to forge SAML responses, bypass cryptographic checks, and log in as any existing WordPress user, including administrators. The issue is resolved in version 5.4.5.
+
+Digest entry: issues/security/wfi-b412f60f-61ea-47b1-a3ef-17275f7951df.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-b412f60f-61ea-47b1-a3ef-17275f7951df</guid>
+      <pubDate>Fri, 24 Jul 2026 00:23:54 +0000</pubDate>
     </item>
   </channel>
 </rss>

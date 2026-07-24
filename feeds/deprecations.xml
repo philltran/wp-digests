@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 22 Jul 2026 19:02:20 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 24 Jul 2026 00:33:50 +0000</lastBuildDate>
     <item>
       <title>#65333: Deprecate Product Editor v2</title>
       <link>https://github.com/woocommerce/woocommerce/pull/65333</link>
@@ -502,6 +502,15 @@ Digest entry: issues/wp-core/gh-wordpress-develop-1988bb7094.md · Source: WordP
 Digest entry: issues/dev-notes/make-core-124627.md · Source: Make WordPress Core</description>
       <guid isPermaLink="false">make-core-124627</guid>
       <pubDate>Wed, 22 Jul 2026 18:00:23 +0000</pubDate>
+    </item>
+    <item>
+      <title>Editor components updates in WordPress 7.1</title>
+      <link>https://make.wordpress.org/core/2026/07/23/editor-components-updates-in-wordpress-7-1/</link>
+      <description>WordPress 7.1 finalizes the 40px default height rollout for form controls in `@wordpress/components`, removes the deprecated `Navigation` component and `__experimentalApplyValueToSides` utility, and shifts internal styling from Emotion to SCSS modules. These changes eliminate legacy opt-in props, enforce consistent spacing, and simplify the component library's styling architecture. Plugin and theme developers must update their component usage to avoid relying on removed APIs or deprecated styling patterns.
+
+Digest entry: issues/dev-notes/make-core-124581.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124581</guid>
+      <pubDate>Fri, 24 Jul 2026 00:16:20 +0000</pubDate>
     </item>
   </channel>
 </rss>
