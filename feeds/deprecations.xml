@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 24 Jul 2026 00:33:50 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 06 Aug 2026 02:16:58 +0000</lastBuildDate>
     <item>
       <title>#65333: Deprecate Product Editor v2</title>
       <link>https://github.com/woocommerce/woocommerce/pull/65333</link>
@@ -511,6 +511,60 @@ Digest entry: issues/dev-notes/make-core-124627.md · Source: Make WordPress Cor
 Digest entry: issues/dev-notes/make-core-124581.md · Source: Make WordPress Core</description>
       <guid isPermaLink="false">make-core-124581</guid>
       <pubDate>Fri, 24 Jul 2026 00:16:20 +0000</pubDate>
+    </item>
+    <item>
+      <title>#80691: Components: Remove private Theme component</title>
+      <link>https://github.com/WordPress/gutenberg/pull/80691</link>
+      <description>The private `Theme` component has been removed from `@wordpress/components`. This component was an internal experiment for dynamically setting `--wp-components-color-*` CSS custom properties at runtime. With the canvas loader no longer relying on it, the component is now dead code, and `@wordpress/theme` is the designated replacement for runtime theming.
+
+Digest entry: issues/gutenberg/gh-gutenberg-80691.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-80691</guid>
+      <pubDate>Wed, 05 Aug 2026 23:52:52 +0000</pubDate>
+    </item>
+    <item>
+      <title>#80595: Base Styles: Remove accent color parameter from input-control</title>
+      <link>https://github.com/WordPress/gutenberg/pull/80595</link>
+      <description>The `input-control` and `input-style__focus` SCSS mixins in `@wordpress/base-styles` no longer accept an `$accent-color` parameter. Focus styling now defaults internally to `var(--wp-admin-theme-color)`, and all internal call sites across the block editor and components packages have been updated to remove redundant arguments. This change eliminates duplication and aligns focus ring behavior with the retirement of the experimental `--wp-components-color-accent` token.
+
+Digest entry: issues/gutenberg/gh-gutenberg-80595.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-80595</guid>
+      <pubDate>Thu, 06 Aug 2026 00:06:51 +0000</pubDate>
+    </item>
+    <item>
+      <title>#67168: Deprecate coupon updated props hook in favor of per-save successor</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/67168</link>
+      <description>WooCommerce deprecated the `woocommerce_coupon_object_updated_props` action in favor of a new `woocommerce_coupon_updated_props` hook that reports only the properties modified during the current save. The change resolves a backward-compatibility regression introduced in 11.0 when the original hook's payload was switched to per-save semantics. The legacy action now fires via `do_action_deprecated()` with its historical accumulated payload, while core tracking and modern extensions should use the replacement hook.
+
+Digest entry: issues/woocommerce/gh-woocommerce-67168.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-67168</guid>
+      <pubDate>Thu, 06 Aug 2026 00:13:55 +0000</pubDate>
+    </item>
+    <item>
+      <title>WordPress 7.1 Field Guide</title>
+      <link>https://make.wordpress.org/core/2026/08/05/wordpress-7-1-field-guide/</link>
+      <description>WordPress 7.1 introduces a coordinated set of developer-facing changes that modernize media workflows, enforce an iframed editor environment, and expand extensibility through new APIs. Key additions include client-side media processing, standardized SVG icon registration, and new block supports for background gradients and minimum width. These shifts improve editor consistency and REST API capabilities but require plugin authors to audit cross-frame JavaScript interactions and update legacy dependency expectations.
+
+Digest entry: issues/dev-notes/make-core-124988.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124988</guid>
+      <pubDate>Thu, 06 Aug 2026 01:03:15 +0000</pubDate>
+    </item>
+    <item>
+      <title>Miscellaneous Editor Changes in WordPress 7.1</title>
+      <link>https://make.wordpress.org/core/2026/08/04/miscellaneous-block-editor-changes-in-wordpress-7-1/</link>
+      <description>WordPress 7.1 introduces a cluster of editor refinements that stabilize legacy APIs, fix client-side pagination behavior, and adjust CSS specificity for block-level presets. The Navigation block no longer forces font-size inheritance on child items, block transforms can now target specific variations, and the @wordpress/nux and @wordpress/reusable-blocks packages are deprecated in favor of modern alternatives. These changes improve layout predictability, simplify programmatic block manipulation, and clean up the client-side editor API surface.
+
+Digest entry: issues/dev-notes/make-core-124861.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124861</guid>
+      <pubDate>Thu, 06 Aug 2026 01:09:23 +0000</pubDate>
+    </item>
+    <item>
+      <title>React 19: punted beyond WordPress 7.1, experiment in Gutenberg</title>
+      <link>https://make.wordpress.org/core/2026/07/24/react-19-punted-beyond-wordpress-7-1-experiment-in-gutenberg/</link>
+      <description>WordPress 7.1 will ship with React 18.3, deferring the React 19 upgrade to a future release. An initial attempt to upgrade was reverted after testing revealed incompatibilities when React 18 and 19 coexist in the same environment, particularly with how plugins bundle and consume React. Gutenberg 23.4+ now includes an experimental flag to enable React 19 for plugin compatibility testing.
+
+Digest entry: issues/dev-notes/make-core-124768.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124768</guid>
+      <pubDate>Thu, 06 Aug 2026 01:25:47 +0000</pubDate>
     </item>
   </channel>
 </rss>

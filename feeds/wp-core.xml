@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 24 Jul 2026 00:33:50 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 06 Aug 2026 02:16:58 +0000</lastBuildDate>
     <item>
       <title>REST API: Allow-list ability schema response keywords</title>
       <link>https://github.com/WordPress/wordpress-develop/commit/da7588be089fbaeb05ecb4d79dca3cf11815698d</link>
@@ -322,6 +322,69 @@ Digest entry: issues/wp-core/gh-wordpress-develop-128db3cbea.md · Source: WordP
 Digest entry: issues/wp-core/gh-wordpress-develop-1988bb7094.md · Source: WordPress/wordpress-develop</description>
       <guid isPermaLink="false">gh-wordpress-develop-1988bb7094</guid>
       <pubDate>Wed, 22 Jul 2026 17:49:04 +0000</pubDate>
+    </item>
+    <item>
+      <title>REST API: Always register the media creation arguments.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/6904e896b870e1ddd4e706edcd990b794977fec1</link>
+      <description>The `POST /wp/v2/media` endpoint now unconditionally registers the `url`, `generate_sub_sizes`, and `convert_format` request arguments, regardless of whether client-side media processing is enabled. Previously, these arguments were only registered when the feature was active, which caused unregistered parameters to bypass REST schema validation and sanitization. This fix ensures consistent schema advertising across SSL and non-SSL requests and enforces proper validation (including SSRF protection for the `url` argument) before the request reaches the controller logic.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-6904e896b8.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-6904e896b8</guid>
+      <pubDate>Thu, 06 Aug 2026 00:15:59 +0000</pubDate>
+    </item>
+    <item>
+      <title>REST API: Bound the size of media sideloaded from a URL.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/5f5d96bd4b0ad25b803dc507c08b5336fff926ed</link>
+      <description>The REST API media creation endpoint now enforces the site's maximum upload size when sideloading files from a remote URL. Previously, single-site installations had no ceiling on this path because `check_upload_size()` skips validation when `! is_multisite()`. This fix caps the remote download at `wp_max_upload_size()` and returns a `400` error if the fetched file exceeds the limit, preventing unbounded disk writes and memory exhaustion.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-5f5d96bd4b.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-5f5d96bd4b</guid>
+      <pubDate>Thu, 06 Aug 2026 00:17:03 +0000</pubDate>
+    </item>
+    <item>
+      <title>HTML API: Respect enqueued updates in `get_attribute_names_with_prefix()`.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/ca644847def89cb8159831332377bc9b13fc9f41</link>
+      <description>`WP_HTML_Tag_Processor::get_attribute_names_with_prefix()` now correctly reflects pending attribute and class modifications before `get_updated_html()` is called. Previously, the method only inspected the current `$this-&gt;attributes` array, returning stale results that omitted newly added attributes or included ones queued for removal. This fix aligns the method with the processor’s internal update queue, ensuring immediate consistency after calls like `set_attribute()`, `remove_attribute()`, or `add_class()`.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-ca644847de.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-ca644847de</guid>
+      <pubDate>Thu, 06 Aug 2026 00:18:53 +0000</pubDate>
+    </item>
+    <item>
+      <title>REST API: Restore the global post after preparing a revision.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/593166d816dbec24a7a0780fa7b675e32e504b7b</link>
+      <description>The REST API revision controller now restores the global `$post` after preparing a revision response. Previously, `WP_REST_Revisions_Controller::prepare_item_for_response()` called `setup_postdata()` without restoring the original global, causing the modified `$post` to leak into the rest of the request. This bug could cause the block editor to initialize with the wrong post when preloading autosaves. The fix captures the previous global post, restores it on all code paths, and introduces a dedicated `restore_post_data()` helper.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-593166d816.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-593166d816</guid>
+      <pubDate>Thu, 06 Aug 2026 00:20:07 +0000</pubDate>
+    </item>
+    <item>
+      <title>Security: Update `composer/ca-bundle` to version `1.5.13`.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/54ea90b6cee0154da7897ef50f06d4f546d05d3b</link>
+      <description>WordPress core updated the bundled `composer/ca-bundle` dependency from `1.5.12` to `1.5.13`, synchronizing the included CA certificate store with Mozilla’s latest root certificates. This update removes two deprecated root certificates (`Entrust Root Certification Authority` and `SecureSign Root CA12`) to maintain accurate TLS validation for outbound HTTP requests and address upstream security advisories.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-54ea90b6ce.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-54ea90b6ce</guid>
+      <pubDate>Thu, 06 Aug 2026 00:21:13 +0000</pubDate>
+    </item>
+    <item>
+      <title>REST API: Pass the missing `$is_update` param to the `wp_creating_autosave` action.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/258355300666058b0851f4bfd50b9a596c2cd22c</link>
+      <description>The `wp_creating_autosave` action now correctly receives its second `$is_update` parameter when triggered via the REST API. Since WordPress 6.4.0, this parameter has been documented but was omitted in `WP_REST_Autosaves_Controller::create_post_autosave()`, which could trigger fatal errors in callbacks expecting the argument. This commit aligns the REST API autosave creation path with the legacy `wp_create_post_autosave()` function by passing `true` to indicate an update operation.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-2583553006.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-2583553006</guid>
+      <pubDate>Thu, 06 Aug 2026 00:22:07 +0000</pubDate>
+    </item>
+    <item>
+      <title>REST API: Enforce multisite upload limits when sideloading media from a URL.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/58b28ff78834dbec24a29acc2def1753361aadcf</link>
+      <description>The REST API attachments controller now enforces multisite upload limits when creating media via the URL sideload path. Previously, `create_item_from_url()` bypassed `check_upload_size()`, allowing files that exceeded the network-wide maximum file size or a site's upload quota to be uploaded. The fix adds the missing size validation before calling `media_handle_sideload()`, ensuring parity with multipart and raw-body upload endpoints.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-58b28ff788.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-58b28ff788</guid>
+      <pubDate>Thu, 06 Aug 2026 00:23:00 +0000</pubDate>
     </item>
   </channel>
 </rss>

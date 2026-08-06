@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 24 Jul 2026 00:33:50 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 06 Aug 2026 02:16:58 +0000</lastBuildDate>
     <item>
       <title>#65441: [dev] Update .ai/skills/woocommerce-performance/options-cache-priming.md</title>
       <link>https://github.com/woocommerce/woocommerce/pull/65441</link>
@@ -277,6 +277,15 @@ Digest entry: issues/woocommerce/gh-woocommerce-66880.md · Source: woocommerce/
 Digest entry: issues/woocommerce/gh-woocommerce-66321.md · Source: woocommerce/woocommerce</description>
       <guid isPermaLink="false">gh-woocommerce-66321</guid>
       <pubDate>Wed, 22 Jul 2026 17:47:19 +0000</pubDate>
+    </item>
+    <item>
+      <title>#67168: Deprecate coupon updated props hook in favor of per-save successor</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/67168</link>
+      <description>WooCommerce deprecated the `woocommerce_coupon_object_updated_props` action in favor of a new `woocommerce_coupon_updated_props` hook that reports only the properties modified during the current save. The change resolves a backward-compatibility regression introduced in 11.0 when the original hook's payload was switched to per-save semantics. The legacy action now fires via `do_action_deprecated()` with its historical accumulated payload, while core tracking and modern extensions should use the replacement hook.
+
+Digest entry: issues/woocommerce/gh-woocommerce-67168.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-67168</guid>
+      <pubDate>Thu, 06 Aug 2026 00:13:55 +0000</pubDate>
     </item>
   </channel>
 </rss>

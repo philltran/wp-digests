@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 24 Jul 2026 00:33:50 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 06 Aug 2026 02:16:58 +0000</lastBuildDate>
     <item>
       <title>Dev Chat Agenda – June 3, 2026</title>
       <link>https://make.wordpress.org/core/2026/06/03/dev-chat-agenda-june-03-2026/</link>
@@ -502,6 +502,222 @@ Digest entry: issues/dev-notes/make-core-124703.md · Source: Make WordPress Cor
 Digest entry: issues/dev-notes/make-core-124682.md · Source: Make WordPress Core</description>
       <guid isPermaLink="false">make-core-124682</guid>
       <pubDate>Fri, 24 Jul 2026 00:19:11 +0000</pubDate>
+    </item>
+    <item>
+      <title>WordPress 7.1 Release Candidate Phase</title>
+      <link>https://make.wordpress.org/core/2026/08/05/wordpress-7-1-release-candidate-phase/</link>
+      <description>WordPress 7.1 has entered the Release Candidate phase, triggering a set of release management policies that restrict trunk commits, enforce a hard string freeze, and limit milestone tickets to regressions and test suite expansions. Branching is temporarily delayed to allow GitHub Actions improvements to land, meaning all trunk commits now require double sign-off by core committers until the 7.1 branch is created.
+
+Digest entry: issues/dev-notes/make-core-125339.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-125339</guid>
+      <pubDate>Thu, 06 Aug 2026 01:02:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>WordPress 7.1 Field Guide</title>
+      <link>https://make.wordpress.org/core/2026/08/05/wordpress-7-1-field-guide/</link>
+      <description>WordPress 7.1 introduces a coordinated set of developer-facing changes that modernize media workflows, enforce an iframed editor environment, and expand extensibility through new APIs. Key additions include client-side media processing, standardized SVG icon registration, and new block supports for background gradients and minimum width. These shifts improve editor consistency and REST API capabilities but require plugin authors to audit cross-frame JavaScript interactions and update legacy dependency expectations.
+
+Digest entry: issues/dev-notes/make-core-124988.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124988</guid>
+      <pubDate>Thu, 06 Aug 2026 01:03:15 +0000</pubDate>
+    </item>
+    <item>
+      <title>The notify_post_author filter now has the final say on post author notifications</title>
+      <link>https://make.wordpress.org/core/2026/08/05/the-notify_post_author-filter-now-has-the-final-say-on-post-author-notifications/</link>
+      <description>WordPress 7.1 changes the execution order in `wp_new_comment_notify_postauthor()` so that the `notify_post_author` filter runs after the comment’s approval status is evaluated. Previously, the filter received a default based solely on the `comments_notify` option and its return value was silently ignored for unapproved comments. Now, the filter receives an accurate default reflecting approval status, and its return value definitively controls whether the author notification is sent.
+
+Digest entry: issues/dev-notes/make-core-125358.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-125358</guid>
+      <pubDate>Thu, 06 Aug 2026 01:04:08 +0000</pubDate>
+    </item>
+    <item>
+      <title>Filtering registered abilities with wp_get_abilities() in WordPress 7.1</title>
+      <link>https://make.wordpress.org/core/2026/08/05/filtering-registered-abilities-with-wp_get_abilities-in-wordpress-7-1/</link>
+      <description>WordPress 7.1 extends `wp_get_abilities()` to accept an optional `$args` array, enabling built-in filtering of registered abilities by `category`, `namespace`, or `meta` conditions, alongside custom per-item and result-processing callbacks. This replaces the previous pattern where consumers had to manually `array_filter()` the complete registry, consolidating discovery logic into a single shared pipeline. Two new global filters, `wp_get_abilities_item_include` and `wp_get_abilities_result`, allow plugins to influence ability retrieval across the entire site.
+
+Digest entry: issues/dev-notes/make-core-125319.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-125319</guid>
+      <pubDate>Thu, 06 Aug 2026 01:05:17 +0000</pubDate>
+    </item>
+    <item>
+      <title>Responsive block styles and configurable viewports in WordPress 7.1</title>
+      <link>https://make.wordpress.org/core/2026/08/05/responsive-block-styles-and-configurable-viewports-in-wordpress-7-1/</link>
+      <description>WordPress 7.1 introduces responsive style states for blocks, allowing developers and site builders to define distinct `@mobile` and `@tablet` styles alongside the base desktop style. These responsive rules can be applied globally via `theme.json` or directly on individual block instances, and themes can now customize the breakpoint thresholds using the new `settings.viewport` configuration. This eliminates the need for custom media queries or JavaScript to handle viewport-specific styling in the block editor and on the front end.
+
+Digest entry: issues/dev-notes/make-core-124535.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124535</guid>
+      <pubDate>Thu, 06 Aug 2026 01:06:14 +0000</pubDate>
+    </item>
+    <item>
+      <title>Pseudo and custom style states in WordPress 7.1</title>
+      <link>https://make.wordpress.org/core/2026/08/05/pseudo-and-custom-style-states-in-wordpress-7-1/</link>
+      <description>WordPress 7.1 introduces native support for styling pseudo states (`:hover`, `:focus`, `:focus-visible`, `:active`) and custom states (`-current`) directly in `theme.json` and block instance attributes. This allows theme authors and site editors to define state-specific styles for blocks like Button and Navigation Link without writing custom CSS. The feature also adds an editor setting to control whether users can edit these states in the block inspector and Global Styles UI.
+
+Digest entry: issues/dev-notes/make-core-125119.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-125119</guid>
+      <pubDate>Thu, 06 Aug 2026 01:07:09 +0000</pubDate>
+    </item>
+    <item>
+      <title>A unified public exposure flag for Abilities in WordPress 7.1</title>
+      <link>https://make.wordpress.org/core/2026/08/04/a-unified-public-exposure-flag-for-abilities-in-wordpress-7-1/</link>
+      <description>WordPress 7.1 introduces a unified `meta['public']` flag for the Abilities API to signal that an ability is intended for external client consumption. This replaces the need to set channel-specific exposure flags like `show_in_rest` for every new integration, establishing a single source of truth for discoverability while preserving granular overrides. The change streamlines ability registration for REST, MCP adapters, and future AI/agent integrations without altering existing behavior or API signatures.
+
+Digest entry: issues/dev-notes/make-core-125285.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-125285</guid>
+      <pubDate>Thu, 06 Aug 2026 01:08:02 +0000</pubDate>
+    </item>
+    <item>
+      <title>Miscellaneous Editor Changes in WordPress 7.1</title>
+      <link>https://make.wordpress.org/core/2026/08/04/miscellaneous-block-editor-changes-in-wordpress-7-1/</link>
+      <description>WordPress 7.1 introduces a cluster of editor refinements that stabilize legacy APIs, fix client-side pagination behavior, and adjust CSS specificity for block-level presets. The Navigation block no longer forces font-size inheritance on child items, block transforms can now target specific variations, and the @wordpress/nux and @wordpress/reusable-blocks packages are deprecated in favor of modern alternatives. These changes improve layout predictability, simplify programmatic block manipulation, and clean up the client-side editor API surface.
+
+Digest entry: issues/dev-notes/make-core-124861.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124861</guid>
+      <pubDate>Thu, 06 Aug 2026 01:09:23 +0000</pubDate>
+    </item>
+    <item>
+      <title>Defensive Data Design</title>
+      <link>https://make.wordpress.org/core/2026/08/04/defensive-data-design/</link>
+      <description>This Make WordPress Core editorial outlines a strategic design philosophy for future WordPress development, emphasizing reversible actions, safe defaults, and plain-language error handling. Rather than introducing a specific code change, it establishes guiding principles for how core should behave as AI agents and automated workflows become more prevalent. The post advocates for making destructive actions difficult, publishing workflows cautious, and error states highly legible.
+
+Digest entry: issues/dev-notes/make-core-125273.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-125273</guid>
+      <pubDate>Thu, 06 Aug 2026 01:11:19 +0000</pubDate>
+    </item>
+    <item>
+      <title>Introducing name and informational tool tips in WordPress 7.1</title>
+      <link>https://make.wordpress.org/core/2026/08/03/introducing-name-and-informational-tool-tips-in-wordpress-7-1/</link>
+      <description>WordPress 7.1 introduces two new PHP functions, `wp_get_tooltip()` and `wp_get_toggletip()`, to render accessible tooltips and informational toggles in the administration interface. These functions address accessibility gaps for icon-only controls and complex UI elements where persistent text labels or `aria-describedby` attributes are impractical. Core now uses them for post meta box controls and the login screen’s “Remember Me” checkbox, providing a standardized, accessible pattern for plugin and theme developers to adopt.
+
+Digest entry: issues/dev-notes/make-core-125207.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-125207</guid>
+      <pubDate>Thu, 06 Aug 2026 01:12:12 +0000</pubDate>
+    </item>
+    <item>
+      <title>Post list tables row headers changed</title>
+      <link>https://make.wordpress.org/core/2026/08/03/post-list-tables-row-headers-changed/</link>
+      <description>In WordPress 7.1, the primary row header (`&lt;th scope="row"&gt;`) in post list tables moves from the checkbox column to the post title column. This structural shift ensures screen readers consistently announce the post name as the row identifier, rather than a checkbox that may be absent for non-editable posts. The change improves accessibility compliance and aligns list table semantics with standard HTML table practices.
+
+Digest entry: issues/dev-notes/make-core-124832.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124832</guid>
+      <pubDate>Thu, 06 Aug 2026 01:13:08 +0000</pubDate>
+    </item>
+    <item>
+      <title>Iframed Editor Changes in WordPress 7.1</title>
+      <link>https://make.wordpress.org/core/2026/08/03/iframed-editor-changes-in-wordpress-7-1/</link>
+      <description>WordPress 7.1 removes the conditional logic that previously toggled the post editor between iframed and non-iframed modes, making the iframe environment permanent regardless of theme type or block API versions. This aligns the post editor with the site, template, and device preview editors, which have been fully iframed for several releases. The change eliminates runtime mode-switching and ensures a consistent, isolated execution context for block scripts and styles.
+
+Digest entry: issues/dev-notes/make-core-124614.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124614</guid>
+      <pubDate>Thu, 06 Aug 2026 01:14:02 +0000</pubDate>
+    </item>
+    <item>
+      <title>JSON Schema preparation for client compatibility in WordPress 7.1</title>
+      <link>https://make.wordpress.org/core/2026/07/31/json-schema-preparation-for-client-compatibility-in-wordpress-7-1/</link>
+      <description>WordPress 7.1 introduces `wp_prepare_json_schema_for_client()`, a new helper that converts WordPress-internal JSON schemas into portable, client-facing JSON Schema Draft 4 representations. The function automatically strips server-only keywords (like `sanitize_callback` and `validate_callback`), normalizes `required` property declarations, and fixes empty object defaults to prevent client-side validation failures. This ensures that schemas exposed via the REST API, AI tooling, and custom endpoints remain consistent and compatible with external validators.
+
+Digest entry: issues/dev-notes/make-core-125129.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-125129</guid>
+      <pubDate>Thu, 06 Aug 2026 01:15:05 +0000</pubDate>
+    </item>
+    <item>
+      <title>Abilities API improvements in WordPress 7.1</title>
+      <link>https://make.wordpress.org/core/2026/07/31/abilities-api-improvements-in-wordpress-7-1/</link>
+      <description>WordPress 7.1 expands the Abilities API with custom validation filters, a universal invocation action, selective field responses, and automatic type coercion for REST requests. These changes give developers finer control over ability execution, improve telemetry and auditing capabilities, and align core ability schemas for better programmatic discovery. The updates make the API more robust for headless, AI, and REST-driven architectures.
+
+Digest entry: issues/dev-notes/make-core-125079.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-125079</guid>
+      <pubDate>Thu, 06 Aug 2026 01:16:03 +0000</pubDate>
+    </item>
+    <item>
+      <title>Design System Theming in WordPress 7.1</title>
+      <link>https://make.wordpress.org/core/2026/07/31/design-system-theming-in-wordpress-7-1/</link>
+      <description>WordPress 7.1 introduces foundational design system theming for the admin interface, exposing semantic design tokens as CSS custom properties and a `ThemeProvider` React component. This allows plugins and internal components to dynamically inherit color schemes, corner radius, and cursor styles without hardcoding values. The change standardizes admin UI styling and enables consistent, themeable interfaces across the dashboard and Site Editor.
+
+Digest entry: issues/dev-notes/make-core-125147.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-125147</guid>
+      <pubDate>Thu, 06 Aug 2026 01:16:50 +0000</pubDate>
+    </item>
+    <item>
+      <title>Filtering Site Editor Screens in WordPress 7.1</title>
+      <link>https://make.wordpress.org/core/2026/07/31/filtering-site-editor-screens-in-wordpress-7-1/</link>
+      <description>WordPress 7.1 introduces four new filters that allow developers to programmatically configure the DataViews and DataForm components powering Site Editor screens for pages, templates, template parts, and patterns. These hooks expose configuration for default view layouts, sidebar filters, field visibility, sort orders, and Quick Edit forms, replacing the need to modify core UI code or rely on undocumented internals.
+
+Digest entry: issues/dev-notes/make-core-125046.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-125046</guid>
+      <pubDate>Thu, 06 Aug 2026 01:17:33 +0000</pubDate>
+    </item>
+    <item>
+      <title>Leaner, steadier PHPUnit runs for upcoming releases</title>
+      <link>https://make.wordpress.org/core/2026/07/30/leaner-steadier-phpunit-runs-for-upcoming-releases/</link>
+      <description>WordPress core has optimized its GitHub Actions PHPUnit CI pipeline to reduce job volume and improve reliability ahead of the 7.1 release. The changes trim the test matrix to boundary PHP versions, drop redundant database combinations, and cache the Gutenberg build across jobs instead of rebuilding it per job. This cuts per-run job counts by roughly half and slashes rerun rates from ~68% to ~36%, freeing CI capacity for release windows and daily development.
+
+Digest entry: issues/dev-notes/make-core-125103.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-125103</guid>
+      <pubDate>Thu, 06 Aug 2026 01:18:22 +0000</pubDate>
+    </item>
+    <item>
+      <title>jQuery UI updated to 1.14.2 in WordPress 7.1</title>
+      <link>https://make.wordpress.org/core/2026/07/29/jquery-ui-updated-to-1-14-2-in-wordpress-7-1/</link>
+      <description>WordPress 7.1 upgrades the bundled jQuery UI library from version 1.13.3 to 1.14.2. This update aligns with WordPress’s browser support policy by dropping legacy Internet Explorer and Edge support. To maintain backward compatibility with older jQuery UI patterns, the library now initializes with `jQuery.uiBackCompat` set to `true`.
+
+Digest entry: issues/dev-notes/make-core-124739.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124739</guid>
+      <pubDate>Thu, 06 Aug 2026 01:19:10 +0000</pubDate>
+    </item>
+    <item>
+      <title>New execution lifecycle filters for the Abilities API in WordPress 7.1</title>
+      <link>https://make.wordpress.org/core/2026/07/29/new-execution-lifecycle-filters-for-the-abilities-api-in-wordpress-7-1/</link>
+      <description>WordPress 7.1 adds four new filters to the Abilities API that let plugins intercept and modify the execution lifecycle of registered abilities. The hooks—`wp_pre_execute_ability`, `wp_ability_normalize_input`, `wp_ability_permission_result`, and `wp_ability_execute_result`—enable short-circuiting execution, transforming input, overriding permission checks, and recovering or sanitizing results before schema validation. This makes the API significantly more extensible for caching, rate limiting, additional authorization layers, and AI/automation integrations without requiring custom ability implementations.
+
+Digest entry: issues/dev-notes/make-core-125000.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-125000</guid>
+      <pubDate>Thu, 06 Aug 2026 01:20:07 +0000</pubDate>
+    </item>
+    <item>
+      <title>Dev Chat Agenda – July 28, 2026</title>
+      <link>https://make.wordpress.org/core/2026/07/28/dev-chat-agenda-july-28-2026/</link>
+      <description>The WordPress 7.1 release cycle is advancing toward Beta 4, with the developers chat agenda highlighting several upcoming core capabilities. Key additions include client-side media processing, text shadow support in global styles, default infinite scroll for the media library, editable blocks inside the Custom HTML block, and new block supports for minimum width and background gradients. These changes will be documented in individual dev notes as they merge.
+
+Digest entry: issues/dev-notes/make-core-124970.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124970</guid>
+      <pubDate>Thu, 06 Aug 2026 01:21:49 +0000</pubDate>
+    </item>
+    <item>
+      <title>New Block Support in WordPress 7.1: Background Gradient (background.gradient)</title>
+      <link>https://make.wordpress.org/core/2026/07/26/new-block-support-in-wordpress-7-1-background-gradient-background-gradient/</link>
+      <description>WordPress 7.1 introduces a new `background.gradient` block support that allows gradients to render alongside background images on the same block. Previously, gradients applied via `color.gradient` used the `background` shorthand, which reset and overrode any `background-image`. The new support stores values at `style.background.gradient` and renders via the `background-image` longhand property, enabling comma-separated gradient and image declarations without conflict.
+
+Digest entry: issues/dev-notes/make-core-124676.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124676</guid>
+      <pubDate>Thu, 06 Aug 2026 01:22:42 +0000</pubDate>
+    </item>
+    <item>
+      <title>New Block Support in WordPress 7.1: Minimum Width</title>
+      <link>https://make.wordpress.org/core/2026/07/26/new-block-support-in-wordpress-7-1-minimum-width/</link>
+      <description>WordPress 7.1 adds a `minWidth` dimension block support, allowing blocks to enforce a minimum width constraint natively. This fills a gap in the existing dimension controls by mirroring the `minHeight` support, applying the `min-width` CSS property to the block wrapper. Theme authors and block developers can now expose this constraint through the Dimensions panel without relying on custom CSS or block styles.
+
+Digest entry: issues/dev-notes/make-core-124685.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124685</guid>
+      <pubDate>Thu, 06 Aug 2026 01:23:38 +0000</pubDate>
+    </item>
+    <item>
+      <title>Registering and rendering SVG icons in WordPress 7.1</title>
+      <link>https://make.wordpress.org/core/2026/07/24/registering-and-rendering-svg-icons-in-wordpress-7-1/</link>
+      <description>WordPress 7.1 introduces a formal public API for managing and rendering SVG icons, moving beyond the 7.0 built-in set. Developers can now register custom icon collections, add individual icons via inline markup or file paths, render them server-side, and expose them to the editor and REST API. This standardizes icon handling across plugins, themes, and core blocks.
+
+Digest entry: issues/dev-notes/make-core-124593.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124593</guid>
+      <pubDate>Thu, 06 Aug 2026 01:25:01 +0000</pubDate>
+    </item>
+    <item>
+      <title>React 19: punted beyond WordPress 7.1, experiment in Gutenberg</title>
+      <link>https://make.wordpress.org/core/2026/07/24/react-19-punted-beyond-wordpress-7-1-experiment-in-gutenberg/</link>
+      <description>WordPress 7.1 will ship with React 18.3, deferring the React 19 upgrade to a future release. An initial attempt to upgrade was reverted after testing revealed incompatibilities when React 18 and 19 coexist in the same environment, particularly with how plugins bundle and consume React. Gutenberg 23.4+ now includes an experimental flag to enable React 19 for plugin compatibility testing.
+
+Digest entry: issues/dev-notes/make-core-124768.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-124768</guid>
+      <pubDate>Thu, 06 Aug 2026 01:25:47 +0000</pubDate>
     </item>
   </channel>
 </rss>

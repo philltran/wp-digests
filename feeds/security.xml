@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 24 Jul 2026 00:33:50 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 06 Aug 2026 02:16:58 +0000</lastBuildDate>
     <item>
       <title>WordPress 7.0.2 Release</title>
       <link>https://wordpress.org/news/2026/07/wordpress-7-0-2-release/</link>
@@ -394,6 +394,150 @@ Digest entry: issues/security/wfi-ce8ec66f-5efc-4354-8871-8e35ab4e51fc.md · Sou
 Digest entry: issues/security/wfi-b412f60f-61ea-47b1-a3ef-17275f7951df.md · Source: Wordfence Intelligence</description>
       <guid isPermaLink="false">wfi-b412f60f-61ea-47b1-a3ef-17275f7951df</guid>
       <pubDate>Fri, 24 Jul 2026 00:23:54 +0000</pubDate>
+    </item>
+    <item>
+      <title>WP2Shell WordPress Exploit Technical Analysis and Real Attack Data</title>
+      <link>https://www.wordfence.com/blog/2026/07/wp2shell-wordpress-exploit-technical-analysis-and-real-attack-data/</link>
+      <description>WordPress core patched a critical vulnerability chain that allowed unauthenticated attackers to create an administrator account and subsequently execute arbitrary code. The chain combined an SQL injection in the `author__not_in` parameter (CVE-2026-60137) with a REST API batch request route confusion flaw (CVE-2026-63030). The Security Team issued forced automatic updates to close the gap across affected 6.8, 6.9, and 7.0 releases.
+
+Digest entry: issues/security/wordfence-blog-42579.md · Source: Wordfence Blog</description>
+      <guid isPermaLink="false">wordfence-blog-42579</guid>
+      <pubDate>Thu, 06 Aug 2026 01:26:34 +0000</pubDate>
+    </item>
+    <item>
+      <title>Demi &lt;= 0.0.6 - Unauthenticated Arbitrary Directory Deletion via demi_restore_step AJAX action</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/63922c28-0cb5-4abe-85ee-20b2cc6f015d</link>
+      <description>The Demi – One Click Demo Import, Backup &amp; Site Migration plugin contained a critical unauthenticated arbitrary directory deletion vulnerability (CVE-2026-14490) in versions up to 0.0.7. The flaw allowed attackers to recursively delete arbitrary server directories by exploiting the `demi_restore_step` AJAX endpoint, which bypassed standard WordPress capability and nonce checks when an attacker possessed an exposed HMAC signing key. The vulnerability has been patched in version 0.0.9 by restricting the AJAX handler to authenticated requests, enforcing strict path canonicalization and allow-listing, and securing the storage of signing keys and restore tokens.
+
+Digest entry: issues/security/wfi-63922c28-0cb5-4abe-85ee-20b2cc6f015d.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-63922c28-0cb5-4abe-85ee-20b2cc6f015d</guid>
+      <pubDate>Thu, 06 Aug 2026 01:27:25 +0000</pubDate>
+    </item>
+    <item>
+      <title>SMS Alert &lt;= 3.9.7 - Unauthenticated Authentication Bypass to Account Takeover via 'billing_phone' Parameter</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/661d4ea9-572d-4544-b5cf-39fd69c104a6</link>
+      <description>The SMS Alert plugin (≤ 3.9.7) contained a critical authentication bypass that allowed unauthenticated attackers to take over any existing WordPress account by exploiting the `billing_phone` parameter during registration. The vulnerability stemmed from `processRegistration()` setting a session flag (`$_SESSION['sa_mobile_verified']`) upon OTP validation without binding it to the verified phone number, allowing an attacker to verify their own number and then swap in a victim's phone to trigger `wp_set_auth_cookie()` for the victim's account. This issue has been resolved in version 3.9.8 by properly binding the verification state to the specific phone number and validating it before issuing authentication cookies.
+
+Digest entry: issues/security/wfi-661d4ea9-572d-4544-b5cf-39fd69c104a6.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-661d4ea9-572d-4544-b5cf-39fd69c104a6</guid>
+      <pubDate>Thu, 06 Aug 2026 01:28:20 +0000</pubDate>
+    </item>
+    <item>
+      <title>Advanced Responsive Video Embedder for Rumble, Odysee, YouTube, Vimeo, Kick … 10.8.7 - Unauthenticated Authentication Bypass via Hardcoded Backdoor in '_wplogin' Parameter</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/70f64ea0-5375-479f-90ac-29bcdf817cef</link>
+      <description>The Advanced Responsive Video Embedder plugin (v10.8.7) contains a hardcoded backdoor that allows unauthenticated users to bypass WordPress authentication and assume any existing administrator role. The vulnerability stems from the `_arve_uc_init()` function, which runs on the `init` hook at priority 1 and validates a static SHA-256 hash against the `_wplogin` (or `_wpm`) request parameter. Because the hash is embedded directly in the plugin source, attackers can supply the known token to gain full administrative control without credentials.
+
+Digest entry: issues/security/wfi-70f64ea0-5375-479f-90ac-29bcdf817cef.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-70f64ea0-5375-479f-90ac-29bcdf817cef</guid>
+      <pubDate>Thu, 06 Aug 2026 01:29:08 +0000</pubDate>
+    </item>
+    <item>
+      <title>Spreadsheet Price Changer for WooCommerce and WP E-commerce – Light &lt;= 2.4.37 - Missing Authorization to Unauthenticated Privilege Escalation via Admin Account Creation</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/1f891b68-72c4-4f94-bd49-52576ad710f9</link>
+      <description>The `user_filter` function in Spreadsheet Price Changer for WooCommerce and WP E-commerce – Light (≤ 2.4.37) lacks authorization checks, allowing unauthenticated users to create new administrator accounts. This missing authorization enables immediate privilege escalation without requiring any credentials. The plugin author has not released a patch, so the only mitigation is to remove the plugin or switch to an alternative.
+
+Digest entry: issues/security/wfi-1f891b68-72c4-4f94-bd49-52576ad710f9.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-1f891b68-72c4-4f94-bd49-52576ad710f9</guid>
+      <pubDate>Thu, 06 Aug 2026 01:30:01 +0000</pubDate>
+    </item>
+    <item>
+      <title>Cost Calculator Builder PRO &lt;= 4.0.3 - Unauthenticated Remote Code Execution via 'orderDetails' Parameter</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/4c8f2872-06ff-41a2-b601-77a47470de0c</link>
+      <description>The Cost Calculator Builder PRO plugin contained a critical unauthenticated remote code execution vulnerability in versions up to 4.0.3. Attackers could exploit the `js_to_php` function by injecting malicious payloads into the `orderDetails[*].originalValue` field, which was passed directly to `PHP eval()` without proper sanitization. The vulnerability was patched in version 4.0.4, and all affected sites must update immediately to prevent server compromise.
+
+Digest entry: issues/security/wfi-4c8f2872-06ff-41a2-b601-77a47470de0c.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-4c8f2872-06ff-41a2-b601-77a47470de0c</guid>
+      <pubDate>Thu, 06 Aug 2026 01:30:51 +0000</pubDate>
+    </item>
+    <item>
+      <title>Meta Box AIO &lt;= 3.8.0 - Missing Authorization to Unauthenticated Arbitrary Post Deletion via 'rwmb_frontend_field_object_id' Parameter</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/e9506f84-3d33-48e0-8dce-d517e1a923e4</link>
+      <description>Meta Box AIO versions up to 3.8.0 contain a critical missing-authorization vulnerability in the MB Frontend Submission extension that allows unauthenticated attackers to delete arbitrary posts and pages. The flaw occurs because the `handle_request()` function processes the `mbfs_delete` action without verifying user capabilities or post ownership, and the nonce check is bypassed when requests arrive via `template_redirect` instead of AJAX. Site owners must update to version 3.9.0 or later to prevent unauthorized content deletion.
+
+Digest entry: issues/security/wfi-e9506f84-3d33-48e0-8dce-d517e1a923e4.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-e9506f84-3d33-48e0-8dce-d517e1a923e4</guid>
+      <pubDate>Thu, 06 Aug 2026 01:31:41 +0000</pubDate>
+    </item>
+    <item>
+      <title>Admin and Site Enhancements (ASE) Pro &lt;= 8.9.0 - Unauthenticated Remote Code Execution via PHP Code Injection via cfgroup[input] Repeater Row Key</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/2ef21a44-6d03-4197-b49c-d881f9831f46</link>
+      <description>The Admin and Site Enhancements (ASE) Pro plugin contained an unauthenticated remote code execution vulnerability in versions up to 8.9.0. The flaw allowed attackers to inject arbitrary PHP code via the `cfgroup[input]` repeater row key, which was passed unsanitized into an `eval()` call inside the `recursive_html` function. The vulnerability required the `[post_cf_form]` shortcode to be present on a public page to emit the necessary nonce and session ID. Patched in version 8.9.1, this fix eliminates a critical server-side execution risk for sites using the plugin's form builder.
+
+Digest entry: issues/security/wfi-2ef21a44-6d03-4197-b49c-d881f9831f46.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-2ef21a44-6d03-4197-b49c-d881f9831f46</guid>
+      <pubDate>Thu, 06 Aug 2026 01:32:44 +0000</pubDate>
+    </item>
+    <item>
+      <title>Realtyna Organic IDX plugin + WPL Real Estate &lt;= 5.2.0 - Unauthenticated Arbitrary File Upload via 'files[file]' Parameter via Public I/O 'set_property' Command</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/23068a98-623d-4eb3-a7c5-6af410de4320</link>
+      <description>The Realtyna Organic IDX plugin + WPL Real Estate (≤ 5.2.0) contains an unauthenticated arbitrary file upload vulnerability that enables remote code execution. The flaw stems from a publicly registered I/O endpoint that lacks WordPress capability checks and accepts uploads via the `files[file]` parameter without validating file types. Attackers can exploit static, globally shared API credentials to bypass authentication entirely, making immediate mitigation or removal critical for affected installations.
+
+Digest entry: issues/security/wfi-23068a98-623d-4eb3-a7c5-6af410de4320.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-23068a98-623d-4eb3-a7c5-6af410de4320</guid>
+      <pubDate>Thu, 06 Aug 2026 01:33:29 +0000</pubDate>
+    </item>
+    <item>
+      <title>FormGent &lt;= 1.9.2- Missing Authorization to Unauthenticated Arbitrary File Deletion via 'file_token' Parameter</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/097a9d0f-fa38-4fdc-9048-43dd65e7652c</link>
+      <description>The FormGent plugin contained a critical missing authorization vulnerability that allowed unauthenticated attackers to delete arbitrary files via the `file_token` parameter on the `/wp-json/formgent/responses/attachments` REST endpoint. The issue stemmed from the route being registered without authentication middleware, which also permitted path traversal bypasses on systems where the plugin’s upload directory had not yet been created. This has been resolved in version 1.10.0 by enforcing proper capability checks and validating file paths before deletion.
+
+Digest entry: issues/security/wfi-097a9d0f-fa38-4fdc-9048-43dd65e7652c.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-097a9d0f-fa38-4fdc-9048-43dd65e7652c</guid>
+      <pubDate>Thu, 06 Aug 2026 01:34:25 +0000</pubDate>
+    </item>
+    <item>
+      <title>Single Sign On For TNG &lt;= 2.0.0 - Unauthenticated Privilege Escalation via Unverified Password Change</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/1d8d393e-764c-491d-8afb-7d4f8d0c387a</link>
+      <description>The Single Sign On For TNG plugin (≤ 2.0.0) contained a critical unauthenticated privilege escalation vulnerability that allowed attackers to reset any user’s password, including administrators, without verification. The flaw stemmed from the `ssoprocess_ajax()` AJAX handler accepting a `setnewpassword` operation and calling WordPress’s `reset_password()` function without validating account ownership or requiring a secure token. Patched in version 2.1.0, this change closes an unverified password reset path that could lead to complete site takeover.
+
+Digest entry: issues/security/wfi-1d8d393e-764c-491d-8afb-7d4f8d0c387a.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-1d8d393e-764c-491d-8afb-7d4f8d0c387a</guid>
+      <pubDate>Thu, 06 Aug 2026 01:35:25 +0000</pubDate>
+    </item>
+    <item>
+      <title>WooCommerce - Social Login &lt;= 2.8.7 - Unauthenticated Authentication Bypass via Forged Apple 'id_token' JWT</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/53e83037-2cc5-4dc9-b55d-03829df12a65</link>
+      <description>The WooCommerce Social Login plugin (≤2.8.7) contained a critical authentication bypass that allowed unauthenticated attackers to log in as any existing WordPress user, including administrators. The vulnerability stemmed from the Apple login handler accepting a forged `id_token` JWT without verifying its cryptographic signature or validating standard claims like issuer, audience, and expiry. Because the handler resolved users solely by the email address in the decoded payload, attackers could craft a token with an admin’s email to hijack sessions. Updating to 2.8.8 is required to restore secure OAuth/JWT validation.
+
+Digest entry: issues/security/wfi-53e83037-2cc5-4dc9-b55d-03829df12a65.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-53e83037-2cc5-4dc9-b55d-03829df12a65</guid>
+      <pubDate>Thu, 06 Aug 2026 01:36:27 +0000</pubDate>
+    </item>
+    <item>
+      <title>Fluent Forms Pro 6.2.7 &amp; Ninja Tables Pro 5.2.13 - Remote Code Execution via Backdoor</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/c6ee9437-a12a-476b-9a4b-8da8d9fbfeb3</link>
+      <description>Versions 6.2.7 of Fluent Forms Pro Add On Pack and 5.2.11 of Ninja Tables Pro shipped with a malicious backdoor embedded by threat actors who compromised the vendor’s build environment. The injected code enabled unauthenticated remote code execution on affected WordPress sites. Patched releases (6.2.8 and 5.2.13) remove the payload and restore secure plugin behavior.
+
+Digest entry: issues/security/wfi-c6ee9437-a12a-476b-9a4b-8da8d9fbfeb3.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-c6ee9437-a12a-476b-9a4b-8da8d9fbfeb3</guid>
+      <pubDate>Thu, 06 Aug 2026 01:37:16 +0000</pubDate>
+    </item>
+    <item>
+      <title>Membership Plugin – Kadence Memberships &lt;= 4.0.0 - Unauthenticated Password Reset Link Poisoning to Account Takeover</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/ca38c423-2df8-4f20-bd95-2ecd84167a7f</link>
+      <description>The Kadence Memberships plugin (≤4.0.0) contained a critical unauthenticated vulnerability allowing password reset link poisoning, which could lead to full account takeover. The legacy password reset handler accepted an attacker-controlled `rc_redirect` POST parameter and passed it directly to `wp_redirect()` and `add_query_arg()` without validation. When a victim clicked the poisoned reset link, the reset key was exfiltrated to the attacker, who could then replay it to hijack the account. This issue is patched in version 4.0.1.
+
+Digest entry: issues/security/wfi-ca38c423-2df8-4f20-bd95-2ecd84167a7f.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-ca38c423-2df8-4f20-bd95-2ecd84167a7f</guid>
+      <pubDate>Thu, 06 Aug 2026 01:38:11 +0000</pubDate>
+    </item>
+    <item>
+      <title>Multi Uploader for Gravity Forms &lt;= 1.1.8 - Missing Authorization to Unauthenticated Arbitrary Media Deletion</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/16dca898-1a98-4e0b-8f48-dc01ba2dc4e6</link>
+      <description>The Multi Uploader for Gravity Forms plugin (≤ 1.1.8) contained a critical authorization flaw allowing unauthenticated attackers to permanently delete any WordPress media attachment. The vulnerability stemmed from a missing capability check in the AJAX handler, combined with a CSRF nonce that was inadvertently exposed to the public via a JavaScript object. The issue was resolved in version 1.1.9 by enforcing proper capability verification and restricting nonce exposure.
+
+Digest entry: issues/security/wfi-16dca898-1a98-4e0b-8f48-dc01ba2dc4e6.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-16dca898-1a98-4e0b-8f48-dc01ba2dc4e6</guid>
+      <pubDate>Thu, 06 Aug 2026 01:39:07 +0000</pubDate>
+    </item>
+    <item>
+      <title>Easy Post Submission &lt;= 2.3.0 - Missing Authorization</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/15494ccf-7c9d-4566-9e80-2da94172a3dd</link>
+      <description>The Easy Post Submission plugin (≤ 2.3.0) contains a critical missing authorization vulnerability that allows unauthenticated users to modify or unpublish arbitrary posts. The `rbsm_submit_post` AJAX endpoint accepts a `postId` parameter and updates post metadata without verifying user capabilities. Patched in 2.4.0, this flaw enables attackers to alter titles, content, excerpts, taxonomies, and force post statuses to draft.
+
+Digest entry: issues/security/wfi-15494ccf-7c9d-4566-9e80-2da94172a3dd.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-15494ccf-7c9d-4566-9e80-2da94172a3dd</guid>
+      <pubDate>Thu, 06 Aug 2026 01:40:12 +0000</pubDate>
     </item>
   </channel>
 </rss>
