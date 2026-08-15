@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 06 Aug 2026 02:16:58 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 15 Aug 2026 21:39:39 +0000</lastBuildDate>
     <item>
       <title>#65333: Deprecate Product Editor v2</title>
       <link>https://github.com/woocommerce/woocommerce/pull/65333</link>
@@ -565,6 +565,24 @@ Digest entry: issues/dev-notes/make-core-124861.md · Source: Make WordPress Cor
 Digest entry: issues/dev-notes/make-core-124768.md · Source: Make WordPress Core</description>
       <guid isPermaLink="false">make-core-124768</guid>
       <pubDate>Thu, 06 Aug 2026 01:25:47 +0000</pubDate>
+    </item>
+    <item>
+      <title>#67657: Deprecate product brand recount methods</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/67657</link>
+      <description>Two public methods on `WC_Brands` are now deprecated as of WooCommerce 11.2.0: `recount_after_stock_change()` is superseded by the global `wc_recount_after_stock_change()`, and `recount_all_brands()` by `wc_recount_all_terms()`. Both methods keep their signatures and remain callable, but they now emit a `wc_deprecated_function()` notice and delegate straight to the shared term-recount functions instead of carrying their own `product_brand`-specific implementation. This is the cleanup half of PR #67630, which folded product-brand counting into WooCommerce's shared term recount path and left these two methods with no internal callers. Carries the `developer advisory` label and ships a `minor`/`update` changelog entry.
+
+Digest entry: issues/woocommerce/gh-woocommerce-67657.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-67657</guid>
+      <pubDate>Sat, 15 Aug 2026 17:00:27 +0000</pubDate>
+    </item>
+    <item>
+      <title>WordPress Contributor Toolkit 1.0: A smoother workflow for your first Core contribution</title>
+      <link>https://make.wordpress.org/core/2026/08/14/wordpress-contributor-toolkit-1-0-a-smoother-workflow-for-your-first-core-contribution/</link>
+      <description>WordPress Contributor Toolkit 1.0 is an experimental desktop app that guides first-time contributors through setting up a full `wordpress-develop` environment and completing a Core contribution. It bundles the required Git, Node.js, and npm tooling, so contributors do not need to install Git, Node.js, npm, or Docker. The 1.0 workflow covers linking a Trac ticket, reviewing existing pull requests and patches, applying and testing work, creating a diff or pull request, and updating the site to latest trunk. It is available for Windows, macOS on Apple Silicon, and Linux.
+
+Digest entry: issues/dev-notes/make-core-125508.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-125508</guid>
+      <pubDate>Sat, 15 Aug 2026 18:44:53 +0000</pubDate>
     </item>
   </channel>
 </rss>

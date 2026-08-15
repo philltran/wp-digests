@@ -7,493 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 06 Aug 2026 02:16:58 +0000</lastBuildDate>
-    <item>
-      <title>#80539: RTC: Remove excess autosave notices (when not useful)</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80539</link>
-      <description>Real-time collaboration (RTC) in the block editor now suppresses the “more recent autosave” notice when the shared CRDT document already contains the autosaved content. Previously, because RTC autosaves target revisions rather than the parent post, WordPress always flagged a newer autosave on load, causing a persistent and misleading notice for collaborative editors. This change introduces a lightweight Yjs snapshot mechanism to verify content overlap and eliminate redundant UI warnings.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80539.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80539</guid>
-      <pubDate>Wed, 05 Aug 2026 23:21:37 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80969: Widgets: carry a declarative `icon` through the widget pipeline</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80969</link>
-      <description>Dashboard widgets can now declare their visual identifier as a serializable string (`collection/icon-name`) in `widget.json` instead of a React element in `widget.ts`. This declarative `icon` field travels through the build manifest, PHP registry, and REST API, resolving client-side via the Icons API. It eliminates the need to execute widget modules just to render header icons and enables headless consumers to read widget visuals directly from `/wp/v2/widget-modules`.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80969.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80969</guid>
-      <pubDate>Wed, 05 Aug 2026 23:22:51 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80628: Fix: New route-based admin pages are empty when no JS</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80628</link>
-      <description>Route-based admin pages now correctly display a JavaScript-required notice when JS is disabled, instead of rendering as a blank screen. This fix scopes the template’s critical CSS to the `body.js` selector, ensuring legacy admin elements are hidden only when JavaScript is active. The change resolves an accessibility and usability regression introduced by the new single-page admin architecture.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80628.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80628</guid>
-      <pubDate>Wed, 05 Aug 2026 23:23:39 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80570: Widget Dashboard: preserve widget chrome flex layout</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80570</link>
-      <description>The Widget Dashboard now explicitly sets `display: flex; flex-direction: column` on its chrome components via local module CSS. This prevents host environments that inject unlayered HTML5 element resets (e.g., `section { display: block; }`) from breaking the widget tile layout, which previously caused content clipping and overflow.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80570.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80570</guid>
-      <pubDate>Wed, 05 Aug 2026 23:24:30 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80929: List View: Speed up opening by removing a forced style recalculation</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80929</link>
-      <description>The block editor’s List View now opens faster by replacing an imperative `textContent` workaround in `AriaReferencedText` with a React `key`. The previous approach forced a full style recalculation on every commit, which significantly slowed down List View interactions in Firefox. The change eliminates that forced recalculation while preserving correct screen reader announcements.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80929.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80929</guid>
-      <pubDate>Wed, 05 Aug 2026 23:25:33 +0000</pubDate>
-    </item>
-    <item>
-      <title>#81004: [Backport to 7.1] Add opt-out for block style state controls</title>
-      <link>https://github.com/WordPress/gutenberg/pull/81004</link>
-      <description>This change introduces a new `blockStatesEnabled` editor setting that allows developers to hide block style state controls in the Block Inspector and Global Styles UI. When set to `false`, the UI elements for applying pseudo-state styles are removed, though any state styles already saved in `theme.json` or block attributes continue to render normally. This gives theme and plugin authors finer control over the editor experience by letting them disable state editing for specific sites or user roles.
-
-Digest entry: issues/gutenberg/gh-gutenberg-81004.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-81004</guid>
-      <pubDate>Wed, 05 Aug 2026 23:26:44 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80994: Copy: preserve the block when its entire text is selected</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80994</link>
-      <description>Fixes a bug where copying the entire text of a block (such as a heading or paragraph) stripped its block type, pasting as plain text. When a block's full content is selected and copied, the block itself is now placed on the clipboard. Pasting into an empty block recreates the original block, while pasting into existing text inserts the content inline. This aligns the block editor with standard behavior in Word and Google Docs.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80994.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80994</guid>
-      <pubDate>Wed, 05 Aug 2026 23:27:28 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80891: Block editor: make the Group action wrap blocks with a group transform</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80891</link>
-      <description>The Block editor's Group action now correctly wraps selected blocks in a `core/group` block instead of triggering the selected block's own transform to group. Previously, blocks like Quote or Cover that declared a `to` transform for `core/group` would dissolve into their inner blocks when grouped via the toolbar, block options menu, or `Cmd+G` shortcut. This fix ensures the Group action behaves as a structural wrapper, preserving the original block intact inside the group.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80891.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80891</guid>
-      <pubDate>Wed, 05 Aug 2026 23:28:24 +0000</pubDate>
-    </item>
-    <item>
-      <title>#77151: Quote: Ensure paragraph placeholder appears after deleting nested blocks</title>
-      <link>https://github.com/WordPress/gutenberg/pull/77151</link>
-      <description>The Quote block now conditionally renders its default block appender when it contains no inner blocks, restoring the paragraph placeholder after nested blocks are deleted. Previously, `renderAppender` was hardcoded to `false`, which caused the editor to lose focus in the citation field when the last inner block was removed. This change ensures the block reverts to a selectable paragraph state, improving the editing flow for container blocks.
-
-Digest entry: issues/gutenberg/gh-gutenberg-77151.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-77151</guid>
-      <pubDate>Wed, 05 Aug 2026 23:29:14 +0000</pubDate>
-    </item>
-    <item>
-      <title>#77525: Fix cursor position during forward delete of empty blocks</title>
-      <link>https://github.com/WordPress/gutenberg/pull/77525</link>
-      <description>Fixes a block editor bug where forward-deleting an empty paragraph block incorrectly placed the cursor at the end of the preceding block instead of the start of the following block. The `mergeBlocks` action in the block editor store now explicitly selects the next block at offset 0 when the removed block is the currently selected, unmodified default block. This restores expected forward-deletion behavior for users and plugin/theme developers relying on consistent writing flow.
-
-Digest entry: issues/gutenberg/gh-gutenberg-77525.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-77525</guid>
-      <pubDate>Wed, 05 Aug 2026 23:30:11 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80978: RichText: don't apply input transform when there's no onReplace</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80978</link>
-      <description>Fixes a crash in the `RichText` component that occurs when an input transform (such as typing `---` to create a separator) is triggered but the field lacks an `onReplace` handler. The change guards the input transformation logic behind an `onReplace` check, preventing the editor from attempting to replace a block that cannot be swapped. This ensures blocks with locked removal or fields that explicitly omit `onReplace` remain stable when users type trigger sequences.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80978.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80978</guid>
-      <pubDate>Wed, 05 Aug 2026 23:31:14 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80845: Boot: Adjust specificity of the image reset styles so components can size their own images</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80845</link>
-      <description>The `@wordpress/boot` package adjusted the CSS specificity of its default `img` reset so that child components can reliably override image dimensions. Previously, the reset compiled to a nested selector that outweighted component-level sizing rules, causing layout jumps in interfaces like the Font Library. Wrapping the selector in `:where()` strips its specificity weight while preserving the safety-net behavior for unconstrained images.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80845.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80845</guid>
-      <pubDate>Wed, 05 Aug 2026 23:32:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80779: SearchableChipSelect: Add form primitive to @wordpress/ui</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80779</link>
-      <description>Adds a `SearchableChipSelect` form primitive to `@wordpress/ui` to provide a searchable multi-select control with chip-based selection state. The component composes existing `Combobox` primitives with `InputLayout` to reduce boilerplate for complex form controls in the block editor and admin UI.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80779.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80779</guid>
-      <pubDate>Wed, 05 Aug 2026 23:33:11 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80053: Element: Make the package importable in React 19</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80053</link>
-      <description>The `@wordpress/element` package now supports React 19 by shifting `react` and `react-dom` from `dependencies` to `peerDependencies` and updating its internal import strategy. Previously, the package crashed at load time under React 19 because it used named imports for four `react-dom` APIs that were removed in React 19. This change also widens the React peer dependency ranges across the WordPress design-system packages to accept both React 18 and 19.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80053.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80053</guid>
-      <pubDate>Wed, 05 Aug 2026 23:34:33 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80869: UI: Add Combobox.InputGroup primitive</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80869</link>
-      <description>The `@wordpress/ui` package now exports a `Combobox.InputGroup` primitive that wraps Base UI’s combobox input with a container element. This addition allows developers to compose the combobox input with prefix/suffix slots or other UI elements while ensuring the dropdown popup correctly anchors to the full control boundary rather than just the raw `&lt;input&gt;` element. It also applies `role="group"` to the wrapper for improved accessibility semantics.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80869.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80869</guid>
-      <pubDate>Wed, 05 Aug 2026 23:35:24 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80733: Fix template `modified` and `date` return value for file templates</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80733</link>
-      <description>The REST API for `wp_template` and `wp_template_part` now returns `null` for the `modified` field when the template is file-backed, replacing the previous `false` value. Previously, `mysql_to_rfc3339()` converted the missing modification timestamp to `false`, which violated the documented `string` schema and caused type mismatches in client-side date formatters. This fix aligns the API response with the schema and prevents downstream parsing errors in headless or block editor clients.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80733.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80733</guid>
-      <pubDate>Wed, 05 Aug 2026 23:36:20 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80725: Upload Media: Fail the item when the /finalize request fails</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80725</link>
-      <description>Client-side media processing now correctly fails an upload when the server’s `/wp/v2/media/&lt;id&gt;/finalize` request returns an error, instead of silently reporting success. Previously, a failed finalize was only logged, causing the editor to display a completion message and autosave a block with missing responsive sub-sizes and inconsistent file references. This change ensures that a server-side commit failure surfaces as a user-facing error and cancels the queue item, preventing incomplete attachments from being saved.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80725.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80725</guid>
-      <pubDate>Wed, 05 Aug 2026 23:37:16 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80847: Page List: Rename the Edit action to Detach and confirm it in a dialog</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80847</link>
-      <description>The Page List block's conversion action has been renamed from "Edit" to "Detach" and now requires explicit confirmation via a `ConfirmDialog`. This change aligns the Page List behavior with the Gallery and Table of Contents blocks, making it clear that detaching permanently converts the dynamic list into static navigation links and stops automatic page updates.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80847.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80847</guid>
-      <pubDate>Wed, 05 Aug 2026 23:38:24 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80844: Table of Contents: Replace "Convert to static list" with confirmed "Detach" action</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80844</link>
-      <description>The Table of Contents block’s toolbar button is renamed from “Convert to static list” to “Detach” and now requires confirmation via a dialog before executing. The change also replaces the deprecated v1 `values` attribute serialization with proper `core/list` and `core/list-item` blocks, preventing an automatic v1-to-v2 migration trap on every detach.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80844.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80844</guid>
-      <pubDate>Wed, 05 Aug 2026 23:39:23 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80814: Add a responsiveEditingEnabled editor setting to hide the Responsive styles option</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80814</link>
-      <description>Adds a `responsiveEditingEnabled` editor setting that allows site administrators to hide the "Responsive styles" toggle in the View menu and the viewport state control in Global Styles. Introduced in response to feedback from the responsive styling call for testing, this setting gives teams a way to opt out of per-viewport style editing in the block editor without removing existing responsive styles from content or the front end.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80814.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80814</guid>
-      <pubDate>Wed, 05 Aug 2026 23:40:20 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80813: Writing flow: forward delete an empty paragraph without breaking apart the next block</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80813</link>
-      <description>Forward deleting an empty paragraph block no longer breaks apart the structure of the following block. Previously, pressing Delete on an empty paragraph before a list would pull the list's first item out and demote it to a paragraph. The fix removes the empty paragraph and places the caret at the start of the next block's first leaf, matching standard editor behavior and aligning with how backspace already works.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80813.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80813</guid>
-      <pubDate>Wed, 05 Aug 2026 23:41:29 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80507: Block Editor: Try to fix typing performance regression</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80507</link>
-      <description>Fixes a typing performance regression in the Block Editor caused by `canHostEditableRoot` performing an O(n) sibling scan inside a `useSelect` hook on every keystroke. The selector is now memoized as a private store selector keyed on block order and editing mode, ensuring cache hits during attribute updates and eliminating redundant subscriptions in unselected `RichText` instances.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80507.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80507</guid>
-      <pubDate>Wed, 05 Aug 2026 23:42:24 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80768: Editor: leave undo to the browser in fields that handle their own undo</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80768</link>
-      <description>The block editor now delegates undo and redo keyboard shortcuts to the browser’s native undo stack when focus is inside fields that manage their own local state, rather than rewinding the global editor history. This resolves a long-standing bug where typing in the link dialog, "Edit as HTML" textarea, Custom HTML block modal, or classic meta box fields would incorrectly undo unrelated canvas changes. The change ensures that undo/redo behavior matches user expectations in these isolated editing contexts without altering how block attributes are tracked.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80768.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80768</guid>
-      <pubDate>Wed, 05 Aug 2026 23:43:31 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80149: Widget Primitives: Ship as a script module</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80149</link>
-      <description>The `@wordpress/widget-primitives` package is now shipped as a WordPress script module instead of a standard bundled package. This change ensures the package's module-scope state (the field type registry `Map`) is shared across all consumers via the import map, preventing duplicate instances and isolated state when multiple bundles import it.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80149.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80149</guid>
-      <pubDate>Wed, 05 Aug 2026 23:45:08 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80571: View config: reject shape-mismatched merges, define empty-array semantics, strip nulls from appended members</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80571</link>
-      <description>The `Gutenberg_View_Config_Data` merge engine now enforces strict shape matching between patch values and existing configuration, defines explicit semantics for empty arrays, and strips nested `null`s from newly appended list members. Previously, mismatched shapes silently discarded data, empty arrays could wipe associative values, and appended list items retained invalid `null` leaves. These changes prevent silent configuration corruption in the View Config system.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80571.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80571</guid>
-      <pubDate>Wed, 05 Aug 2026 23:46:04 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80828: [WP 7.1] Navigation: Fixes `aria-expanded` not updating on hover submenu inside overlay</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80828</link>
-      <description>This pull request fixes an accessibility bug in the Navigation block where the `aria-expanded` attribute fails to update when hovering over a submenu inside an overlay menu. The change introduces a new `isSubmenuOpen` state in the Interactivity API store and updates the PHP template to bind `aria-expanded` to this state instead of the generic `isMenuOpen`. This ensures assistive technologies correctly announce the expanded state of nested menus when the parent overlay is active.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80828.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80828</guid>
-      <pubDate>Wed, 05 Aug 2026 23:46:56 +0000</pubDate>
-    </item>
-    <item>
-      <title>#75353: List Block: Preserve ordered type on indent</title>
-      <link>https://github.com/WordPress/gutenberg/pull/75353</link>
-      <description>Indenting a list item in the List block now correctly preserves the parent list's type (ordered vs. unordered) instead of defaulting to an unordered list. This fixes a regression introduced in Gutenberg 14.0 where nested lists always became bulleted regardless of the parent's formatting. The change ensures consistent list hierarchy when using the indent button or Tab key.
-
-Digest entry: issues/gutenberg/gh-gutenberg-75353.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-75353</guid>
-      <pubDate>Wed, 05 Aug 2026 23:47:54 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80708: Writing flow: stop the page scrolling on caret moves within blocks taller than the viewport</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80708</link>
-      <description>Fixes a writing flow bug where pressing arrow keys inside a block taller than the viewport (e.g., a long Code or Quote block) caused the editor page to scroll on every keystroke. The issue originated from the `isEdge` function repeatedly scrolling the block into view to measure whether the caret was at the container's boundary. The fix adds a viewport boundary check that short-circuits the measurement when the edge is off-screen but the selection remains visible, eliminating the lurching scroll behavior.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80708.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80708</guid>
-      <pubDate>Wed, 05 Aug 2026 23:48:51 +0000</pubDate>
-    </item>
-    <item>
-      <title>#74596: iOS: remove jumping hack, add typewriter</title>
-      <link>https://github.com/WordPress/gutenberg/pull/74596</link>
-      <description>The Gutenberg editor removes a long-standing iOS Webkit scroll workaround that previously forced the viewport back to the top on every scroll event. This hack was originally introduced to keep the mobile toolbar visible, but it caused erratic jumping behavior that disrupted the editing experience. Removing it restores natural scrolling on iOS devices, at the cost of the toolbar occasionally scrolling out of view when pressing Enter.
-
-Digest entry: issues/gutenberg/gh-gutenberg-74596.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-74596</guid>
-      <pubDate>Wed, 05 Aug 2026 23:49:49 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80445: ToolsPanel: Migrate styles to an SCSS Module</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80445</link>
-      <description>The `ToolsPanel` component has been migrated from Emotion-based CSS-in-JS to a compiled SCSS module (`style.module.scss`). This change fixes a visual regression where the panel’s heading typography was incorrectly inheriting styles from the `Heading` component due to an insertion-order conflict exposed by the `View` migration. By moving styles to a static module, the cascade is resolved at the source without relying on Emotion’s dynamic class composition.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80445.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80445</guid>
-      <pubDate>Wed, 05 Aug 2026 23:50:52 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80685: DataForm: Stop card and details validation from hijacking focus</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80685</link>
-      <description>Fixes a focus-hijacking bug in the DataForm component where validation errors in card and details layouts would interrupt the natural tab sequence by moving focus to the first invalid field on every blur. The change defers validation until focus leaves the container, reveals errors via a synthetic invalid event that preserves focus, and ensures only trusted submission events trigger native focus movement.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80685.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80685</guid>
-      <pubDate>Wed, 05 Aug 2026 23:51:48 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80691: Components: Remove private Theme component</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80691</link>
-      <description>The private `Theme` component has been removed from `@wordpress/components`. This component was an internal experiment for dynamically setting `--wp-components-color-*` CSS custom properties at runtime. With the canvas loader no longer relying on it, the component is now dead code, and `@wordpress/theme` is the designated replacement for runtime theming.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80691.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80691</guid>
-      <pubDate>Wed, 05 Aug 2026 23:52:52 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80618: createInterpolateElement: handle unmatched closing tags gracefully</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80618</link>
-      <description>`createInterpolateElement()` in `@wordpress/element` now handles strings containing unmatched closing tags without throwing a fatal `TypeError`. Previously, encountering a closing tag with no matching opener on the internal stack caused a crash in the editor. The function now gracefully stops interpolation at the first unmatched closer, returns the remaining text as a plain string, and logs a development warning.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80618.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80618</guid>
-      <pubDate>Wed, 05 Aug 2026 23:53:48 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80771: Block supports: Return from layout support before resolving global settings</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80771</link>
-      <description>Fixes a fatal memory exhaustion bug in `gutenberg_render_layout_support_flag()` that occurs when plugins render blocks inside a `the_posts` callback. The issue was introduced when a global settings lookup was moved above an early-return guard, removing the base case for recursive block rendering. The fix restores the early return before the settings resolution, preventing infinite recursion and front-end crashes.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80771.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80771</guid>
-      <pubDate>Wed, 05 Aug 2026 23:54:53 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80727: Dynamic Gallery: Rename toolbar button to Detach and add a modal explaining what will happen</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80727</link>
-      <description>The dynamic Gallery block’s toolbar and inspector controls now rename the “Convert to images” action to “Detach” and gate it behind a confirmation modal. Previously, clicking the button immediately materialized the gallery into static, editable inner blocks. The new modal explains that detaching preserves the current images but breaks the live link to the post’s media library, reducing user confusion about the one-way conversion.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80727.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80727</guid>
-      <pubDate>Wed, 05 Aug 2026 23:55:42 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80774: [Backport to 7.1] Dynamic Gallery: Rename toolbar button to Detach and add a modal</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80774</link>
-      <description>The Dynamic Gallery block variation now requires explicit confirmation before detaching from its source. The toolbar and inspector panel actions were renamed from “Convert to images” to “Detach” and “Detach Gallery”, and both now trigger a `ConfirmDialog` modal explaining that manual editing will be enabled but automatic updates will stop. This prevents accidental loss of the dynamic link and aligns the detachment UX with the one-way conversion dialog used when entering dynamic mode.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80774.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80774</guid>
-      <pubDate>Wed, 05 Aug 2026 23:56:38 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80748: Notes: Report save success consistently from note actions</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80748</link>
-      <description>Fixes inconsistent return values in the collaborative notes sidebar that caused form state desynchronization, potential content loss on failed saves, and incorrect focus shifts after failed deletions. The `useNoteActions` hook now consistently resolves truthy on success and `undefined` on failure, allowing callers to conditionally clear drafts and manage UI state without losing user input.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80748.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80748</guid>
-      <pubDate>Wed, 05 Aug 2026 23:57:39 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80749: Block Editor: Fix floated blocks overlapping sticky blocks</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80749</link>
-      <description>The Block Editor’s base styles now render floated (left/right aligned) blocks below sticky and fixed-position blocks, aligning the editing canvas with front-end rendering. Previously, floated blocks used a `z-index` of `21`, causing them to visually overlap sticky blocks while scrolling the editor. This fix lowers the editor z-index to `9` so the editing experience accurately reflects the published site.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80749.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80749</guid>
-      <pubDate>Wed, 05 Aug 2026 23:58:32 +0000</pubDate>
-    </item>
-    <item>
-      <title>#69617: Enhance sandbox component to accept sandbox prop</title>
-      <link>https://github.com/WordPress/gutenberg/pull/69617</link>
-      <description>The `SandBox` component in `@wordpress/components` now accepts an optional `allowPopups` boolean prop. When enabled, it appends `allow-popups` to the iframe's `sandbox` attribute, allowing links and `window.open` calls inside sandboxed content to navigate. This resolves a limitation where sandboxed previews previously blocked all outbound navigation and enables consumers like Jetpack VideoPress to render interactive embeds safely.
-
-Digest entry: issues/gutenberg/gh-gutenberg-69617.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-69617</guid>
-      <pubDate>Wed, 05 Aug 2026 23:59:18 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80670: Meta boxes: Match heading styles with Gutenberg panels</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80670</link>
-      <description>This pull request updates the visual styling of PHP meta box headings in the block editor to match the typography and border styles of native Gutenberg sidebar panels. Previously, meta box titles used inherited colors and lighter borders, creating a visual inconsistency with the rest of the editor UI. The change standardizes heading colors, font sizes, and top borders across all meta boxes, improving visual cohesion without altering functionality or interaction patterns.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80670.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80670</guid>
-      <pubDate>Wed, 05 Aug 2026 23:59:59 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80286: Writing flow: mark shift+click as a multi-selection gesture</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80286</link>
-      <description>The block editor now tracks multi-selection gestures using the `isMultiSelecting` store state instead of a module-level global flag. This change replaces the `shiftClickInProgress` utility with the existing `startMultiSelect()` and `stopMultiSelect()` dispatch actions, ensuring the selection observer and focus handler share a single source of truth. It resolves state synchronization issues that could cause native selection ranges to collapse prematurely during shift+click gestures.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80286.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80286</guid>
-      <pubDate>Thu, 06 Aug 2026 00:01:40 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80610: Notes: Sync the sidebar selection to the inline marker under the caret</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80610</link>
-      <description>Placing the caret inside an inline `core/note` marker now automatically selects that note in the collaboration sidebar. Previously, moving the caret between inline notes left the sidebar selection stale, requiring manual interaction to sync the view. This change aligns the sidebar state with the active editing position, improving workflow continuity for collaborative editing.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80610.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80610</guid>
-      <pubDate>Thu, 06 Aug 2026 00:02:42 +0000</pubDate>
-    </item>
-    <item>
-      <title>#54292: Extract undo/redo as a separate package</title>
-      <link>https://github.com/WordPress/gutenberg/pull/54292</link>
-      <description>The `core-data` package now delegates undo/redo state management to a new `@wordpress/undo-manager` package. This extraction isolates the history logic, allowing third-party block editors to reuse the same undo/redo behavior without reimplementing it from scratch.
-
-Digest entry: issues/gutenberg/gh-gutenberg-54292.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-54292</guid>
-      <pubDate>Thu, 06 Aug 2026 00:04:03 +0000</pubDate>
-    </item>
-    <item>
-      <title>#79810: Global Styles: Extract shared preset management from shadows and font sizes</title>
-      <link>https://github.com/WordPress/gutenberg/pull/79810</link>
-      <description>This PR extracts a shared preset management layer into `packages/global-styles-ui/src/presets/` to eliminate duplicated CRUD logic across the shadows and font sizes preset UIs. The change introduces a reusable `usePresets` hook, a `&lt;PresetGroup&gt;` list component, a `&lt;PresetEditHeader&gt;`, and unified confirmation dialogs for reset, delete, and rename operations. While the new components are not yet wired to the Global Styles UI in this commit, they establish a standardized pattern that will be adopted by upcoming spacing and border-radius preset migrations.
-
-Digest entry: issues/gutenberg/gh-gutenberg-79810.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-79810</guid>
-      <pubDate>Thu, 06 Aug 2026 00:05:01 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80648: wp-build: sync the page template preload field list with core-data</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80648</link>
-      <description>Updates the `/?_fields=` preload query string in `@wordpress/build` page templates to exactly match the `_fields` list in `@wordpress/core-data`. This alignment prevents unconsumed preloads, duplicate network requests to `/`, and `[api-fetch] [preload]` console warnings on generated admin pages.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80648.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80648</guid>
-      <pubDate>Thu, 06 Aug 2026 00:05:55 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80595: Base Styles: Remove accent color parameter from input-control</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80595</link>
-      <description>The `input-control` and `input-style__focus` SCSS mixins in `@wordpress/base-styles` no longer accept an `$accent-color` parameter. Focus styling now defaults internally to `var(--wp-admin-theme-color)`, and all internal call sites across the block editor and components packages have been updated to remove redundant arguments. This change eliminates duplication and aligns focus ring behavior with the retirement of the experimental `--wp-components-color-accent` token.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80595.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80595</guid>
-      <pubDate>Thu, 06 Aug 2026 00:06:51 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80665: Gallery: make dynamic mode conversion a single undo level</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80665</link>
-      <description>The Gallery block’s conversion between static and dynamic modes now registers as a single undo step in the block editor. Previously, toggling the mode triggered two independent persistent state updates, causing a single undo to revert only half the operation and leave the block in a corrupted, mixed state. This fix batches the dispatches so editors can cleanly revert the entire mode switch with one undo press.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80665.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80665</guid>
-      <pubDate>Thu, 06 Aug 2026 00:07:39 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80646: Input: Hide native spin controls for `type="number"`</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80646</link>
-      <description>The `@wordpress/ui` `Input` component now hides native browser spin controls for `type="number"` fields by default. This aligns the design system with a direction that favors explicit custom steppers (via `prefix`/`suffix` slots) over relying on inconsistent native browser UI. It simplifies the component's default behavior and removes the need for consumers to manually override browser-specific spin button styles.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80646.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80646</guid>
-      <pubDate>Thu, 06 Aug 2026 00:08:26 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80413: DataViewsPicker: Add Shift+Click range selection to the `picker-table`, `picker-grid`, and `picker-activity` layouts</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80413</link>
-      <description>Adds Shift+Click range selection to the `picker-table`, `picker-grid`, and `picker-activity` layouts in the DataViews package. Previously, this gesture was only available in the standard `table` and `grid` layouts. The change centralizes selection logic in the `useSelectionProps` hook, which now accepts a `pickerMultiselect` flag to handle picker-specific behavior where every rendered item is selectable and plain clicks toggle selection.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80413.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80413</guid>
-      <pubDate>Thu, 06 Aug 2026 00:09:30 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80671: Background image control: Remove duplicated focus ring</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80671</link>
-      <description>Removes a custom `box-shadow` focus style from the background image button in the Block Editor, which was causing a duplicated focus ring after the `Button` component switched to using native `outline` for focus states. This resolves a minor visual regression in the Block Inspector’s Background panel.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80671.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80671</guid>
-      <pubDate>Thu, 06 Aug 2026 00:10:26 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80651: Rich text: remove tabIndex from editable elements again to fix shift+click selection</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80651</link>
-      <description>This pull request restores the removal of `tabIndex` from all rich text editable elements in the block editor, fixing a regression that broke cross-block `Shift`+click text selection in every browser. The change also prevents the editor viewport from scrolling unexpectedly when extending a selection across a long document. By ensuring the editing host remains focused without triggering native browser focus behavior, the block editor can rely on the browser’s native selection extension logic.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80651.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80651</guid>
-      <pubDate>Thu, 06 Aug 2026 00:11:29 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80659: Media REST API: Backport sideload from url path upload size check</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80659</link>
-      <description>The Media REST API endpoint now enforces multisite upload size limits and space quotas when sideloading files via the `url` parameter. Previously, this path bypassed the `check_upload_size` validation that applies to multipart and raw-body uploads, allowing oversized files to be downloaded and stored even when multisite restrictions are in place. This backport aligns the URL sideload behavior with Core's upload validation logic to prevent quota bypasses.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80659.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80659</guid>
-      <pubDate>Thu, 06 Aug 2026 00:12:21 +0000</pubDate>
-    </item>
-    <item>
-      <title>#67168: Deprecate coupon updated props hook in favor of per-save successor</title>
-      <link>https://github.com/woocommerce/woocommerce/pull/67168</link>
-      <description>WooCommerce deprecated the `woocommerce_coupon_object_updated_props` action in favor of a new `woocommerce_coupon_updated_props` hook that reports only the properties modified during the current save. The change resolves a backward-compatibility regression introduced in 11.0 when the original hook's payload was switched to per-save semantics. The legacy action now fires via `do_action_deprecated()` with its historical accumulated payload, while core tracking and modern extensions should use the replacement hook.
-
-Digest entry: issues/woocommerce/gh-woocommerce-67168.md · Source: woocommerce/woocommerce</description>
-      <guid isPermaLink="false">gh-woocommerce-67168</guid>
-      <pubDate>Thu, 06 Aug 2026 00:13:55 +0000</pubDate>
-    </item>
-    <item>
-      <title>REST API: Always register the media creation arguments.</title>
-      <link>https://github.com/WordPress/wordpress-develop/commit/6904e896b870e1ddd4e706edcd990b794977fec1</link>
-      <description>The `POST /wp/v2/media` endpoint now unconditionally registers the `url`, `generate_sub_sizes`, and `convert_format` request arguments, regardless of whether client-side media processing is enabled. Previously, these arguments were only registered when the feature was active, which caused unregistered parameters to bypass REST schema validation and sanitization. This fix ensures consistent schema advertising across SSL and non-SSL requests and enforces proper validation (including SSRF protection for the `url` argument) before the request reaches the controller logic.
-
-Digest entry: issues/wp-core/gh-wordpress-develop-6904e896b8.md · Source: WordPress/wordpress-develop</description>
-      <guid isPermaLink="false">gh-wordpress-develop-6904e896b8</guid>
-      <pubDate>Thu, 06 Aug 2026 00:15:59 +0000</pubDate>
-    </item>
+    <lastBuildDate>Sat, 15 Aug 2026 21:39:39 +0000</lastBuildDate>
     <item>
       <title>REST API: Bound the size of media sideloaded from a URL.</title>
       <link>https://github.com/WordPress/wordpress-develop/commit/5f5d96bd4b0ad25b803dc507c08b5336fff926ed</link>
@@ -907,6 +421,492 @@ Digest entry: issues/security/wfi-16dca898-1a98-4e0b-8f48-dc01ba2dc4e6.md · Sou
 Digest entry: issues/security/wfi-15494ccf-7c9d-4566-9e80-2da94172a3dd.md · Source: Wordfence Intelligence</description>
       <guid isPermaLink="false">wfi-15494ccf-7c9d-4566-9e80-2da94172a3dd</guid>
       <pubDate>Thu, 06 Aug 2026 01:40:12 +0000</pubDate>
+    </item>
+    <item>
+      <title>#81618: Admin UI: Fix the primary color of the Fresh admin color scheme</title>
+      <link>https://github.com/WordPress/gutenberg/pull/81618</link>
+      <description>The `fresh` entry in `@wordpress/admin-ui`'s admin theme color map was seeded with `#3858e9` — the Modern scheme's primary — so users on the default Fresh admin color scheme saw the Modern accent throughout the block editors instead of the classic WordPress blue. This PR changes that single map entry to `#007cba`, matching what Fresh's stylesheets have always produced. The regression surfaced because Fresh has no `body.admin-color-fresh` rule in the `wordpress-admin-schemes()` Sass mixin, so its accent resolves to the `:root` fallback in `_default-custom-properties.scss` (`#007cba`), while `ThemeProvider` emits `--wp-admin-theme-color` as an inline style that overrode that fallback with the wrong seeded value.
+
+Digest entry: issues/gutenberg/gh-gutenberg-81618.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-81618</guid>
+      <pubDate>Sat, 15 Aug 2026 15:41:42 +0000</pubDate>
+    </item>
+    <item>
+      <title>#81541: Media editor: keep initial modal focus on the dialog frame</title>
+      <link>https://github.com/WordPress/gutenberg/pull/81541</link>
+      <description>The "Edit media" modal was stealing initial focus away from its dialog frame and dropping it onto the crop area once the image finished loading. `MediaEditorCanvas` passed `focusOnMount={ focusOnMount &amp;&amp; status === 'loaded' }` down to `Cropper`, and because that gate flips asynchronously — after `Modal` has already focused the dialog frame — focus landed mid-content on the `role="group"` "Crop area", skipping the dialog title and header actions, and could yank focus away from whatever control the user had tabbed to while the image streamed in. The fix removes the `focusOnMount` prop from `MediaEditorCanvas` entirely, so the modal keeps its default `Modal` focus behaviour and the crop area is only reachable by tabbing to it.
+
+Digest entry: issues/gutenberg/gh-gutenberg-81541.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-81541</guid>
+      <pubDate>Sat, 15 Aug 2026 15:47:19 +0000</pubDate>
+    </item>
+    <item>
+      <title>#81457: Theme: Avoid root-level relational selectors</title>
+      <link>https://github.com/WordPress/gutenberg/pull/81457</link>
+      <description>The `@wordpress/theme` package forwarded a root `ThemeProvider`'s `cornerRadius` preset to `&lt;html&gt;` using relational CSS — `:root:has([data-wpds-root-provider="true"][data-wpds-corner-radius="…"])` — which showed up as repeated relational matching in style-recalculation profiles during block selection. This PR removes those `:has()` selectors: `ThemeProvider`'s existing root layout effect now mirrors `data-wpds-root-provider="true"` and `data-wpds-corner-radius="&lt;preset&gt;"` directly onto the owning document's `documentElement`, and the generated token CSS matches with a plain compound selector `:root[data-wpds-root-provider="true"][data-wpds-corner-radius="…"]` at the same specificity. Token resolution for root and nested providers is unchanged; the win is purely in selector-matching cost. Measured at roughly 5% improvement on block-selection style recalculation in the reporter's re-test.
+
+Digest entry: issues/gutenberg/gh-gutenberg-81457.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-81457</guid>
+      <pubDate>Sat, 15 Aug 2026 15:53:01 +0000</pubDate>
+    </item>
+    <item>
+      <title>#80852: Global Styles: Expose additional elements in Typography and Colors</title>
+      <link>https://github.com/WordPress/gutenberg/pull/80852</link>
+      <description>The `cite`, `textInput`, and `select` theme.json elements — already supported by theme.json parsing and CSS generation, but invisible in the editor — are now surfaced in the Global Styles UI under **Typography → Elements** and **Colors → Elements** as "Citations", "Inputs", and "Selects". Users can set font and text/background color for quote and pullquote citations, text inputs (Search block, comment form fields), and select dropdowns (Archives, Categories) without hand-editing theme.json. To make this possible the shared `ColorPanel` in `@wordpress/block-editor` gained a new `additionalElements` prop so the Global Styles colors screen can inject element rows beyond the built-in Button/Heading/Caption/Link set. No theme.json schema, CSS generation, or PHP behavior changed — this is purely UI exposure of existing element support.
+
+Digest entry: issues/gutenberg/gh-gutenberg-80852.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-80852</guid>
+      <pubDate>Sat, 15 Aug 2026 16:02:29 +0000</pubDate>
+    </item>
+    <item>
+      <title>#81532: Block editor: add an inserter to the parent selector</title>
+      <link>https://github.com/WordPress/gutenberg/pull/81532</link>
+      <description>The block parent selector in the editor toolbar now carries a second button — a plus that inserts a sibling block *after* the currently selected child, without first having to select the parent. Previously the only way to append a sibling from inside a nested block was to know that Enter does it, or to select the parent and hunt for its corner appender or custom toolbar inserter. `BlockParentSelector` now renders the parent button and a standard `Inserter` together inside a `ToolbarGroup`, and Column's default appender was removed as a consequence. This fixes gutenberg#47200 (the long-standing "how do I add another gallery image" complaint) and applies to every block with inner blocks, not just the ones that shipped a bespoke appender.
+
+Digest entry: issues/gutenberg/gh-gutenberg-81532.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-81532</guid>
+      <pubDate>Sat, 15 Aug 2026 16:12:25 +0000</pubDate>
+    </item>
+    <item>
+      <title>#81631: Env: Fall back to cached docker images when the registry is unreachable</title>
+      <link>https://github.com/WordPress/gutenberg/pull/81631</link>
+      <description>wp-env now falls back to locally cached Docker images when the Docker registry cannot be reached during `wp-env start`. The previously unguarded image-pull step no longer aborts startup when the registry is unavailable. This fixes a hard failure that could occur when configuration changes or `--update` is used while the registry is down but cached images already exist.
+
+Digest entry: issues/gutenberg/gh-gutenberg-81631.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-81631</guid>
+      <pubDate>Sat, 15 Aug 2026 16:16:02 +0000</pubDate>
+    </item>
+    <item>
+      <title>#78909: PHP-Only blocks: forward current post ID to server render</title>
+      <link>https://github.com/WordPress/gutenberg/pull/78909</link>
+      <description>PHP-only blocks (server-registered blocks using `supports.autoRegister`, which get an auto-generated `edit` backed by `useServerSideRender`) were previewed in the editor without any post context, so a `render_callback` calling `get_the_ID()` or otherwise relying on the post being edited rendered against the wrong post — or none at all. This change makes the auto-generated `edit` pass the current `postId` block context to the server render request as a `post_id` URL query argument, matching what the older `ServerSideRender` component has always done. It also forces `postId` into the block type's `usesContext` so the value is actually available, regardless of what the PHP registration declared. Editor previews of PHP-only blocks now match front-end output for post-dependent render callbacks.
+
+Digest entry: issues/gutenberg/gh-gutenberg-78909.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-78909</guid>
+      <pubDate>Sat, 15 Aug 2026 16:27:38 +0000</pubDate>
+    </item>
+    <item>
+      <title>#77750: Block Editor: Fix blockGap fallback handling for nested var() fallback values</title>
+      <link>https://github.com/WordPress/gutenberg/pull/77750</link>
+      <description>Layout gap fallback resolution in the block editor no longer splits a processed gap string on whitespace, which produced malformed CSS when `styles.spacing.blockGap` in `theme.json` used nested `var()` fallbacks such as `var(--a, var(--b, 1.2rem))`. Splitting on spaces treated the whitespace *inside* the nested `var()` expression as a row/column separator, so editing row-gap or column-gap on a Columns (flex) or Grid block emitted a gap value with unbalanced parentheses. The flex and grid layout definitions now read the row/column values structurally via `getGapBoxControlValueFromStyle()` and resolve them through `getSpacingPresetCssVar()`. Fixes Gutenberg issue #76896.
+
+Digest entry: issues/gutenberg/gh-gutenberg-77750.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-77750</guid>
+      <pubDate>Sat, 15 Aug 2026 16:33:30 +0000</pubDate>
+    </item>
+    <item>
+      <title>#67657: Deprecate product brand recount methods</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/67657</link>
+      <description>Two public methods on `WC_Brands` are now deprecated as of WooCommerce 11.2.0: `recount_after_stock_change()` is superseded by the global `wc_recount_after_stock_change()`, and `recount_all_brands()` by `wc_recount_all_terms()`. Both methods keep their signatures and remain callable, but they now emit a `wc_deprecated_function()` notice and delegate straight to the shared term-recount functions instead of carrying their own `product_brand`-specific implementation. This is the cleanup half of PR #67630, which folded product-brand counting into WooCommerce's shared term recount path and left these two methods with no internal callers. Carries the `developer advisory` label and ships a `minor`/`update` changelog entry.
+
+Digest entry: issues/woocommerce/gh-woocommerce-67657.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-67657</guid>
+      <pubDate>Sat, 15 Aug 2026 17:00:27 +0000</pubDate>
+    </item>
+    <item>
+      <title>REST API: Bind finalize sub-size file names to their sideload.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/3767a6c06a1695e45c2f4730cc353f42aeb4b730</link>
+      <description>The REST attachments controller's `finalize` endpoint previously stored whatever sub-size file names a client sent, without checking that a sideload had actually produced them for that attachment. Because those names are later resolved against the attachment's upload directory and then read or deleted, a finalize request could record — and later cause core to operate on — a file the upload never created. This changeset makes `sideload_item()` record every file name it generates under a new `_wp_sideloaded_file` post meta key, and makes `finalize_item()` accept a name only if a prior sideload recorded it, it is the attachment's own attached file, or it is already present in the attachment's metadata; anything else fails with `rest_invalid_sub_size_file` (HTTP 400) before any metadata is written. Sideloads are also now pinned to the attachment's own uploads subdirectory via an `upload_dir` filter, so generated names live in the directory they are later resolved against, and the `image_size` / `sub_sizes` schemas are tightened considerably.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-3767a6c06a.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-3767a6c06a</guid>
+      <pubDate>Sat, 15 Aug 2026 17:13:38 +0000</pubDate>
+    </item>
+    <item>
+      <title>WordPress Contributor Toolkit 1.0: A smoother workflow for your first Core contribution</title>
+      <link>https://make.wordpress.org/core/2026/08/14/wordpress-contributor-toolkit-1-0-a-smoother-workflow-for-your-first-core-contribution/</link>
+      <description>WordPress Contributor Toolkit 1.0 is an experimental desktop app that guides first-time contributors through setting up a full `wordpress-develop` environment and completing a Core contribution. It bundles the required Git, Node.js, and npm tooling, so contributors do not need to install Git, Node.js, npm, or Docker. The 1.0 workflow covers linking a Trac ticket, reviewing existing pull requests and patches, applying and testing work, creating a diff or pull request, and updating the site to latest trunk. It is available for Windows, macOS on Apple Silicon, and Linux.
+
+Digest entry: issues/dev-notes/make-core-125508.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-125508</guid>
+      <pubDate>Sat, 15 Aug 2026 18:44:53 +0000</pubDate>
+    </item>
+    <item>
+      <title>Accessibility Improvements in WordPress 7.1</title>
+      <link>https://make.wordpress.org/core/2026/08/13/accessibility-improvements-in-wordpress-7-1/</link>
+      <description>WordPress 7.1's accessibility work lands 45 fixes and enhancements in core plus 43 in the editor, with three items that carry developer-visible consequences. Core gains a standardized mechanism for accessible tooltips (#51006), already applied to metabox order buttons (#50921) and the login "Remember Me" control (#55343). List tables now treat the post title cell as the row header instead of the selection checkbox (#32892, #65743), and KSES learns to allow invoker command attributes (#64576) and the `autofocus` attribute on `dialog` elements (#65491). The release also ships a documented, known accessibility regression: the media library switches from a "Load more" button to infinite scroll by default, with an opt-out per user and via the existing `media_library_infinite_scrolling` filter. The block editor adds new Tabs (#80163) and Playlist (#80203) blocks and a decorative-image toggle on the Image block (#78064).
+
+Digest entry: issues/dev-notes/make-core-125420.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-125420</guid>
+      <pubDate>Sat, 15 Aug 2026 18:50:41 +0000</pubDate>
+    </item>
+    <item>
+      <title>WordPress 7.2 Call for Volunteers</title>
+      <link>https://make.wordpress.org/core/2026/08/12/wordpress-7-2-call-for-volunteers/</link>
+      <description>The 7.2 release cycle has entered planning, with a proposed final release date of Wednesday, December 9, 2026 and a milestone schedule running from alpha through dry run. The post calls for volunteers to join a smaller, focused Release Squad and to coordinate with Make Team Reps. It matters to teams planning upgrades, testing, and release-related work because it sets the expected 7.2 timeline and contribution path.
+
+Digest entry: issues/dev-notes/make-core-125465.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-125465</guid>
+      <pubDate>Sat, 15 Aug 2026 18:53:27 +0000</pubDate>
+    </item>
+    <item>
+      <title>WordPress 7.1 Release Candidate 3</title>
+      <link>https://make.wordpress.org/core/2026/08/12/wordpress-7-1-release-candidate-3/</link>
+      <description>The third release candidate for WordPress 7.1 is available for testing and contains more than 90 updates and fixes since the first release candidate, including 37 Editor changes and 57 Core changes. It is the latest pre-release milestone before the scheduled final release on August 19, 2026, and it marks the hard string freeze for the 7.1 release cycle. Developers should evaluate it on non-production sites and report issues to Trac or the Alpha/Beta support forums.
+
+Digest entry: issues/dev-notes/make-core-125449.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-125449</guid>
+      <pubDate>Sat, 15 Aug 2026 18:56:42 +0000</pubDate>
+    </item>
+    <item>
+      <title>What’s new in Gutenberg 23.7? (05 August)</title>
+      <link>https://make.wordpress.org/core/2026/08/06/whats-new-in-gutenberg-23-7-05-august/</link>
+      <description>Gutenberg 23.7 is a consolidation release: most of the cycle went into visual editor fixes rather than new surface area. The Gallery block's dynamic mode — new in 23.6 — gets its ambiguous "Convert to images" toolbar button renamed to "Detach" with an explanatory modal (#80727), and dynamic-mode conversion now collapses into a single undo level (#80665). The experimental Global Styles inheritance UI, which reflects inherited values in block inspector controls, has been moved behind an opt-in toggle on the Gutenberg Experiments screen (#80815). Alongside that: a new `responsiveEditingEnabled` editor setting, `editableRoot` demoted from a public block support to a private block setting, and `Group`/`GroupLabel` subcomponents added across Combobox, Select and SelectControl.
+
+Digest entry: issues/dev-notes/make-core-125396.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-125396</guid>
+      <pubDate>Sat, 15 Aug 2026 19:05:36 +0000</pubDate>
+    </item>
+    <item>
+      <title>WordPress 7.0.4 Release</title>
+      <link>https://wordpress.org/news/2026/08/wordpress-7-0-4-release/</link>
+      <description>This WordPress security release fixes an authenticated Author+ remote code execution vulnerability triggered by a malicious file upload on sites that use Imagick and Ghostscript. The announcement recommends updating immediately because the issue allows remote code execution. The fix is also being backported to the 4.7 branch and the 7.1 RC3 release.
+
+Digest entry: issues/security/wp-news-security-21371.md · Source: WordPress News</description>
+      <guid isPermaLink="false">wp-news-security-21371</guid>
+      <pubDate>Sat, 15 Aug 2026 19:09:24 +0000</pubDate>
+    </item>
+    <item>
+      <title>WordPress 7.0.3 release</title>
+      <link>https://wordpress.org/news/2026/08/wordpress-7-0-3-release/</link>
+      <description>WordPress 7.0.3 is a security-only release fixing 12 separately reported vulnerabilities, headlined by a pre-authentication reflected XSS on the login screen that could be chained to PHP code execution (CVE-2026-64638 / GHSA-52p2-r8wf-jcrf). The rest are lower-privilege issues: four Contributor+ stored XSS vectors (the emoji settings element, the Post Content block, Quick Edit on large-user sites, the Post Date block), an Author+ CSS injection through a bypass of core's safe CSS attribute filter, a multisite privilege escalation letting an ordinary user create a new site where registration is open, and several information-disclosure and validation bypasses — password-protected post comments leaking through the Latest Comments block, post slug enumeration, notes disclosed in comment feeds, an email-confirmation flow bypass, and an SSRF in URL validation that permitted requests to link-local ranges. Because the login-screen bug is reachable without authentication and reportedly has a path to code execution, this is an update-now release rather than a routine minor. Fixes are being backported to every branch still eligible for security fixes (through 4.7), and 7.1 RC2 ships the applicable patches.
+
+Digest entry: issues/security/wp-news-security-21327.md · Source: WordPress News</description>
+      <guid isPermaLink="false">wp-news-security-21327</guid>
+      <pubDate>Sat, 15 Aug 2026 19:15:30 +0000</pubDate>
+    </item>
+    <item>
+      <title>40,000 WordPress Sites affected by Authentication Bypass Vulnerability in User Profile Builder WordPress Plugin</title>
+      <link>https://www.wordfence.com/blog/2026/08/40000-wordpress-sites-affected-by-authentication-bypass-vulnerability-in-user-profile-builder-wordpress-plugin/</link>
+      <description>User Profile Builder had a critical unauthenticated authentication bypass that let attackers log in as the user with ID 1, typically the site administrator, and take over the site. The flaw was only exploitable when the plugin's Automatically Log In setting was enabled. The issue was fixed in the latest patched release. Sites using the plugin should update immediately.
+
+Digest entry: issues/security/wordfence-blog-42706.md · Source: Wordfence Blog</description>
+      <guid isPermaLink="false">wordfence-blog-42706</guid>
+      <pubDate>Sat, 15 Aug 2026 19:19:37 +0000</pubDate>
+    </item>
+    <item>
+      <title>Frontend Admin by DynamiApps &lt;= 3.29.10 - Unauthenticated Privilege Escalation</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/2e1ab5a7-0be8-444d-8680-68b3b0be6edf</link>
+      <description>The Frontend Admin plugin for WordPress has an unauthenticated privilege escalation vulnerability in all versions up to and including 3.29.10. An unauthenticated attacker can gain administrator-level access. No patch is known. Sites should treat this as a critical incident and remove or disable the plugin until a fix is available.
+
+Digest entry: issues/security/wfi-2e1ab5a7-0be8-444d-8680-68b3b0be6edf.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-2e1ab5a7-0be8-444d-8680-68b3b0be6edf</guid>
+      <pubDate>Sat, 15 Aug 2026 19:22:22 +0000</pubDate>
+    </item>
+    <item>
+      <title>Type Hub &lt;= 2.0.6 - Unauthenticated Arbitrary File Upload</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/a146ea86-52a8-4488-b904-965409ec02ad</link>
+      <description>Type Hub contains an unauthenticated arbitrary file upload vulnerability caused by missing file type validation. An attacker can upload arbitrary files to the server, which may enable remote code execution. No patched version is identified in the record.
+
+Digest entry: issues/security/wfi-a146ea86-52a8-4488-b904-965409ec02ad.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-a146ea86-52a8-4488-b904-965409ec02ad</guid>
+      <pubDate>Sat, 15 Aug 2026 19:24:29 +0000</pubDate>
+    </item>
+    <item>
+      <title>Login Social &lt;= 1.0.4 - Unauthenticated Privilege Escalation via Account Takeover</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/054da118-b268-4dbf-80d3-5ff885f00500</link>
+      <description>The Login Social plugin allows an unauthenticated attacker to take over an arbitrary WordPress account, including administrator accounts, by changing the target user's password. The root cause is missing identity validation before the plugin updates user details such as the password. Because no known patch is listed, the practical response is to remove or replace the plugin if it is installed.
+
+Digest entry: issues/security/wfi-054da118-b268-4dbf-80d3-5ff885f00500.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-054da118-b268-4dbf-80d3-5ff885f00500</guid>
+      <pubDate>Sat, 15 Aug 2026 19:26:45 +0000</pubDate>
+    </item>
+    <item>
+      <title>OTP Login With Phone Number, OTP Verification &lt;= 1.8.70 - OTP Brute Force</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/8cb6c075-81f8-491d-bcef-6974861424db</link>
+      <description>A critical authentication-bypass flaw was fixed in the OTP Login With Phone Number, OTP Verification plugin. The vulnerability allowed unauthenticated attackers to brute-force one-time passwords and bypass OTP verification. This matters because it can lead to unauthorized account access on sites using the plugin. Affected installations should update to the patched release.
+
+Digest entry: issues/security/wfi-8cb6c075-81f8-491d-bcef-6974861424db.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-8cb6c075-81f8-491d-bcef-6974861424db</guid>
+      <pubDate>Sat, 15 Aug 2026 19:28:46 +0000</pubDate>
+    </item>
+    <item>
+      <title>POUCO Import Users &lt;= 1.0.0 - Unauthenticated Privilege Escalation</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/ad0a9daf-d59b-4db0-add9-dbf87fb4708e</link>
+      <description>The POUCO Import Users plugin has an unauthenticated privilege escalation flaw that allows attackers to create new administrator accounts. No patched version is identified in the record. The practical response is to remove or replace the plugin and check for unauthorized administrative users.
+
+Digest entry: issues/security/wfi-ad0a9daf-d59b-4db0-add9-dbf87fb4708e.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-ad0a9daf-d59b-4db0-add9-dbf87fb4708e</guid>
+      <pubDate>Sat, 15 Aug 2026 19:30:13 +0000</pubDate>
+    </item>
+    <item>
+      <title>Lenxel WP &lt;= 1.0.31 - Unauthenticated Privilege Escalation via Account Takeover</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/d04d6034-4f90-48e4-81f2-26220001fe32</link>
+      <description>The Lenxel WP WordPress theme is vulnerable to unauthenticated privilege escalation through account takeover in versions up to and including 1.0.31. The theme does not properly validate a user's identity before allowing updates to account details, including password changes. An unauthenticated attacker can change an arbitrary user's password, including an administrator, and then log in as that user. No patch is listed, so the practical response is to remove or replace the theme and remediate affected accounts.
+
+Digest entry: issues/security/wfi-d04d6034-4f90-48e4-81f2-26220001fe32.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-d04d6034-4f90-48e4-81f2-26220001fe32</guid>
+      <pubDate>Sat, 15 Aug 2026 19:32:09 +0000</pubDate>
+    </item>
+    <item>
+      <title>Webinfos &lt;= 1.2 - Unauthenticated Arbitrary File Upload</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/fe3fab02-c9e8-4b16-aac1-7a1e56e6b49a</link>
+      <description>Webinfos for WordPress is vulnerable to unauthenticated arbitrary file upload in all versions up to and including 1.2. The issue is caused by missing file type validation, allowing an unauthenticated attacker to upload arbitrary files to the server. This can lead to remote code execution. No known patch is available, so affected sites should remove the plugin or apply compensating controls.
+
+Digest entry: issues/security/wfi-fe3fab02-c9e8-4b16-aac1-7a1e56e6b49a.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-fe3fab02-c9e8-4b16-aac1-7a1e56e6b49a</guid>
+      <pubDate>Sat, 15 Aug 2026 19:33:46 +0000</pubDate>
+    </item>
+    <item>
+      <title>TrueBooker &lt;= 1.2.3 - Missing Authorization to Unauthenticated Arbitrary Password Reset via 'truebooker_wp_user_id'</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/afe10c10-cace-4ce4-a813-6fda04c8d3dd</link>
+      <description>TrueBooker contained a missing authorization flaw in its password-reset flow. An unauthenticated attacker could supply a `truebooker_wp_user_id` value and reset the password of an arbitrary WordPress user, including administrators. This allowed account takeover without prior credentials. The issue is fixed in the patched plugin release.
+
+Digest entry: issues/security/wfi-afe10c10-cace-4ce4-a813-6fda04c8d3dd.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-afe10c10-cace-4ce4-a813-6fda04c8d3dd</guid>
+      <pubDate>Sat, 15 Aug 2026 19:35:53 +0000</pubDate>
+    </item>
+    <item>
+      <title>TrueBooker &lt;= 1.2.3 - Missing Authorization to Unauthenticated Arbitrary Password Reset via 'tbab-userid'</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/f441477e-35b8-42ae-b71c-3fdba126021b</link>
+      <description>TrueBooker &lt;= 1.2.3 allowed unauthenticated attackers to reset arbitrary user passwords by supplying a `tbab-userid` value without proving ownership of the target account. The plugin failed to validate the user's identity before performing the password reset, enabling account takeover, including administrator accounts. Version 1.2.4 fixes the improper password reset validation.
+
+Digest entry: issues/security/wfi-f441477e-35b8-42ae-b71c-3fdba126021b.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-f441477e-35b8-42ae-b71c-3fdba126021b</guid>
+      <pubDate>Sat, 15 Aug 2026 19:37:52 +0000</pubDate>
+    </item>
+    <item>
+      <title>AI Copilot – Content Generator &lt;= 1.5.6 - Unauthenticated Privilege Escalation via Custom Workflow Route</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/e28ae1a3-abc6-484c-abc7-1e0b958fa30b</link>
+      <description>The AI Copilot – Content Generator plugin has an authorization bypass that allows unauthenticated visitors to create an administrator account. The issue occurs when a malicious workflow is saved and executed through the plugin's custom workflow route, using a `wp_create_user` action node with `role=administrator`. The plugin's nonce check is not a reliable authorization barrier because the `waic-nonce` value is exposed in public frontend JavaScript as `WAIC_DATA.waicNonce` when the `[aiwu-form]` shortcode or public chatbot is rendered. No patched version is listed, so affected sites should treat this as an active site-takeover risk.
+
+Digest entry: issues/security/wfi-e28ae1a3-abc6-484c-abc7-1e0b958fa30b.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-e28ae1a3-abc6-484c-abc7-1e0b958fa30b</guid>
+      <pubDate>Sat, 15 Aug 2026 19:41:09 +0000</pubDate>
+    </item>
+    <item>
+      <title>WordPress Core &lt;= 7.0.2 - Unauthenticated Reflected Cross-Site Scripting via log Parameter</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/278da117-fe04-45d6-86d4-e71fe6536032</link>
+      <description>WordPress core's login screen reflects the submitted `log` value (the username field on `wp-login.php`) back into authentication error messages without sufficient escaping, allowing an unauthenticated attacker to inject arbitrary JavaScript that executes in a victim's browser. Because the payload has to arrive with the login POST, exploitation requires tricking a visitor into submitting a crafted request — typically an auto-submitting form on an attacker-controlled page — which is why it scores 6.1 rather than higher. The fix hardens sanitization/escaping of the login error output. Notably, the vulnerable code reaches back to 4.7.0, so patched builds were shipped simultaneously for every branch from 4.7 through 7.0.
+
+Digest entry: issues/security/wfi-278da117-fe04-45d6-86d4-e71fe6536032.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-278da117-fe04-45d6-86d4-e71fe6536032</guid>
+      <pubDate>Sat, 15 Aug 2026 19:41:52 +0000</pubDate>
+    </item>
+    <item>
+      <title>WordPress Core &lt;= 7.0.2 - Authenticated (Contributor+) Stored Cross-Site Scripting via Emoji Settings Element</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/5faaf7d1-2012-42d5-affa-a5ff3388d25a</link>
+      <description>WordPress core allowed a stored cross-site scripting payload to be smuggled into post content via the emoji settings element, because submitted post content was not sufficiently restricted. Any authenticated user at Contributor level or above could save a post carrying the payload; the script then executes when someone previews that post. Because Contributors cannot publish, the realistic trigger is an Editor or Administrator previewing a pending submission for review — meaning the script runs in a higher-privileged session. The fix shipped as a coordinated security release across every branch WordPress still backports to, from 4.7 through 7.0.
+
+Digest entry: issues/security/wfi-5faaf7d1-2012-42d5-affa-a5ff3388d25a.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-5faaf7d1-2012-42d5-affa-a5ff3388d25a</guid>
+      <pubDate>Sat, 15 Aug 2026 19:42:45 +0000</pubDate>
+    </item>
+    <item>
+      <title>WordPress Core &lt;= 7.0.2 - Authenticated (Subscriber+) Missing Authorization to Arbitrary Site Creation on Multisite</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/80f92f7f-72e7-4d83-9ceb-ed0e11fb8003</link>
+      <description>WordPress multisite honors a network-wide signup policy (the `registration` site option: `none`, `user`, `blog`, or `all`), but the `gimmeanotherblog` signup stage in `wp-signup.php` did not verify that policy before processing the request. On a network configured to allow user registration only (`registration` = `user`), any logged-in user at Subscriber level or above could POST the `gimmeanotherblog` stage and create a new site anyway, bypassing the network admin's intent. The fix adds the missing active-signup check to that code path. Single-site installs are not affected in any way; only multisite networks are.
+
+Digest entry: issues/security/wfi-80f92f7f-72e7-4d83-9ceb-ed0e11fb8003.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-80f92f7f-72e7-4d83-9ceb-ed0e11fb8003</guid>
+      <pubDate>Sat, 15 Aug 2026 19:43:32 +0000</pubDate>
+    </item>
+    <item>
+      <title>WordPress Core &lt;= 7.0.2 - Authenticated (Contributor+) Stored Cross-Site Scripting via Quick Edit</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/92babbbf-74bd-474f-9057-c5022a7d64c7</link>
+      <description>WordPress core did not sufficiently escape user display names when rendering the Quick Edit (inline edit) UI on admin list tables, allowing a user who controls their own display name — Contributor role and above — to store markup that executes in the browser of any higher-privileged user who opens the affected list screen. Because a display name is persisted on the user record and re-rendered on every load of the screen, this is a stored (persistent) XSS in the wp-admin origin, not a reflected one. Wordfence notes the issue only manifests on sites with a large number of users, so the vulnerable rendering path is the alternate author-field markup core emits once a site crosses its large-user-count threshold rather than the ordinary author `&lt;select&gt;`. The fix is output escaping, shipped as a coordinated security release across every supported branch back to 4.7.
+
+Digest entry: issues/security/wfi-92babbbf-74bd-474f-9057-c5022a7d64c7.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-92babbbf-74bd-474f-9057-c5022a7d64c7</guid>
+      <pubDate>Sat, 15 Aug 2026 19:44:54 +0000</pubDate>
+    </item>
+    <item>
+      <title>WordPress Core &lt;= 7.0.2 - Unauthenticated Sensitive Information Exposure via Comment Feeds</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/c3f9898b-0aa0-4dd1-9298-96c853dbef5c</link>
+      <description>WordPress core leaks the contents of internal notes through its public comment feeds. The comment feed output was built without excluding note-type entries, so anything written as an internal note on a post was serialized into the RSS/Atom comment feed alongside ordinary approved comments — readable by anyone, with no authentication and no interaction from a privileged user. The fix, shipped as a coordinated security release across every maintained branch, restricts comment feed output so internal notes are no longer included. Sites that never used internal notes have nothing to disclose, but the vulnerable code path is present in every listed version.
+
+Digest entry: issues/security/wfi-c3f9898b-0aa0-4dd1-9298-96c853dbef5c.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-c3f9898b-0aa0-4dd1-9298-96c853dbef5c</guid>
+      <pubDate>Sat, 15 Aug 2026 19:45:48 +0000</pubDate>
+    </item>
+    <item>
+      <title>WordPress Core &lt;= 7.0.2 - Authenticated (Author+) CSS Injection</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/c83a2c4d-a264-49ec-85f1-e3f48715d725</link>
+      <description>WordPress core does not sufficiently sanitize user-supplied CSS in post content, allowing an authenticated user with Author-level capabilities or above to inject arbitrary CSS that is then rendered to other visitors on the front end. Because the injected rules are served as part of the post output, an attacker can restyle or visually rewrite pages for readers — overlaying, hiding, or replacing content that the author would not otherwise be permitted to control. The fix tightens sanitization of user-supplied CSS and has been backported across every supported (and long-tail) branch from the 4.7 line forward. This is a privilege-boundary issue, not a remote/unauthenticated one: it matters on any site where Author is not a fully trusted role.
+
+Digest entry: issues/security/wfi-c83a2c4d-a264-49ec-85f1-e3f48715d725.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-c83a2c4d-a264-49ec-85f1-e3f48715d725</guid>
+      <pubDate>Sat, 15 Aug 2026 19:46:33 +0000</pubDate>
+    </item>
+    <item>
+      <title>WordPress Core &lt;= 7.0.2 - Authenticated (Subscriber+) Email Change Confirmation Bypass</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/cac1c1fa-7d6c-43c3-885e-9be320cb8f83</link>
+      <description>WordPress core validated a changed email address inconsistently on user-profile updates, so an authenticated user at Subscriber level or above could set a new address on their own account without completing the ownership-confirmation step core normally requires. Instead of parking the address in a pending state and waiting for the confirmation link to be followed, the affected path wrote the new address to the account directly. The fix makes validation of the submitted email consistent across the profile-update paths, so the confirmation handshake is enforced. It is a self-service bypass — the attacker changes their own account's email, not another user's — which is why it lands at CVSS 4.3 rather than in account-takeover territory.
+
+Digest entry: issues/security/wfi-cac1c1fa-7d6c-43c3-885e-9be320cb8f83.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-cac1c1fa-7d6c-43c3-885e-9be320cb8f83</guid>
+      <pubDate>Sat, 15 Aug 2026 19:47:37 +0000</pubDate>
+    </item>
+    <item>
+      <title>WordPress Core &lt;= 7.0.2 - Unauthenticated Blind Server-Side Request Forgery</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/cddbb0f8-fc73-46d7-80af-edb69227084f</link>
+      <description>Wordfence disclosed an unauthenticated blind SSRF in WordPress core affecting every release from 4.7.0 through 7.0.2. Core's outbound-request validation does not block all reserved and internal IP address ranges, so an unauthenticated attacker can induce the site to issue HTTP requests to attacker-chosen destinations — including hosts on the server's own private network — with the request originating from the web application rather than the attacker. The vulnerability is *blind*: the response body is not returned to the attacker, so the practical impact is enumeration of internal hosts, port/service discovery, and one-way interaction with internal endpoints that would otherwise be unreachable from the internet. Core shipped fixes across 24 maintenance branches (4.7.34 through 7.0.3).
+
+Digest entry: issues/security/wfi-cddbb0f8-fc73-46d7-80af-edb69227084f.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-cddbb0f8-fc73-46d7-80af-edb69227084f</guid>
+      <pubDate>Sat, 15 Aug 2026 19:48:20 +0000</pubDate>
+    </item>
+    <item>
+      <title>MStore API – Create Native Android &amp; iOS Apps On The Cloud &lt;= 4.20.0 - Unauthenticated Privilege Escalation</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/a80f3c4c-1aa3-441a-9058-65ba4c7ccaef</link>
+      <description>The affected plugin had an unauthenticated privilege escalation flaw that allowed attackers to gain administrator access. The issue is fixed in the patched release. Sites running the affected plugin should update immediately. The advisory does not disclose the vulnerable endpoint or code change.
+
+Digest entry: issues/security/wfi-a80f3c4c-1aa3-441a-9058-65ba4c7ccaef.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-a80f3c4c-1aa3-441a-9058-65ba4c7ccaef</guid>
+      <pubDate>Sat, 15 Aug 2026 19:50:43 +0000</pubDate>
+    </item>
+    <item>
+      <title>miniOrange OTP Login, Verification and SMS Notifications &lt;= 5.5.1 - Unauthenticated Privilege Escalation</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/a91a95c5-c7df-4972-b722-fe2cb4bc356f</link>
+      <description>The miniOrange OTP Login, Verification and SMS Notifications plugin contained an unauthenticated privilege escalation flaw. An unauthenticated attacker could use the flaw to obtain administrator-level access. The vendor released a patched version that fixes the issue. Sites using the plugin should update immediately.
+
+Digest entry: issues/security/wfi-a91a95c5-c7df-4972-b722-fe2cb4bc356f.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-a91a95c5-c7df-4972-b722-fe2cb4bc356f</guid>
+      <pubDate>Sat, 15 Aug 2026 19:54:46 +0000</pubDate>
+    </item>
+    <item>
+      <title>WP BASE Booking of Appointments, Services and Events &lt;= 6.3.0 - Unauthenticated Remote Code Execution</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/b0e19fc5-5e79-4383-827d-edd16443e596</link>
+      <description>The WP BASE Booking of Appointments, Services and Events plugin has an unauthenticated remote code execution vulnerability in versions up to and including 6.3.0. An attacker can execute code on the server without authentication. The fix is to update to 6.3.1 or a newer patched version. Any site running a vulnerable version should be treated as potentially compromised.
+
+Digest entry: issues/security/wfi-b0e19fc5-5e79-4383-827d-edd16443e596.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-b0e19fc5-5e79-4383-827d-edd16443e596</guid>
+      <pubDate>Sat, 15 Aug 2026 19:57:02 +0000</pubDate>
+    </item>
+    <item>
+      <title>QA Assistants – Driven by data &lt;= 5.2.0.0 - Unauthenticated Remote Code Execution</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/c2553c88-3bef-4a9f-8339-f6667aa5fb93</link>
+      <description>The QA Assistants – Driven by data plugin contained an unauthenticated remote code execution flaw. An attacker without an account could execute code on the WordPress server. The vulnerability is fixed in the patched release.
+
+Digest entry: issues/security/wfi-c2553c88-3bef-4a9f-8339-f6667aa5fb93.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-c2553c88-3bef-4a9f-8339-f6667aa5fb93</guid>
+      <pubDate>Sat, 15 Aug 2026 19:59:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Formidable Digital Signatures &lt;= 3.0.6 - Unauthenticated Arbitrary File Deletion via Signature Field</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/c9a5f8ca-7efc-401b-8a93-07fbe7204dce</link>
+      <description>Formidable Digital Signatures &lt;= 3.0.6 has an unauthenticated arbitrary file deletion vulnerability in the plugin's `delete_file` function. Insufficient file path validation allows an attacker to delete files on the server by sending a crafted filename in `item_meta[field_id][content]` together with the `delete_saved_image` flag during a normal entry-creation POST on a form that accepts anonymous submissions. The issue is fixed in version 3.1. Sites using the plugin should upgrade immediately.
+
+Digest entry: issues/security/wfi-c9a5f8ca-7efc-401b-8a93-07fbe7204dce.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-c9a5f8ca-7efc-401b-8a93-07fbe7204dce</guid>
+      <pubDate>Sat, 15 Aug 2026 20:00:51 +0000</pubDate>
+    </item>
+    <item>
+      <title>WordPress Core &lt;= 7.0.3 - Authenticated (Author+) Remote Code Execution via Malicious File Upload</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/3f6b435b-d8b4-434b-8cac-cc3adbc437eb</link>
+      <description>WordPress core's Imagick image editor accepted uploaded files whose real content did not match their WordPress-approved extension. `WP_Image_Editor_Imagick::load()` handed the file (or stream) to Imagick without sufficient validation, so ImageMagick could identify it as a PostScript-family or compressed delegate format from magic bytes, an embedded format specifier, or decompressed content — and dispatch it to an external delegate such as Ghostscript. Because this happens automatically during attachment metadata generation, any user with `upload_files` (Author and above) could upload a crafted "image" and reach remote code execution on sites running the Imagick editor with Ghostscript available. The patched releases tighten validation in that load path so the format Imagick acts on is constrained rather than inferred from attacker-controlled content.
+
+Digest entry: issues/security/wfi-3f6b435b-d8b4-434b-8cac-cc3adbc437eb.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-3f6b435b-d8b4-434b-8cac-cc3adbc437eb</guid>
+      <pubDate>Sat, 15 Aug 2026 20:01:30 +0000</pubDate>
+    </item>
+    <item>
+      <title>Wishlist Member X &lt;= 3.34.1 - Unauthenticated Account Takeover via 'mergewith' Parameter</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/84afe5a7-1bf4-4b83-bf77-efbb003a30cd</link>
+      <description>Wishlist Member versions up to 3.34.1 allow an unauthenticated attacker to take over an existing WordPress account by passing an arbitrary user ID in the `mergewith` POST parameter during registration. The plugin's `wpm_register()` function checks the registration cookie only against the `reg` GET parameter and does not verify that `mergewith` points to a temporary or incomplete registrant tied to the current registration transaction. The attacker-controlled value is then used to update the target user's username, password, email, first name, and last name, while WordPress password and email change notifications are suppressed. If the supplied `wpm_id` does not match a membership level, the update payload omits the role key, so `wp_update_user()` preserves the target's existing role, including administrator.
+
+Digest entry: issues/security/wfi-84afe5a7-1bf4-4b83-bf77-efbb003a30cd.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-84afe5a7-1bf4-4b83-bf77-efbb003a30cd</guid>
+      <pubDate>Sat, 15 Aug 2026 20:04:53 +0000</pubDate>
+    </item>
+    <item>
+      <title>RapiSafe &lt;= 1.0.4 - Unauthenticated Arbitrary File Deletion via 'rsmfcf7_session' and 'file_name' Parameters</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/49f67bbb-cbd0-40ae-ae00-9cb72b041e22</link>
+      <description>RapiSafe's upload-removal AJAX handler allows unauthenticated attackers to delete arbitrary server files because it trusts client-supplied session and file-name values without adequate path validation. The handler's nonce is exposed in public JavaScript, so an attacker can obtain it from any Contact Form 7 page that renders a RapiSafe upload field. No patch is available, so the practical response is to remove or disable the plugin.
+
+Digest entry: issues/security/wfi-49f67bbb-cbd0-40ae-ae00-9cb72b041e22.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-49f67bbb-cbd0-40ae-ae00-9cb72b041e22</guid>
+      <pubDate>Sat, 15 Aug 2026 20:08:18 +0000</pubDate>
+    </item>
+    <item>
+      <title>6Storage Rentals &lt;= 2.27.0 - Unauthenticated Account Takeover via 'email' Parameter</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/94e987be-bdfc-4691-b250-2b7d7249df0a</link>
+      <description>The 6Storage Rentals plugin exposes an unauthenticated account takeover flaw in the `six_storage_create_wp_user()` AJAX handler. The handler is reachable without authentication and can establish a session for any WordPress user whose email address is supplied. This allows an attacker to log in as an existing account, including an administrator, without credentials.
+
+Digest entry: issues/security/wfi-94e987be-bdfc-4691-b250-2b7d7249df0a.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-94e987be-bdfc-4691-b250-2b7d7249df0a</guid>
+      <pubDate>Sat, 15 Aug 2026 20:12:09 +0000</pubDate>
+    </item>
+    <item>
+      <title>User Session Synchronizer &lt;= 1.4.0 - Unauthenticated Authentication Bypass to Account Takeover via 'ussync-key', 'ussync-token', and 'ussync-ref' Parameters</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/cbc32e6d-47c5-4050-ba77-5a54203fe56a</link>
+      <description>User Session Synchronizer's session synchronization handler can be abused by an unauthenticated attacker to impersonate any user, including administrators. The handler trusts attacker-controlled `ussync-key`, `ussync-token`, and `ussync-ref` request parameters without nonce, capability, or shared-secret validation. When an unregistered `ussync-key` is supplied, fallback behavior makes the encryption key and referer check predictable, allowing a crafted `ussync-ref` value to trigger `wp_set_auth_cookie()` for a matched user. No patch is reported, so affected installations should be treated as potentially compromised.
+
+Digest entry: issues/security/wfi-cbc32e6d-47c5-4050-ba77-5a54203fe56a.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-cbc32e6d-47c5-4050-ba77-5a54203fe56a</guid>
+      <pubDate>Sat, 15 Aug 2026 20:15:36 +0000</pubDate>
+    </item>
+    <item>
+      <title>User Profile Builder &lt;= 3.16.4 - Unauthenticated Authentication Bypass via Type Confusion to Administrator Account Takeover via 'username' Parameter</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/9f606fba-f779-42ea-a160-6c3b20dc5e79</link>
+      <description>User Profile Builder's registration flow calls `absint()` on the return value of `wp_insert_user()` *before* testing it with `is_wp_error()`. When core rejects a registration — specifically for a username of 61–70 characters — it returns a `WP_Error` object, but `absint()` has already coerced that object to the integer `1`, so the `is_wp_error()` guard never fires and execution continues as if user ID 1 had just been created. The plugin then issues its transient-backed autologin nonce bound to user ID 1, letting an unauthenticated visitor log in as the site's administrator. Fixed in 3.16.5; anything up to and including 3.16.4 is exploitable with a single crafted registration submission and no authentication.
+
+Digest entry: issues/security/wfi-9f606fba-f779-42ea-a160-6c3b20dc5e79.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-9f606fba-f779-42ea-a160-6c3b20dc5e79</guid>
+      <pubDate>Sat, 15 Aug 2026 20:21:20 +0000</pubDate>
+    </item>
+    <item>
+      <title>TrueBooker &lt;= 1.2.6 - Unauthenticated Account Takeover via Insecure Direct Object Reference in 'truebooker_wp_user_id' Parameter</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/f0d3f7cb-4974-4b0f-9658-1895e5966276</link>
+      <description>TrueBooker's `add_front_user_update()` AJAX handler is exposed to unauthenticated requests and trusts a caller-supplied `truebooker_wp_user_id` parameter, passing it straight to `wp_update_user()` with no authentication or ownership check. Any anonymous visitor can therefore rewrite the email address on any account on the site, including an administrator's. Once the email is changed, the attacker triggers WordPress's own lost-password flow and receives the reset link at their own inbox, completing a full administrator takeover. Fixed in 1.2.7; everything up to and including 1.2.6 is exploitable.
+
+Digest entry: issues/security/wfi-f0d3f7cb-4974-4b0f-9658-1895e5966276.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-f0d3f7cb-4974-4b0f-9658-1895e5966276</guid>
+      <pubDate>Sat, 15 Aug 2026 20:26:53 +0000</pubDate>
+    </item>
+    <item>
+      <title>Link Library &lt;= 7.9.4 - Unauthenticated Arbitrary File Deletion via link_url Parameter</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/41327dfa-db64-476a-a263-7bd4f69fb857</link>
+      <description>Link Library's link-deletion routine accepted an unvalidated file path from the `link_url` parameter, allowing unauthenticated arbitrary file deletion when the optional local-file deletion setting was enabled and an administrator permanently deleted a submitted link. The vulnerability can lead to remote code execution if a critical file such as `wp-config.php` is deleted. The patched release corrects the path validation in the deletion flow.
+
+Digest entry: issues/security/wfi-41327dfa-db64-476a-a263-7bd4f69fb857.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-41327dfa-db64-476a-a263-7bd4f69fb857</guid>
+      <pubDate>Sat, 15 Aug 2026 20:29:34 +0000</pubDate>
+    </item>
+    <item>
+      <title>Solace Extra &lt;= 1.6.0 - Missing Authorization to Unauthenticated Site Content Deletion and Unauthorized Demo Import via action-import-zip AJAX Action</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/4e427c4e-3e27-49e3-ba64-6241b430d5d8</link>
+      <description>Solace Extra has a missing capability check on the `import_zip()` AJAX handler, allowing low-privilege users to delete site content and trigger demo imports. The handler is registered for both authenticated and unauthenticated AJAX requests and relies only on an `ajax-nonce` nonce that is exposed on admin pages. This can wipe navigation menus, sidebar widgets, theme mods, and Elementor templates. The patched release addresses the missing authorization.
+
+Digest entry: issues/security/wfi-4e427c4e-3e27-49e3-ba64-6241b430d5d8.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-4e427c4e-3e27-49e3-ba64-6241b430d5d8</guid>
+      <pubDate>Sat, 15 Aug 2026 20:34:03 +0000</pubDate>
+    </item>
+    <item>
+      <title>Pods &lt;= 3.3.9 - Unauthenticated Privilege Escalation via Authorization Bypass to Admin Methods via 'pods_admin' AJAX Router</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/3628032a-3121-45a7-8a78-cfcd8ba6af2f</link>
+      <description>The Pods plugin had an unauthenticated privilege escalation vulnerability in its `pods_admin` AJAX router. Access checks were funneled through `pods_error()`, which under the JSON meta-box-loader compatibility path only wrote failures to the PHP error log and returned `false` instead of terminating the request. As a result, the method allowlist, nonce verification, login enforcement, and capability gate did not block requests, allowing an unauthenticated attacker to reach admin methods, escalate to Administrator, or overwrite any user's password. The fix restores request termination when authorization checks fail.
+
+Digest entry: issues/security/wfi-3628032a-3121-45a7-8a78-cfcd8ba6af2f.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-3628032a-3121-45a7-8a78-cfcd8ba6af2f</guid>
+      <pubDate>Sat, 15 Aug 2026 20:37:32 +0000</pubDate>
+    </item>
+    <item>
+      <title>Frontend Admin by DynamiApps &lt;= 3.29.9 - Unauthenticated Privilege Escalation via 'item_id' Parameter</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/01404fad-7b5a-485a-b557-c608fe25e6c9</link>
+      <description>The plugin's user-update AJAX flow could be abused to bypass a capability check and take over the default administrator account. The bypass occurred when a non-numeric `item_id` value caused the `edit_user` check to be skipped, allowing a signed ACF objects payload to be processed with a user ID that WordPress coerced to `1`. The fix closes the authorization gap in the user update path.
+
+Digest entry: issues/security/wfi-01404fad-7b5a-485a-b557-c608fe25e6c9.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-01404fad-7b5a-485a-b557-c608fe25e6c9</guid>
+      <pubDate>Sat, 15 Aug 2026 20:41:08 +0000</pubDate>
+    </item>
+    <item>
+      <title>ProSolution WP Client &lt;= 2.0.8 - Unauthenticated Arbitrary File Deletion via 'newfilename' and 'filename' Parameters</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/4e9698f0-b228-4f4e-838b-c0c0a193d675</link>
+      <description>ProSolution WP Client is vulnerable to unauthenticated arbitrary file deletion caused by insufficient path validation in `proSol_fileDeleteProcess`. An attacker can first call `proSol_fileUploadModalProcess` to poison their session with a path-traversal key, then call `proSol_fileDeleteProcess` using that key as the `filename` parameter. Both steps require only the publicly exposed frontend nonce. Deleting files such as `wp-config.php` can lead to remote code execution.
+
+Digest entry: issues/security/wfi-4e9698f0-b228-4f4e-838b-c0c0a193d675.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-4e9698f0-b228-4f4e-838b-c0c0a193d675</guid>
+      <pubDate>Sat, 15 Aug 2026 20:43:59 +0000</pubDate>
+    </item>
+    <item>
+      <title>ProSolution WP Client &lt;= 2.0.10 - Unauthenticated Arbitrary File Upload via Content-Disposition Header Filename Override</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/3c4a7aef-09ec-4d17-87d6-f507d64e0afa</link>
+      <description>The ProSolution WP Client plugin has an unauthenticated arbitrary file upload vulnerability in `proSol_handleFileUpload` that can lead to remote code execution. The handler trusts an attacker-controlled `Content-Disposition` header filename, which overrides the allow-listed multipart filename before the file is saved, and a post-save extension check does not delete the already-written file. The nonce required to reach the upload handler is publicly exposed via `wp_localize_script` on front-end pages rendering the job portal shortcode, allowing unauthenticated visitors to bypass that gating check. Sites should update to the patched release immediately.
+
+Digest entry: issues/security/wfi-3c4a7aef-09ec-4d17-87d6-f507d64e0afa.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-3c4a7aef-09ec-4d17-87d6-f507d64e0afa</guid>
+      <pubDate>Sat, 15 Aug 2026 20:47:20 +0000</pubDate>
     </item>
   </channel>
 </rss>

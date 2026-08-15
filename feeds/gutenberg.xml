@@ -7,79 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 06 Aug 2026 02:16:58 +0000</lastBuildDate>
-    <item>
-      <title>#79965: Add Expand, Minimize and Hide Notes modes to the Options (ellipsis) menu</title>
-      <link>https://github.com/WordPress/gutenberg/pull/79965</link>
-      <description>The Gutenberg editor now supports three display modes for floating collaboration notes: full threads, minimized avatar pills, and hidden. Users can switch between these modes via a new "Notes" group in the editor's Options (ellipsis) menu, and the canvas automatically collapses threads to pills or hides them entirely as the editor width narrows. This gives editors finer control over canvas real estate without losing access to threaded feedback.
-
-Digest entry: issues/gutenberg/gh-gutenberg-79965.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-79965</guid>
-      <pubDate>Thu, 23 Jul 2026 23:37:36 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80574: Combobox, Select, SelectControl: Add Group and GroupLabel</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80574</link>
-      <description>Adds `Group` and `GroupLabel` subcomponents to the `Combobox`, `Select`, and `SelectControl` UI primitives, enabling developers to render labeled option groups. This brings parity with the existing `Autocomplete` component, which already supported grouped items, and ensures consistent styling across the form primitive family.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80574.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80574</guid>
-      <pubDate>Thu, 23 Jul 2026 23:39:35 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80576: Notes: Register the inline note format at import time</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80576</link>
-      <description>Fixes a bug where inline note markers rendered as `core/unknown` formatting after reloading the editor or switching to the code editor. The `core/note` rich-text format was previously registered inside a `useEffect` in the `NotesSidebar` component, which executed too late for eager HTML-to-rich-text conversion. The fix moves the `registerFormatType` call to an import-time side effect in `@wordpress/editor`, ensuring the format is available before any rich-text fields parse or render.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80576.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80576</guid>
-      <pubDate>Thu, 23 Jul 2026 23:40:51 +0000</pubDate>
-    </item>
-    <item>
-      <title>#81193: Ensure device preview is always accurate when window is zoomed in</title>
-      <link>https://github.com/WordPress/gutenberg/pull/81193</link>
-      <description>Fixes a bug in the Gutenberg editor where browser zoom levels (e.g., 125% or 130%) cause the device preview iframe to render outside its intended media query breakpoint, breaking responsive styles. The fix insets the preview canvas width by up to one pixel to keep it safely within the breakpoint range, ensuring accurate device previews regardless of browser zoom.
-
-Digest entry: issues/gutenberg/gh-gutenberg-81193.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-81193</guid>
-      <pubDate>Wed, 05 Aug 2026 22:36:58 +0000</pubDate>
-    </item>
-    <item>
-      <title>#81210: Block Editor: Fix Select all freezing on large posts</title>
-      <link>https://github.com/WordPress/gutenberg/pull/81210</link>
-      <description>Fixes a severe performance regression in the Block Editor where pressing the Select All shortcut on large posts (e.g., 1,000+ blocks) caused the editor to freeze for up to 16.8 seconds. The change optimizes the `hasSelectedInnerBlock` deep-check selector and skips redundant parent-walking when blocks are not inside a section, reducing execution time to approximately 0.4 seconds.
-
-Digest entry: issues/gutenberg/gh-gutenberg-81210.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-81210</guid>
-      <pubDate>Wed, 05 Aug 2026 22:37:46 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80602: URLInput: Skip search requests while an IME composition is in progress</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80602</link>
-      <description>The `URLInput` component in the Block Editor now suppresses debounced `/wp/v2/search` requests while an Input Method Editor (IME) composition is active. Previously, every intermediate keystroke during CJK or Japanese typing triggered a search request; the fix tracks `compositionstart` and `compositionend` events, cancels pending updates during composition, and fires a single request with the confirmed value once composition ends. This eliminates redundant network traffic and aligns the Link UI with existing rich text composition handling.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80602.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80602</guid>
-      <pubDate>Wed, 05 Aug 2026 22:38:53 +0000</pubDate>
-    </item>
-    <item>
-      <title>#80027: Blocks: Support static block templates in block type settings</title>
-      <link>https://github.com/WordPress/gutenberg/pull/80027</link>
-      <description>Blocks can now declare `template` and `templateInsertUpdatesSelection` directly in the settings object passed to `registerBlockType()` instead of passing them as props to `&lt;InnerBlocks&gt;` or `useInnerBlocksProps`. This shifts template resolution from post-mount synchronization to pre-dispatch insertion, eliminating Real-Time Collaboration (RTC) duplication where multiple connected editors would each independently insert the same template, resulting in N copies of a block.
-
-Digest entry: issues/gutenberg/gh-gutenberg-80027.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-80027</guid>
-      <pubDate>Wed, 05 Aug 2026 22:39:43 +0000</pubDate>
-    </item>
-    <item>
-      <title>#81159: List View: Split the context and drop dead props to cut re-renders on expand and collapse</title>
-      <link>https://github.com/WordPress/gutenberg/pull/81159</link>
-      <description>Splits the monolithic `ListViewContext` into three isolated contexts (`ListViewContext`, `ListViewTreeStateContext`, `ListViewInsertedBlockContext`) and removes unused props to prevent unnecessary re-renders in the block editor's List View. By separating static configuration from frequently updating expansion and drag state, `React.memo()` can now effectively guard individual list rows when branches are expanded or collapsed.
-
-Digest entry: issues/gutenberg/gh-gutenberg-81159.md · Source: WordPress/gutenberg</description>
-      <guid isPermaLink="false">gh-gutenberg-81159</guid>
-      <pubDate>Wed, 05 Aug 2026 22:40:43 +0000</pubDate>
-    </item>
+    <lastBuildDate>Sat, 15 Aug 2026 21:39:39 +0000</lastBuildDate>
     <item>
       <title>#80769: RTC: Disable custom autosave controller when RTC is disabled</title>
       <link>https://github.com/WordPress/gutenberg/pull/80769</link>
@@ -907,6 +835,78 @@ Digest entry: issues/gutenberg/gh-gutenberg-80651.md · Source: WordPress/gutenb
 Digest entry: issues/gutenberg/gh-gutenberg-80659.md · Source: WordPress/gutenberg</description>
       <guid isPermaLink="false">gh-gutenberg-80659</guid>
       <pubDate>Thu, 06 Aug 2026 00:12:21 +0000</pubDate>
+    </item>
+    <item>
+      <title>#81618: Admin UI: Fix the primary color of the Fresh admin color scheme</title>
+      <link>https://github.com/WordPress/gutenberg/pull/81618</link>
+      <description>The `fresh` entry in `@wordpress/admin-ui`'s admin theme color map was seeded with `#3858e9` — the Modern scheme's primary — so users on the default Fresh admin color scheme saw the Modern accent throughout the block editors instead of the classic WordPress blue. This PR changes that single map entry to `#007cba`, matching what Fresh's stylesheets have always produced. The regression surfaced because Fresh has no `body.admin-color-fresh` rule in the `wordpress-admin-schemes()` Sass mixin, so its accent resolves to the `:root` fallback in `_default-custom-properties.scss` (`#007cba`), while `ThemeProvider` emits `--wp-admin-theme-color` as an inline style that overrode that fallback with the wrong seeded value.
+
+Digest entry: issues/gutenberg/gh-gutenberg-81618.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-81618</guid>
+      <pubDate>Sat, 15 Aug 2026 15:41:42 +0000</pubDate>
+    </item>
+    <item>
+      <title>#81541: Media editor: keep initial modal focus on the dialog frame</title>
+      <link>https://github.com/WordPress/gutenberg/pull/81541</link>
+      <description>The "Edit media" modal was stealing initial focus away from its dialog frame and dropping it onto the crop area once the image finished loading. `MediaEditorCanvas` passed `focusOnMount={ focusOnMount &amp;&amp; status === 'loaded' }` down to `Cropper`, and because that gate flips asynchronously — after `Modal` has already focused the dialog frame — focus landed mid-content on the `role="group"` "Crop area", skipping the dialog title and header actions, and could yank focus away from whatever control the user had tabbed to while the image streamed in. The fix removes the `focusOnMount` prop from `MediaEditorCanvas` entirely, so the modal keeps its default `Modal` focus behaviour and the crop area is only reachable by tabbing to it.
+
+Digest entry: issues/gutenberg/gh-gutenberg-81541.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-81541</guid>
+      <pubDate>Sat, 15 Aug 2026 15:47:19 +0000</pubDate>
+    </item>
+    <item>
+      <title>#81457: Theme: Avoid root-level relational selectors</title>
+      <link>https://github.com/WordPress/gutenberg/pull/81457</link>
+      <description>The `@wordpress/theme` package forwarded a root `ThemeProvider`'s `cornerRadius` preset to `&lt;html&gt;` using relational CSS — `:root:has([data-wpds-root-provider="true"][data-wpds-corner-radius="…"])` — which showed up as repeated relational matching in style-recalculation profiles during block selection. This PR removes those `:has()` selectors: `ThemeProvider`'s existing root layout effect now mirrors `data-wpds-root-provider="true"` and `data-wpds-corner-radius="&lt;preset&gt;"` directly onto the owning document's `documentElement`, and the generated token CSS matches with a plain compound selector `:root[data-wpds-root-provider="true"][data-wpds-corner-radius="…"]` at the same specificity. Token resolution for root and nested providers is unchanged; the win is purely in selector-matching cost. Measured at roughly 5% improvement on block-selection style recalculation in the reporter's re-test.
+
+Digest entry: issues/gutenberg/gh-gutenberg-81457.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-81457</guid>
+      <pubDate>Sat, 15 Aug 2026 15:53:01 +0000</pubDate>
+    </item>
+    <item>
+      <title>#80852: Global Styles: Expose additional elements in Typography and Colors</title>
+      <link>https://github.com/WordPress/gutenberg/pull/80852</link>
+      <description>The `cite`, `textInput`, and `select` theme.json elements — already supported by theme.json parsing and CSS generation, but invisible in the editor — are now surfaced in the Global Styles UI under **Typography → Elements** and **Colors → Elements** as "Citations", "Inputs", and "Selects". Users can set font and text/background color for quote and pullquote citations, text inputs (Search block, comment form fields), and select dropdowns (Archives, Categories) without hand-editing theme.json. To make this possible the shared `ColorPanel` in `@wordpress/block-editor` gained a new `additionalElements` prop so the Global Styles colors screen can inject element rows beyond the built-in Button/Heading/Caption/Link set. No theme.json schema, CSS generation, or PHP behavior changed — this is purely UI exposure of existing element support.
+
+Digest entry: issues/gutenberg/gh-gutenberg-80852.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-80852</guid>
+      <pubDate>Sat, 15 Aug 2026 16:02:29 +0000</pubDate>
+    </item>
+    <item>
+      <title>#81532: Block editor: add an inserter to the parent selector</title>
+      <link>https://github.com/WordPress/gutenberg/pull/81532</link>
+      <description>The block parent selector in the editor toolbar now carries a second button — a plus that inserts a sibling block *after* the currently selected child, without first having to select the parent. Previously the only way to append a sibling from inside a nested block was to know that Enter does it, or to select the parent and hunt for its corner appender or custom toolbar inserter. `BlockParentSelector` now renders the parent button and a standard `Inserter` together inside a `ToolbarGroup`, and Column's default appender was removed as a consequence. This fixes gutenberg#47200 (the long-standing "how do I add another gallery image" complaint) and applies to every block with inner blocks, not just the ones that shipped a bespoke appender.
+
+Digest entry: issues/gutenberg/gh-gutenberg-81532.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-81532</guid>
+      <pubDate>Sat, 15 Aug 2026 16:12:25 +0000</pubDate>
+    </item>
+    <item>
+      <title>#81631: Env: Fall back to cached docker images when the registry is unreachable</title>
+      <link>https://github.com/WordPress/gutenberg/pull/81631</link>
+      <description>wp-env now falls back to locally cached Docker images when the Docker registry cannot be reached during `wp-env start`. The previously unguarded image-pull step no longer aborts startup when the registry is unavailable. This fixes a hard failure that could occur when configuration changes or `--update` is used while the registry is down but cached images already exist.
+
+Digest entry: issues/gutenberg/gh-gutenberg-81631.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-81631</guid>
+      <pubDate>Sat, 15 Aug 2026 16:16:02 +0000</pubDate>
+    </item>
+    <item>
+      <title>#78909: PHP-Only blocks: forward current post ID to server render</title>
+      <link>https://github.com/WordPress/gutenberg/pull/78909</link>
+      <description>PHP-only blocks (server-registered blocks using `supports.autoRegister`, which get an auto-generated `edit` backed by `useServerSideRender`) were previewed in the editor without any post context, so a `render_callback` calling `get_the_ID()` or otherwise relying on the post being edited rendered against the wrong post — or none at all. This change makes the auto-generated `edit` pass the current `postId` block context to the server render request as a `post_id` URL query argument, matching what the older `ServerSideRender` component has always done. It also forces `postId` into the block type's `usesContext` so the value is actually available, regardless of what the PHP registration declared. Editor previews of PHP-only blocks now match front-end output for post-dependent render callbacks.
+
+Digest entry: issues/gutenberg/gh-gutenberg-78909.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-78909</guid>
+      <pubDate>Sat, 15 Aug 2026 16:27:38 +0000</pubDate>
+    </item>
+    <item>
+      <title>#77750: Block Editor: Fix blockGap fallback handling for nested var() fallback values</title>
+      <link>https://github.com/WordPress/gutenberg/pull/77750</link>
+      <description>Layout gap fallback resolution in the block editor no longer splits a processed gap string on whitespace, which produced malformed CSS when `styles.spacing.blockGap` in `theme.json` used nested `var()` fallbacks such as `var(--a, var(--b, 1.2rem))`. Splitting on spaces treated the whitespace *inside* the nested `var()` expression as a row/column separator, so editing row-gap or column-gap on a Columns (flex) or Grid block emitted a gap value with unbalanced parentheses. The flex and grid layout definitions now read the row/column values structurally via `getGapBoxControlValueFromStyle()` and resolve them through `getSpacingPresetCssVar()`. Fixes Gutenberg issue #76896.
+
+Digest entry: issues/gutenberg/gh-gutenberg-77750.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-77750</guid>
+      <pubDate>Sat, 15 Aug 2026 16:33:30 +0000</pubDate>
     </item>
   </channel>
 </rss>

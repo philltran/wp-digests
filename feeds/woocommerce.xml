@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 06 Aug 2026 02:16:58 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 15 Aug 2026 21:39:39 +0000</lastBuildDate>
     <item>
       <title>#65441: [dev] Update .ai/skills/woocommerce-performance/options-cache-priming.md</title>
       <link>https://github.com/woocommerce/woocommerce/pull/65441</link>
@@ -286,6 +286,15 @@ Digest entry: issues/woocommerce/gh-woocommerce-66321.md · Source: woocommerce/
 Digest entry: issues/woocommerce/gh-woocommerce-67168.md · Source: woocommerce/woocommerce</description>
       <guid isPermaLink="false">gh-woocommerce-67168</guid>
       <pubDate>Thu, 06 Aug 2026 00:13:55 +0000</pubDate>
+    </item>
+    <item>
+      <title>#67657: Deprecate product brand recount methods</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/67657</link>
+      <description>Two public methods on `WC_Brands` are now deprecated as of WooCommerce 11.2.0: `recount_after_stock_change()` is superseded by the global `wc_recount_after_stock_change()`, and `recount_all_brands()` by `wc_recount_all_terms()`. Both methods keep their signatures and remain callable, but they now emit a `wc_deprecated_function()` notice and delegate straight to the shared term-recount functions instead of carrying their own `product_brand`-specific implementation. This is the cleanup half of PR #67630, which folded product-brand counting into WooCommerce's shared term recount path and left these two methods with no internal callers. Carries the `developer advisory` label and ships a `minor`/`update` changelog entry.
+
+Digest entry: issues/woocommerce/gh-woocommerce-67657.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-67657</guid>
+      <pubDate>Sat, 15 Aug 2026 17:00:27 +0000</pubDate>
     </item>
   </channel>
 </rss>

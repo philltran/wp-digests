@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 06 Aug 2026 02:16:58 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 15 Aug 2026 21:39:39 +0000</lastBuildDate>
     <item>
       <title>Dev Chat Agenda – June 3, 2026</title>
       <link>https://make.wordpress.org/core/2026/06/03/dev-chat-agenda-june-03-2026/</link>
@@ -718,6 +718,51 @@ Digest entry: issues/dev-notes/make-core-124593.md · Source: Make WordPress Cor
 Digest entry: issues/dev-notes/make-core-124768.md · Source: Make WordPress Core</description>
       <guid isPermaLink="false">make-core-124768</guid>
       <pubDate>Thu, 06 Aug 2026 01:25:47 +0000</pubDate>
+    </item>
+    <item>
+      <title>WordPress Contributor Toolkit 1.0: A smoother workflow for your first Core contribution</title>
+      <link>https://make.wordpress.org/core/2026/08/14/wordpress-contributor-toolkit-1-0-a-smoother-workflow-for-your-first-core-contribution/</link>
+      <description>WordPress Contributor Toolkit 1.0 is an experimental desktop app that guides first-time contributors through setting up a full `wordpress-develop` environment and completing a Core contribution. It bundles the required Git, Node.js, and npm tooling, so contributors do not need to install Git, Node.js, npm, or Docker. The 1.0 workflow covers linking a Trac ticket, reviewing existing pull requests and patches, applying and testing work, creating a diff or pull request, and updating the site to latest trunk. It is available for Windows, macOS on Apple Silicon, and Linux.
+
+Digest entry: issues/dev-notes/make-core-125508.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-125508</guid>
+      <pubDate>Sat, 15 Aug 2026 18:44:53 +0000</pubDate>
+    </item>
+    <item>
+      <title>Accessibility Improvements in WordPress 7.1</title>
+      <link>https://make.wordpress.org/core/2026/08/13/accessibility-improvements-in-wordpress-7-1/</link>
+      <description>WordPress 7.1's accessibility work lands 45 fixes and enhancements in core plus 43 in the editor, with three items that carry developer-visible consequences. Core gains a standardized mechanism for accessible tooltips (#51006), already applied to metabox order buttons (#50921) and the login "Remember Me" control (#55343). List tables now treat the post title cell as the row header instead of the selection checkbox (#32892, #65743), and KSES learns to allow invoker command attributes (#64576) and the `autofocus` attribute on `dialog` elements (#65491). The release also ships a documented, known accessibility regression: the media library switches from a "Load more" button to infinite scroll by default, with an opt-out per user and via the existing `media_library_infinite_scrolling` filter. The block editor adds new Tabs (#80163) and Playlist (#80203) blocks and a decorative-image toggle on the Image block (#78064).
+
+Digest entry: issues/dev-notes/make-core-125420.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-125420</guid>
+      <pubDate>Sat, 15 Aug 2026 18:50:41 +0000</pubDate>
+    </item>
+    <item>
+      <title>WordPress 7.2 Call for Volunteers</title>
+      <link>https://make.wordpress.org/core/2026/08/12/wordpress-7-2-call-for-volunteers/</link>
+      <description>The 7.2 release cycle has entered planning, with a proposed final release date of Wednesday, December 9, 2026 and a milestone schedule running from alpha through dry run. The post calls for volunteers to join a smaller, focused Release Squad and to coordinate with Make Team Reps. It matters to teams planning upgrades, testing, and release-related work because it sets the expected 7.2 timeline and contribution path.
+
+Digest entry: issues/dev-notes/make-core-125465.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-125465</guid>
+      <pubDate>Sat, 15 Aug 2026 18:53:27 +0000</pubDate>
+    </item>
+    <item>
+      <title>WordPress 7.1 Release Candidate 3</title>
+      <link>https://make.wordpress.org/core/2026/08/12/wordpress-7-1-release-candidate-3/</link>
+      <description>The third release candidate for WordPress 7.1 is available for testing and contains more than 90 updates and fixes since the first release candidate, including 37 Editor changes and 57 Core changes. It is the latest pre-release milestone before the scheduled final release on August 19, 2026, and it marks the hard string freeze for the 7.1 release cycle. Developers should evaluate it on non-production sites and report issues to Trac or the Alpha/Beta support forums.
+
+Digest entry: issues/dev-notes/make-core-125449.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-125449</guid>
+      <pubDate>Sat, 15 Aug 2026 18:56:42 +0000</pubDate>
+    </item>
+    <item>
+      <title>What’s new in Gutenberg 23.7? (05 August)</title>
+      <link>https://make.wordpress.org/core/2026/08/06/whats-new-in-gutenberg-23-7-05-august/</link>
+      <description>Gutenberg 23.7 is a consolidation release: most of the cycle went into visual editor fixes rather than new surface area. The Gallery block's dynamic mode — new in 23.6 — gets its ambiguous "Convert to images" toolbar button renamed to "Detach" with an explanatory modal (#80727), and dynamic-mode conversion now collapses into a single undo level (#80665). The experimental Global Styles inheritance UI, which reflects inherited values in block inspector controls, has been moved behind an opt-in toggle on the Gutenberg Experiments screen (#80815). Alongside that: a new `responsiveEditingEnabled` editor setting, `editableRoot` demoted from a public block support to a private block setting, and `Group`/`GroupLabel` subcomponents added across Combobox, Select and SelectControl.
+
+Digest entry: issues/dev-notes/make-core-125396.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-125396</guid>
+      <pubDate>Sat, 15 Aug 2026 19:05:36 +0000</pubDate>
     </item>
   </channel>
 </rss>

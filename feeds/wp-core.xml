@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 06 Aug 2026 02:16:58 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 15 Aug 2026 21:39:39 +0000</lastBuildDate>
     <item>
       <title>REST API: Allow-list ability schema response keywords</title>
       <link>https://github.com/WordPress/wordpress-develop/commit/da7588be089fbaeb05ecb4d79dca3cf11815698d</link>
@@ -385,6 +385,15 @@ Digest entry: issues/wp-core/gh-wordpress-develop-2583553006.md · Source: WordP
 Digest entry: issues/wp-core/gh-wordpress-develop-58b28ff788.md · Source: WordPress/wordpress-develop</description>
       <guid isPermaLink="false">gh-wordpress-develop-58b28ff788</guid>
       <pubDate>Thu, 06 Aug 2026 00:23:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>REST API: Bind finalize sub-size file names to their sideload.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/3767a6c06a1695e45c2f4730cc353f42aeb4b730</link>
+      <description>The REST attachments controller's `finalize` endpoint previously stored whatever sub-size file names a client sent, without checking that a sideload had actually produced them for that attachment. Because those names are later resolved against the attachment's upload directory and then read or deleted, a finalize request could record — and later cause core to operate on — a file the upload never created. This changeset makes `sideload_item()` record every file name it generates under a new `_wp_sideloaded_file` post meta key, and makes `finalize_item()` accept a name only if a prior sideload recorded it, it is the attachment's own attached file, or it is already present in the attachment's metadata; anything else fails with `rest_invalid_sub_size_file` (HTTP 400) before any metadata is written. Sideloads are also now pinned to the attachment's own uploads subdirectory via an `upload_dir` filter, so generated names live in the directory they are later resolved against, and the `image_size` / `sub_sizes` schemas are tightened considerably.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-3767a6c06a.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-3767a6c06a</guid>
+      <pubDate>Sat, 15 Aug 2026 17:13:38 +0000</pubDate>
     </item>
   </channel>
 </rss>
