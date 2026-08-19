@@ -7,205 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 15 Aug 2026 21:39:39 +0000</lastBuildDate>
-    <item>
-      <title>REST API: Bound the size of media sideloaded from a URL.</title>
-      <link>https://github.com/WordPress/wordpress-develop/commit/5f5d96bd4b0ad25b803dc507c08b5336fff926ed</link>
-      <description>The REST API media creation endpoint now enforces the site's maximum upload size when sideloading files from a remote URL. Previously, single-site installations had no ceiling on this path because `check_upload_size()` skips validation when `! is_multisite()`. This fix caps the remote download at `wp_max_upload_size()` and returns a `400` error if the fetched file exceeds the limit, preventing unbounded disk writes and memory exhaustion.
-
-Digest entry: issues/wp-core/gh-wordpress-develop-5f5d96bd4b.md · Source: WordPress/wordpress-develop</description>
-      <guid isPermaLink="false">gh-wordpress-develop-5f5d96bd4b</guid>
-      <pubDate>Thu, 06 Aug 2026 00:17:03 +0000</pubDate>
-    </item>
-    <item>
-      <title>HTML API: Respect enqueued updates in `get_attribute_names_with_prefix()`.</title>
-      <link>https://github.com/WordPress/wordpress-develop/commit/ca644847def89cb8159831332377bc9b13fc9f41</link>
-      <description>`WP_HTML_Tag_Processor::get_attribute_names_with_prefix()` now correctly reflects pending attribute and class modifications before `get_updated_html()` is called. Previously, the method only inspected the current `$this-&gt;attributes` array, returning stale results that omitted newly added attributes or included ones queued for removal. This fix aligns the method with the processor’s internal update queue, ensuring immediate consistency after calls like `set_attribute()`, `remove_attribute()`, or `add_class()`.
-
-Digest entry: issues/wp-core/gh-wordpress-develop-ca644847de.md · Source: WordPress/wordpress-develop</description>
-      <guid isPermaLink="false">gh-wordpress-develop-ca644847de</guid>
-      <pubDate>Thu, 06 Aug 2026 00:18:53 +0000</pubDate>
-    </item>
-    <item>
-      <title>REST API: Restore the global post after preparing a revision.</title>
-      <link>https://github.com/WordPress/wordpress-develop/commit/593166d816dbec24a7a0780fa7b675e32e504b7b</link>
-      <description>The REST API revision controller now restores the global `$post` after preparing a revision response. Previously, `WP_REST_Revisions_Controller::prepare_item_for_response()` called `setup_postdata()` without restoring the original global, causing the modified `$post` to leak into the rest of the request. This bug could cause the block editor to initialize with the wrong post when preloading autosaves. The fix captures the previous global post, restores it on all code paths, and introduces a dedicated `restore_post_data()` helper.
-
-Digest entry: issues/wp-core/gh-wordpress-develop-593166d816.md · Source: WordPress/wordpress-develop</description>
-      <guid isPermaLink="false">gh-wordpress-develop-593166d816</guid>
-      <pubDate>Thu, 06 Aug 2026 00:20:07 +0000</pubDate>
-    </item>
-    <item>
-      <title>Security: Update `composer/ca-bundle` to version `1.5.13`.</title>
-      <link>https://github.com/WordPress/wordpress-develop/commit/54ea90b6cee0154da7897ef50f06d4f546d05d3b</link>
-      <description>WordPress core updated the bundled `composer/ca-bundle` dependency from `1.5.12` to `1.5.13`, synchronizing the included CA certificate store with Mozilla’s latest root certificates. This update removes two deprecated root certificates (`Entrust Root Certification Authority` and `SecureSign Root CA12`) to maintain accurate TLS validation for outbound HTTP requests and address upstream security advisories.
-
-Digest entry: issues/wp-core/gh-wordpress-develop-54ea90b6ce.md · Source: WordPress/wordpress-develop</description>
-      <guid isPermaLink="false">gh-wordpress-develop-54ea90b6ce</guid>
-      <pubDate>Thu, 06 Aug 2026 00:21:13 +0000</pubDate>
-    </item>
-    <item>
-      <title>REST API: Pass the missing `$is_update` param to the `wp_creating_autosave` action.</title>
-      <link>https://github.com/WordPress/wordpress-develop/commit/258355300666058b0851f4bfd50b9a596c2cd22c</link>
-      <description>The `wp_creating_autosave` action now correctly receives its second `$is_update` parameter when triggered via the REST API. Since WordPress 6.4.0, this parameter has been documented but was omitted in `WP_REST_Autosaves_Controller::create_post_autosave()`, which could trigger fatal errors in callbacks expecting the argument. This commit aligns the REST API autosave creation path with the legacy `wp_create_post_autosave()` function by passing `true` to indicate an update operation.
-
-Digest entry: issues/wp-core/gh-wordpress-develop-2583553006.md · Source: WordPress/wordpress-develop</description>
-      <guid isPermaLink="false">gh-wordpress-develop-2583553006</guid>
-      <pubDate>Thu, 06 Aug 2026 00:22:07 +0000</pubDate>
-    </item>
-    <item>
-      <title>REST API: Enforce multisite upload limits when sideloading media from a URL.</title>
-      <link>https://github.com/WordPress/wordpress-develop/commit/58b28ff78834dbec24a29acc2def1753361aadcf</link>
-      <description>The REST API attachments controller now enforces multisite upload limits when creating media via the URL sideload path. Previously, `create_item_from_url()` bypassed `check_upload_size()`, allowing files that exceeded the network-wide maximum file size or a site's upload quota to be uploaded. The fix adds the missing size validation before calling `media_handle_sideload()`, ensuring parity with multipart and raw-body upload endpoints.
-
-Digest entry: issues/wp-core/gh-wordpress-develop-58b28ff788.md · Source: WordPress/wordpress-develop</description>
-      <guid isPermaLink="false">gh-wordpress-develop-58b28ff788</guid>
-      <pubDate>Thu, 06 Aug 2026 00:23:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>WordPress 7.1 Release Candidate Phase</title>
-      <link>https://make.wordpress.org/core/2026/08/05/wordpress-7-1-release-candidate-phase/</link>
-      <description>WordPress 7.1 has entered the Release Candidate phase, triggering a set of release management policies that restrict trunk commits, enforce a hard string freeze, and limit milestone tickets to regressions and test suite expansions. Branching is temporarily delayed to allow GitHub Actions improvements to land, meaning all trunk commits now require double sign-off by core committers until the 7.1 branch is created.
-
-Digest entry: issues/dev-notes/make-core-125339.md · Source: Make WordPress Core</description>
-      <guid isPermaLink="false">make-core-125339</guid>
-      <pubDate>Thu, 06 Aug 2026 01:02:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>WordPress 7.1 Field Guide</title>
-      <link>https://make.wordpress.org/core/2026/08/05/wordpress-7-1-field-guide/</link>
-      <description>WordPress 7.1 introduces a coordinated set of developer-facing changes that modernize media workflows, enforce an iframed editor environment, and expand extensibility through new APIs. Key additions include client-side media processing, standardized SVG icon registration, and new block supports for background gradients and minimum width. These shifts improve editor consistency and REST API capabilities but require plugin authors to audit cross-frame JavaScript interactions and update legacy dependency expectations.
-
-Digest entry: issues/dev-notes/make-core-124988.md · Source: Make WordPress Core</description>
-      <guid isPermaLink="false">make-core-124988</guid>
-      <pubDate>Thu, 06 Aug 2026 01:03:15 +0000</pubDate>
-    </item>
-    <item>
-      <title>The notify_post_author filter now has the final say on post author notifications</title>
-      <link>https://make.wordpress.org/core/2026/08/05/the-notify_post_author-filter-now-has-the-final-say-on-post-author-notifications/</link>
-      <description>WordPress 7.1 changes the execution order in `wp_new_comment_notify_postauthor()` so that the `notify_post_author` filter runs after the comment’s approval status is evaluated. Previously, the filter received a default based solely on the `comments_notify` option and its return value was silently ignored for unapproved comments. Now, the filter receives an accurate default reflecting approval status, and its return value definitively controls whether the author notification is sent.
-
-Digest entry: issues/dev-notes/make-core-125358.md · Source: Make WordPress Core</description>
-      <guid isPermaLink="false">make-core-125358</guid>
-      <pubDate>Thu, 06 Aug 2026 01:04:08 +0000</pubDate>
-    </item>
-    <item>
-      <title>Filtering registered abilities with wp_get_abilities() in WordPress 7.1</title>
-      <link>https://make.wordpress.org/core/2026/08/05/filtering-registered-abilities-with-wp_get_abilities-in-wordpress-7-1/</link>
-      <description>WordPress 7.1 extends `wp_get_abilities()` to accept an optional `$args` array, enabling built-in filtering of registered abilities by `category`, `namespace`, or `meta` conditions, alongside custom per-item and result-processing callbacks. This replaces the previous pattern where consumers had to manually `array_filter()` the complete registry, consolidating discovery logic into a single shared pipeline. Two new global filters, `wp_get_abilities_item_include` and `wp_get_abilities_result`, allow plugins to influence ability retrieval across the entire site.
-
-Digest entry: issues/dev-notes/make-core-125319.md · Source: Make WordPress Core</description>
-      <guid isPermaLink="false">make-core-125319</guid>
-      <pubDate>Thu, 06 Aug 2026 01:05:17 +0000</pubDate>
-    </item>
-    <item>
-      <title>Responsive block styles and configurable viewports in WordPress 7.1</title>
-      <link>https://make.wordpress.org/core/2026/08/05/responsive-block-styles-and-configurable-viewports-in-wordpress-7-1/</link>
-      <description>WordPress 7.1 introduces responsive style states for blocks, allowing developers and site builders to define distinct `@mobile` and `@tablet` styles alongside the base desktop style. These responsive rules can be applied globally via `theme.json` or directly on individual block instances, and themes can now customize the breakpoint thresholds using the new `settings.viewport` configuration. This eliminates the need for custom media queries or JavaScript to handle viewport-specific styling in the block editor and on the front end.
-
-Digest entry: issues/dev-notes/make-core-124535.md · Source: Make WordPress Core</description>
-      <guid isPermaLink="false">make-core-124535</guid>
-      <pubDate>Thu, 06 Aug 2026 01:06:14 +0000</pubDate>
-    </item>
-    <item>
-      <title>Pseudo and custom style states in WordPress 7.1</title>
-      <link>https://make.wordpress.org/core/2026/08/05/pseudo-and-custom-style-states-in-wordpress-7-1/</link>
-      <description>WordPress 7.1 introduces native support for styling pseudo states (`:hover`, `:focus`, `:focus-visible`, `:active`) and custom states (`-current`) directly in `theme.json` and block instance attributes. This allows theme authors and site editors to define state-specific styles for blocks like Button and Navigation Link without writing custom CSS. The feature also adds an editor setting to control whether users can edit these states in the block inspector and Global Styles UI.
-
-Digest entry: issues/dev-notes/make-core-125119.md · Source: Make WordPress Core</description>
-      <guid isPermaLink="false">make-core-125119</guid>
-      <pubDate>Thu, 06 Aug 2026 01:07:09 +0000</pubDate>
-    </item>
-    <item>
-      <title>A unified public exposure flag for Abilities in WordPress 7.1</title>
-      <link>https://make.wordpress.org/core/2026/08/04/a-unified-public-exposure-flag-for-abilities-in-wordpress-7-1/</link>
-      <description>WordPress 7.1 introduces a unified `meta['public']` flag for the Abilities API to signal that an ability is intended for external client consumption. This replaces the need to set channel-specific exposure flags like `show_in_rest` for every new integration, establishing a single source of truth for discoverability while preserving granular overrides. The change streamlines ability registration for REST, MCP adapters, and future AI/agent integrations without altering existing behavior or API signatures.
-
-Digest entry: issues/dev-notes/make-core-125285.md · Source: Make WordPress Core</description>
-      <guid isPermaLink="false">make-core-125285</guid>
-      <pubDate>Thu, 06 Aug 2026 01:08:02 +0000</pubDate>
-    </item>
-    <item>
-      <title>Miscellaneous Editor Changes in WordPress 7.1</title>
-      <link>https://make.wordpress.org/core/2026/08/04/miscellaneous-block-editor-changes-in-wordpress-7-1/</link>
-      <description>WordPress 7.1 introduces a cluster of editor refinements that stabilize legacy APIs, fix client-side pagination behavior, and adjust CSS specificity for block-level presets. The Navigation block no longer forces font-size inheritance on child items, block transforms can now target specific variations, and the @wordpress/nux and @wordpress/reusable-blocks packages are deprecated in favor of modern alternatives. These changes improve layout predictability, simplify programmatic block manipulation, and clean up the client-side editor API surface.
-
-Digest entry: issues/dev-notes/make-core-124861.md · Source: Make WordPress Core</description>
-      <guid isPermaLink="false">make-core-124861</guid>
-      <pubDate>Thu, 06 Aug 2026 01:09:23 +0000</pubDate>
-    </item>
-    <item>
-      <title>Defensive Data Design</title>
-      <link>https://make.wordpress.org/core/2026/08/04/defensive-data-design/</link>
-      <description>This Make WordPress Core editorial outlines a strategic design philosophy for future WordPress development, emphasizing reversible actions, safe defaults, and plain-language error handling. Rather than introducing a specific code change, it establishes guiding principles for how core should behave as AI agents and automated workflows become more prevalent. The post advocates for making destructive actions difficult, publishing workflows cautious, and error states highly legible.
-
-Digest entry: issues/dev-notes/make-core-125273.md · Source: Make WordPress Core</description>
-      <guid isPermaLink="false">make-core-125273</guid>
-      <pubDate>Thu, 06 Aug 2026 01:11:19 +0000</pubDate>
-    </item>
-    <item>
-      <title>Introducing name and informational tool tips in WordPress 7.1</title>
-      <link>https://make.wordpress.org/core/2026/08/03/introducing-name-and-informational-tool-tips-in-wordpress-7-1/</link>
-      <description>WordPress 7.1 introduces two new PHP functions, `wp_get_tooltip()` and `wp_get_toggletip()`, to render accessible tooltips and informational toggles in the administration interface. These functions address accessibility gaps for icon-only controls and complex UI elements where persistent text labels or `aria-describedby` attributes are impractical. Core now uses them for post meta box controls and the login screen’s “Remember Me” checkbox, providing a standardized, accessible pattern for plugin and theme developers to adopt.
-
-Digest entry: issues/dev-notes/make-core-125207.md · Source: Make WordPress Core</description>
-      <guid isPermaLink="false">make-core-125207</guid>
-      <pubDate>Thu, 06 Aug 2026 01:12:12 +0000</pubDate>
-    </item>
-    <item>
-      <title>Post list tables row headers changed</title>
-      <link>https://make.wordpress.org/core/2026/08/03/post-list-tables-row-headers-changed/</link>
-      <description>In WordPress 7.1, the primary row header (`&lt;th scope="row"&gt;`) in post list tables moves from the checkbox column to the post title column. This structural shift ensures screen readers consistently announce the post name as the row identifier, rather than a checkbox that may be absent for non-editable posts. The change improves accessibility compliance and aligns list table semantics with standard HTML table practices.
-
-Digest entry: issues/dev-notes/make-core-124832.md · Source: Make WordPress Core</description>
-      <guid isPermaLink="false">make-core-124832</guid>
-      <pubDate>Thu, 06 Aug 2026 01:13:08 +0000</pubDate>
-    </item>
-    <item>
-      <title>Iframed Editor Changes in WordPress 7.1</title>
-      <link>https://make.wordpress.org/core/2026/08/03/iframed-editor-changes-in-wordpress-7-1/</link>
-      <description>WordPress 7.1 removes the conditional logic that previously toggled the post editor between iframed and non-iframed modes, making the iframe environment permanent regardless of theme type or block API versions. This aligns the post editor with the site, template, and device preview editors, which have been fully iframed for several releases. The change eliminates runtime mode-switching and ensures a consistent, isolated execution context for block scripts and styles.
-
-Digest entry: issues/dev-notes/make-core-124614.md · Source: Make WordPress Core</description>
-      <guid isPermaLink="false">make-core-124614</guid>
-      <pubDate>Thu, 06 Aug 2026 01:14:02 +0000</pubDate>
-    </item>
-    <item>
-      <title>JSON Schema preparation for client compatibility in WordPress 7.1</title>
-      <link>https://make.wordpress.org/core/2026/07/31/json-schema-preparation-for-client-compatibility-in-wordpress-7-1/</link>
-      <description>WordPress 7.1 introduces `wp_prepare_json_schema_for_client()`, a new helper that converts WordPress-internal JSON schemas into portable, client-facing JSON Schema Draft 4 representations. The function automatically strips server-only keywords (like `sanitize_callback` and `validate_callback`), normalizes `required` property declarations, and fixes empty object defaults to prevent client-side validation failures. This ensures that schemas exposed via the REST API, AI tooling, and custom endpoints remain consistent and compatible with external validators.
-
-Digest entry: issues/dev-notes/make-core-125129.md · Source: Make WordPress Core</description>
-      <guid isPermaLink="false">make-core-125129</guid>
-      <pubDate>Thu, 06 Aug 2026 01:15:05 +0000</pubDate>
-    </item>
-    <item>
-      <title>Abilities API improvements in WordPress 7.1</title>
-      <link>https://make.wordpress.org/core/2026/07/31/abilities-api-improvements-in-wordpress-7-1/</link>
-      <description>WordPress 7.1 expands the Abilities API with custom validation filters, a universal invocation action, selective field responses, and automatic type coercion for REST requests. These changes give developers finer control over ability execution, improve telemetry and auditing capabilities, and align core ability schemas for better programmatic discovery. The updates make the API more robust for headless, AI, and REST-driven architectures.
-
-Digest entry: issues/dev-notes/make-core-125079.md · Source: Make WordPress Core</description>
-      <guid isPermaLink="false">make-core-125079</guid>
-      <pubDate>Thu, 06 Aug 2026 01:16:03 +0000</pubDate>
-    </item>
-    <item>
-      <title>Design System Theming in WordPress 7.1</title>
-      <link>https://make.wordpress.org/core/2026/07/31/design-system-theming-in-wordpress-7-1/</link>
-      <description>WordPress 7.1 introduces foundational design system theming for the admin interface, exposing semantic design tokens as CSS custom properties and a `ThemeProvider` React component. This allows plugins and internal components to dynamically inherit color schemes, corner radius, and cursor styles without hardcoding values. The change standardizes admin UI styling and enables consistent, themeable interfaces across the dashboard and Site Editor.
-
-Digest entry: issues/dev-notes/make-core-125147.md · Source: Make WordPress Core</description>
-      <guid isPermaLink="false">make-core-125147</guid>
-      <pubDate>Thu, 06 Aug 2026 01:16:50 +0000</pubDate>
-    </item>
-    <item>
-      <title>Filtering Site Editor Screens in WordPress 7.1</title>
-      <link>https://make.wordpress.org/core/2026/07/31/filtering-site-editor-screens-in-wordpress-7-1/</link>
-      <description>WordPress 7.1 introduces four new filters that allow developers to programmatically configure the DataViews and DataForm components powering Site Editor screens for pages, templates, template parts, and patterns. These hooks expose configuration for default view layouts, sidebar filters, field visibility, sort orders, and Quick Edit forms, replacing the need to modify core UI code or rely on undocumented internals.
-
-Digest entry: issues/dev-notes/make-core-125046.md · Source: Make WordPress Core</description>
-      <guid isPermaLink="false">make-core-125046</guid>
-      <pubDate>Thu, 06 Aug 2026 01:17:33 +0000</pubDate>
-    </item>
+    <lastBuildDate>Wed, 19 Aug 2026 11:11:29 +0000</lastBuildDate>
     <item>
       <title>Leaner, steadier PHPUnit runs for upcoming releases</title>
       <link>https://make.wordpress.org/core/2026/07/30/leaner-steadier-phpunit-runs-for-upcoming-releases/</link>
@@ -907,6 +709,204 @@ Digest entry: issues/security/wfi-4e9698f0-b228-4f4e-838b-c0c0a193d675.md · Sou
 Digest entry: issues/security/wfi-3c4a7aef-09ec-4d17-87d6-f507d64e0afa.md · Source: Wordfence Intelligence</description>
       <guid isPermaLink="false">wfi-3c4a7aef-09ec-4d17-87d6-f507d64e0afa</guid>
       <pubDate>Sat, 15 Aug 2026 20:47:20 +0000</pubDate>
+    </item>
+    <item>
+      <title>#81787: Command Palette: Allow commands to override the category icon</title>
+      <link>https://github.com/WordPress/gutenberg/pull/81787</link>
+      <description>The Command Palette's per-category icon is now a fallback rather than an override. Since #75669 added command categories, every command in the `view` category was force-rendered with the `arrowRight` icon, silently discarding any `icon` the command itself registered. `CommandItem` now resolves `command.icon ?? CATEGORY_FALLBACK_ICONS[ category ]`, so a command that supplies its own icon wins and only iconless commands fall back to the category default. Core's `view` commands were audited alongside the change: the icons that were being registered but never rendered are deleted from source, leaving only "View site" and "Preview in a new tab" overriding the arrow with `external`.
+
+Digest entry: issues/gutenberg/gh-gutenberg-81787.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-81787</guid>
+      <pubDate>Wed, 19 Aug 2026 04:11:55 +0000</pubDate>
+    </item>
+    <item>
+      <title>#81729: Dashboard: add a Site Health detail page as the dashboard's second route</title>
+      <link>https://github.com/WordPress/gutenberg/pull/81729</link>
+      <description>Adds `routes/site-health`, the second route in Gutenberg's experimental Dashboard app, giving the site-health widget an in-app destination instead of only linking out to the classic Site Health screen. The page fetches the six async health tests core exposes over the REST namespace `wp-site-health/v1` and renders them in a DataViews table with sortable/filterable Status and Category badge columns and a per-check description. A new `Details` action in `widgets/site-health/widget.json` points at `admin.php?page=dashboard-wp-admin&amp;p=/site-health` — still a plain anchor, so following it is a full page load until the router-link upgrade lands (#81725). The widget's own fetch list also picks up the previously missing `page-cache` test, and the dashboard route swaps its `Page` `title` prop for a `Breadcrumbs` element.
+
+Digest entry: issues/gutenberg/gh-gutenberg-81729.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-81729</guid>
+      <pubDate>Wed, 19 Aug 2026 04:17:48 +0000</pubDate>
+    </item>
+    <item>
+      <title>#81738: Dashboard Widgets: resolve widget types without a metadata module</title>
+      <link>https://github.com/WordPress/gutenberg/pull/81738</link>
+      <description>`useWidgetTypes()` in `@wordpress/widget-primitives` previously dropped any widget-module record whose `widget_module` was `null`, which forced every bundled Dashboard widget to ship a `widget.ts` stub that exported nothing but its own name. The hook now resolves such a record from its own REST fields — `title`, `description`, `icon`, `actions`, `presentation`, `category`, `help`, `keywords` — as long as the record carries a `render_module`, so a widget can be declared entirely by its `widget.json` manifest. Six bundled widgets (`site-preview`, `welcome`, `news`, `quick-draft`, `hello-dolly`, `site-health`) lose their `widget.ts` as a result. The change also introduces a `DEFAULT_API_VERSION = 1` fallback that applies on both resolution paths, closing a hole where a module omitting `apiVersion` produced an `undefined` masked by the `as WidgetType` cast.
+
+Digest entry: issues/gutenberg/gh-gutenberg-81738.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-81738</guid>
+      <pubDate>Wed, 19 Aug 2026 04:23:35 +0000</pubDate>
+    </item>
+    <item>
+      <title>#81408: RTC: Add fallback identities when user profiles are unavailable</title>
+      <link>https://github.com/WordPress/gutenberg/pull/81408</link>
+      <description>Gutenberg's real-time collaboration awareness layer previously assumed `resolveSelect( coreStore ).getCurrentUser()` would always resolve — on sites that remove the `/wp/v2/users` REST routes the request fails, `collaboratorInfo` is never published to the Yjs awareness state, and presence consumers end up reading properties off a missing object. This PR makes `BaseAwarenessState.setCurrentCollaboratorInfo()` tolerate a failed or unusable user response and publish a complete session-scoped fallback identity instead: name `Anonymous User`, `id: null`, slug `anonymous-&lt;clientId&gt;`, and no `avatar_urls` so the existing avatar component renders "AU" initials. Session-specific behavior (cursor color, block highlighting, avatar grouping, notification IDs) keys off the Yjs awareness `clientID` when no WordPress user ID exists. It also adds a runtime type guard, `isCollaboratorInfo()`, so malformed peer-supplied awareness data is excluded from presence and debug output rather than trusted because TypeScript says so.
+
+Digest entry: issues/gutenberg/gh-gutenberg-81408.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-81408</guid>
+      <pubDate>Wed, 19 Aug 2026 04:29:20 +0000</pubDate>
+    </item>
+    <item>
+      <title>#81769: Fields: Export the package stylesheet</title>
+      <link>https://github.com/WordPress/gutenberg/pull/81769</link>
+      <description>Adds `./build-style/*` to the `exports` map in `packages/fields/package.json`, so the `@wordpress/fields` stylesheet can be imported as `@wordpress/fields/build-style/style.css`. Previously, that package path was blocked by the exports allowlist, causing bundled fields such as `MediaEdit` to render unstyled without a build error. The PR also adds a README Setup section explaining how to load the required CSS inside and outside WordPress.
+
+Digest entry: issues/gutenberg/gh-gutenberg-81769.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-81769</guid>
+      <pubDate>Wed, 19 Aug 2026 04:33:33 +0000</pubDate>
+    </item>
+    <item>
+      <title>#81358: UI: Add Spinner component</title>
+      <link>https://github.com/WordPress/gutenberg/pull/81358</link>
+      <description>A `Spinner` component has been added to `@wordpress/ui`, ported from `@wordpress/components`. It renders the same SVG track-plus-arc structure and 1.4s linear spin, but is styled with WPDS custom properties inside the wp-ui `@layer` cascade and drops the legacy component's hardcoded `margin: 5px 11px 0` and explicit `width`/`height` SVG attributes. The `@wordpress/components` Spinner is now flagged `not-recommended` in Storybook (a formal `@deprecated` pass is planned separately), and the `@wordpress/eslint-plugin` `use-recommended-components` rule now allows `Spinner` from `@wordpress/ui`. The port is a prerequisite for moving validated form controls off private `@wordpress/components` APIs.
+
+Digest entry: issues/gutenberg/gh-gutenberg-81358.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-81358</guid>
+      <pubDate>Wed, 19 Aug 2026 04:39:15 +0000</pubDate>
+    </item>
+    <item>
+      <title>#81653: Site Editor: Use inverted ThemeProvider seed for portaled UI</title>
+      <link>https://github.com/WordPress/gutenberg/pull/81653</link>
+      <description>The Site Editor now wraps its layout in an outer root `ThemeProvider` that seeds the admin color scheme's `primary` color and a white content background, while the existing `ThemeProvider` remains nested for the editor chrome. This fixes portaled popovers and modals that render outside the original `ThemeProvider` wrapper and therefore missed the chosen admin scheme's accent colors. It backports the inverted `ThemeProvider` seed pattern from #81296 to trunk. The change is a broad stopgap until portaled components are fully theme-ready.
+
+Digest entry: issues/gutenberg/gh-gutenberg-81653.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-81653</guid>
+      <pubDate>Wed, 19 Aug 2026 04:44:10 +0000</pubDate>
+    </item>
+    <item>
+      <title>#81785: Modal: Stop Escape key propagation on dismiss</title>
+      <link>https://github.com/WordPress/gutenberg/pull/81785</link>
+      <description>The `Modal` component in `@wordpress/components` now stops Escape key propagation when it handles the key to dismiss itself. This prevents a single Escape press from also closing an underlying overlay when a modal is opened without closing its originating overlay. The fix also avoids removing the element that the modal should restore focus to. It is a targeted keyboard-behavior bug fix for stacked overlay UIs.
+
+Digest entry: issues/gutenberg/gh-gutenberg-81785.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-81785</guid>
+      <pubDate>Wed, 19 Aug 2026 04:55:54 +0000</pubDate>
+    </item>
+    <item>
+      <title>#81160: Global styles: Register &lt;label&gt; as element</title>
+      <link>https://github.com/WordPress/gutenberg/pull/81160</link>
+      <description>This registers `label` as a global-styles element, so `theme.json` can now carry a `styles.elements.label` block that applies to every `&lt;label&gt;` tag on the front end and in the editor — not just labels rendered by core blocks. It continues the recent form-element work in global styles (which already covers `textInput` and `select`), letting a theme style form labels consistently regardless of which blocks or third-party plugins emit the form. To keep the new element styles from being outranked by block defaults, the PR also rewrites the label CSS in Categories, Comments, Post Comments Form, Form Input, and Search to use `:where()` so those defaults sit at zero specificity.
+
+Digest entry: issues/gutenberg/gh-gutenberg-81160.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-81160</guid>
+      <pubDate>Wed, 19 Aug 2026 05:06:20 +0000</pubDate>
+    </item>
+    <item>
+      <title>#80399: UI: Derive Base UI direction from WordPress i18n</title>
+      <link>https://github.com/WordPress/gutenberg/pull/80399</link>
+      <description>Direction-sensitive components in the `@wordpress/ui` package now read WordPress's text direction automatically instead of inheriting Base UI's hard-coded LTR default. Base UI seeds its internal direction context to `ltr`, so `Autocomplete`, `Combobox`, `Popover`, `Select`, `Tabs`, and `Tooltip` behaved as LTR in RTL locales — wrong arrow-key order in horizontal `Tabs`, wrong positioning/flip logic for anchored content. A new private `DirectionProvider` util reads `isRTL()` from `@wordpress/i18n` and is wrapped around the six `Root` components whose Base UI internals consume direction, so consumers no longer need to mount and forward a second public direction provider of their own.
+
+Digest entry: issues/gutenberg/gh-gutenberg-80399.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-80399</guid>
+      <pubDate>Wed, 19 Aug 2026 05:11:56 +0000</pubDate>
+    </item>
+    <item>
+      <title>#81373: Global Styles: filter and indicate blocks that have custom styles</title>
+      <link>https://github.com/WordPress/gutenberg/pull/81373</link>
+      <description>The Site Editor's **Styles → Blocks** list now marks every block the user has customized with a small dot, and adds a funnel menu beside the search field to narrow the list to just those blocks. Previously the screen rendered every registered block with nothing distinguishing customized ones, so auditing your own global-styles changes meant drilling into blocks one at a time. A block counts as customized when the *user* layer of the global styles config has a real value under either `styles.blocks[ blockName ]` or `settings.blocks[ blockName ]` — so a block-specific color palette marks a block just as a text color does. The dot is paired with a `VisuallyHidden` "Has custom styles" label, which changes the accessible name of those rows.
+
+Digest entry: issues/gutenberg/gh-gutenberg-81373.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-81373</guid>
+      <pubDate>Wed, 19 Aug 2026 05:17:43 +0000</pubDate>
+    </item>
+    <item>
+      <title>#81476: Enable axial gap for Group and restrict to flex and grid layouts.</title>
+      <link>https://github.com/WordPress/gutenberg/pull/81476</link>
+      <description>The Group block can now take separate row and column values for `blockGap`, but the split (axial) control is only rendered when the block instance resolves to a `flex` or `grid` layout — flow and constrained Groups keep the single input, since those layouts only ever set `margin-block-start` on children. A new helper, `isAxialBlockGapAllowed()`, makes that decision, and the shared global-styles `DimensionsPanel` gained an `allowAxialBlockGap` prop (defaulting to `true`, so Global Styles keeps axial controls for the Group block regardless of variation). The PR also corrects two server-side bugs: `WP_Theme_JSON` previously dropped an axial `blockGap` entirely unless *both* `top` and `left` were set, and flow/constrained layouts were writing the full `"&lt;row&gt; &lt;column&gt;"` shorthand into `margin-block-start`. Responsive grid column math now reads the horizontal (`left`) value instead of the concatenated shorthand.
+
+Digest entry: issues/gutenberg/gh-gutenberg-81476.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-81476</guid>
+      <pubDate>Wed, 19 Aug 2026 05:23:41 +0000</pubDate>
+    </item>
+    <item>
+      <title>#80417: Components: Align legacy form control focus rings with WPDS</title>
+      <link>https://github.com/WordPress/gutenberg/pull/80417</link>
+      <description>The shared focus treatment for legacy `InputBase`-derived form controls (`InputControl`, `SelectControl`, `CustomSelectControl` and everything built on them) moves from an Emotion-generated border + box-shadow combination to the WPDS outset focus ring, so `@wordpress/components` controls visually match their `@wordpress/ui` replacements ahead of consumer migration. The old style — a darkened 1px border plus a 0.5px box-shadow to fake a 1.5px stroke, with a transparent `outline` as a Windows High Contrast Mode fallback — is replaced by a single `outset-ring__focus()` mixin call in package Sass that uses the `--wpds-border-width-focus` and `--wpds-color-stroke-focus` tokens. Because the new ring paints outside the control, DataViews' filter operator `SelectControl` had to stop clipping it: `overflow: hidden` becomes `min-width: 0`. Validated (invalid-state) controls also switch the custom property they override to recolor the focus ring, from `--wp-components-color-accent` to `--focus-color`.
+
+Digest entry: issues/gutenberg/gh-gutenberg-80417.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-80417</guid>
+      <pubDate>Wed, 19 Aug 2026 05:29:44 +0000</pubDate>
+    </item>
+    <item>
+      <title>#81697: Add `__unstable_wp_sync_storage` filter for pluggable storage backends</title>
+      <link>https://github.com/WordPress/gutenberg/pull/81697</link>
+      <description>Adds the `__unstable_wp_sync_storage` filter to Gutenberg's experimental real-time collaboration code, letting plugins replace the default `WP_Sync_Post_Meta_Storage` implementation with a custom `WP_Sync_Storage` backend. The default behavior remains post-meta storage, but the filter gives an integration point for plugins that want to avoid the cache invalidation associated with storing sync data in post meta. The filter is explicitly unstable because the collaboration sync interface is still experimental and may change.
+
+Digest entry: issues/gutenberg/gh-gutenberg-81697.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-81697</guid>
+      <pubDate>Wed, 19 Aug 2026 05:34:45 +0000</pubDate>
+    </item>
+    <item>
+      <title>Dev Chat summary: August 18, 2026</title>
+      <link>https://make.wordpress.org/core/2026/08/18/summary-dev-chat-august-18-2026/</link>
+      <description>Routine dev chat recap from the tail end of the WordPress 7.1 cycle: RC3 shipped August 12 and RC4 on August 17, with 7.1 slated to go live at WCUS on August 19. Trunk was branched on August 10, so `trunk` is now 7.2 development and the 7.1 branch is under double sign-off, with a commit freeze in effect until the Wednesday after release. The Accessibility Improvements dev note landed and the 7.1 Field Guide is published. Also announced: a 7.0.4 security release, the Contributor Toolkit 1.0, and a call for volunteers for 7.2.
+
+Digest entry: issues/dev-notes/make-core-125634.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-125634</guid>
+      <pubDate>Wed, 19 Aug 2026 07:21:11 +0000</pubDate>
+    </item>
+    <item>
+      <title>Dev Chat Agenda – August 18, 2026</title>
+      <link>https://make.wordpress.org/core/2026/08/17/dev-chat-agenda-aug-18-2026/</link>
+      <description>The August 18, 2026 Dev Chat agenda is primarily a WordPress 7.1 release-cycle status post: RC3 shipped August 12 and RC4 on August 17, with 7.1 slated to ship live at WCUS on August 19. Trunk branched on August 10, so trunk is now 7.2 development and the `7.1` branch requires double sign-off for commits. The agenda also flags the published Accessibility Improvements dev note and the WordPress 7.1 Field Guide, the 7.0.4 security release, a call for 7.2 release-squad volunteers, and the release of Contributor Toolkit 1.0. Dev Chat remains on Tuesdays at 15:00 UTC in #core for the rest of the 7.1 cycle.
+
+Digest entry: issues/dev-notes/make-core-125615.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-125615</guid>
+      <pubDate>Wed, 19 Aug 2026 07:26:42 +0000</pubDate>
+    </item>
+    <item>
+      <title>WordPress 7.1 Release Day Process</title>
+      <link>https://make.wordpress.org/core/2026/08/17/wordpress-7-1-release-day-process/</link>
+      <description>WordPress 7.1 is shipping: RC4 went out on August 17, 2026 at 15:00 UTC and was followed immediately by the Dry Run, with the general release published on August 19, 2026 starting at 23:10 UTC from the WordCamp US stage in Phoenix. An **extended** mandatory code freeze on the `7.1` branch runs from August 17 at 14:00 UTC straight through to GA — longer than the usual 24 hours, at the Core Committers' request, so the packaged release can be verified in full before it ships. Any critical bug reported during the freeze is triaged by the release squad with committers and maintainers: a confirmed blocker means a new RC and a full restart of the Dry Run and freeze, while anything else is deferred to 7.1.1. The post also lays out the specific install, upgrade, and multisite scenarios the project wants community testers to cover against the RC packages.
+
+Digest entry: issues/dev-notes/make-core-125485.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-125485</guid>
+      <pubDate>Wed, 19 Aug 2026 07:32:19 +0000</pubDate>
+    </item>
+    <item>
+      <title>WordPress 7.1 Release Candidate 4</title>
+      <link>https://make.wordpress.org/core/2026/08/17/wordpress-7-1-release-candidate-4/</link>
+      <description>WordPress 7.1 RC4 is available for testing and contains more than 26 updates and fixes since RC3, including 8 in the Editor and 18 in Core. It is a pre-release milestone ahead of the scheduled August 19, 2026 final release and marks the hard string freeze point for 7.1. The release is intended for evaluation on test environments, not production or mission-critical sites.
+
+Digest entry: issues/dev-notes/make-core-125532.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-125532</guid>
+      <pubDate>Wed, 19 Aug 2026 07:35:53 +0000</pubDate>
+    </item>
+    <item>
+      <title>600,000 WordPress Sites Affected by Arbitrary File Upload Vulnerability in Forminator Forms WordPress Plugin</title>
+      <link>https://www.wordfence.com/blog/2026/08/600000-wordpress-sites-affected-by-arbitrary-file-upload-vulnerability-in-forminator-forms-wordpress-plugin/</link>
+      <description>Forminator Forms fixed a critical unauthenticated arbitrary file upload vulnerability, tracked as CVE-2026-15748, that allowed attackers to upload arbitrary files, including executable PHP files, to a vulnerable site. The flaw could lead to remote code execution and full site compromise. It was exploitable only when a Forminator form contained both a File Upload field and a Select field. The patched release is 1.56.2.
+
+Digest entry: issues/security/wordfence-blog-42721.md · Source: Wordfence Blog</description>
+      <guid isPermaLink="false">wordfence-blog-42721</guid>
+      <pubDate>Wed, 19 Aug 2026 07:40:18 +0000</pubDate>
+    </item>
+    <item>
+      <title>Contact Form, Survey, Quiz &amp; Popup Form Builder – ARForms &lt;= 1.8.5 - Unauthenticated PHP Object Injection</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/5e0116d6-91c3-4212-9c68-6b706ab09768</link>
+      <description>ARForms fixed an unauthenticated PHP object injection vulnerability caused by deserializing untrusted data from form submissions. The flaw allowed an attacker to submit crafted serialized object data, but exploitation requires a POP chain from another installed plugin or theme. The patched release addresses the unsafe deserialization path. Sites using the affected plugin should update promptly.
+
+Digest entry: issues/security/wfi-5e0116d6-91c3-4212-9c68-6b706ab09768.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-5e0116d6-91c3-4212-9c68-6b706ab09768</guid>
+      <pubDate>Wed, 19 Aug 2026 07:42:48 +0000</pubDate>
+    </item>
+    <item>
+      <title>Forminator Forms &lt;= 1.56.1 - Unauthenticated Arbitrary File Upload via Forged Upload Field Configuration</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/263ac05d-f1ca-46e3-a43e-3b45eb8066d4</link>
+      <description>Forminator Forms versions up to 1.56.1 allowed unauthenticated arbitrary file upload through the `handle_file_upload` function. The plugin's dangerous-extension blocklist used exact-key matching that could be bypassed with pipe-alternative MIME type keys, and a public submission handler accepted attacker-controlled upload field configuration from a forged Select field value. This could let an attacker upload files that may be executable and achieve remote code execution. The issue is fixed in 1.56.2.
+
+Digest entry: issues/security/wfi-263ac05d-f1ca-46e3-a43e-3b45eb8066d4.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-263ac05d-f1ca-46e3-a43e-3b45eb8066d4</guid>
+      <pubDate>Wed, 19 Aug 2026 07:46:07 +0000</pubDate>
+    </item>
+    <item>
+      <title>TrueBooker &lt;= 1.2.6 - Unauthenticated Authorization Bypass Through User-Controlled Key to Account Takeover to 'truebooker_wp_user_id' Parameter</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/73251a74-5be3-446b-8e0a-ff2d1484c467</link>
+      <description>TrueBooker – Appointment Booking and Scheduler System exposes an `admin_user_create_cus` AJAX action that performs no authentication, capability, or nonce check before handing the request-supplied `truebooker_wp_user_id` value to `wp_update_user()`. Because the target user ID is entirely attacker-controlled, an unauthenticated request can rewrite the email address on any account on the site — administrators included. Once the email is changed, the attacker triggers WordPress's stock lost-password flow, receives the reset link at their own address, and takes over the account outright. Fixed in 1.2.6's successor, 1.2.7; anything at or below 1.2.6 is exploitable with a single unauthenticated POST.
+
+Digest entry: issues/security/wfi-73251a74-5be3-446b-8e0a-ff2d1484c467.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-73251a74-5be3-446b-8e0a-ff2d1484c467</guid>
+      <pubDate>Wed, 19 Aug 2026 07:51:42 +0000</pubDate>
     </item>
   </channel>
 </rss>

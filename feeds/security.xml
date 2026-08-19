@@ -7,25 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 15 Aug 2026 21:39:39 +0000</lastBuildDate>
-    <item>
-      <title>WordPress 7.0.2 Release</title>
-      <link>https://wordpress.org/news/2026/07/wordpress-7-0-2-release/</link>
-      <description>WordPress 7.0.2 is a security release that patches one critical and one high-severity vulnerability. The critical issue combines a REST API batch-route confusion bug with SQL injection to achieve Remote Code Execution, and the high-severity issue is a separately reported, facilitated SQL injection. Because of the severity, WordPress.org enabled forced auto-updates for sites running affected versions rather than waiting for site owners to update manually.
-
-Digest entry: issues/security/wp-news-security-21167.md · Source: WordPress News</description>
-      <guid isPermaLink="false">wp-news-security-21167</guid>
-      <pubDate>Tue, 21 Jul 2026 14:59:38 +0000</pubDate>
-    </item>
-    <item>
-      <title>wp2shell Aftermath: The First Critical Unauthenticated WordPress Core RCE in Nearly a Decade</title>
-      <link>https://www.wordfence.com/blog/2026/07/wp2shell-aftermath-the-first-critical-unauthenticated-wordpress-core-rce-in-nearly-a-decade/</link>
-      <description>WordPress Core shipped emergency patches on July 17, 2026 (versions 6.8.6, 6.9.5, and 7.0.2) for a two-vulnerability chain, dubbed wp2shell, that allows unauthenticated remote code execution against unmodified WordPress installs. The chain combines a SQL injection flaw (CVE-2026-60137) with a second vulnerability (CVE-2026-63030) that together let an attacker execute arbitrary code without any plugin, theme, or authenticated access being involved. WordPress.org rated the pair one critical and one high severity issue and — because of that severity — force-enabled automatic updates across affected versions rather than waiting for sites to update on their own schedule. The chain was discovered and responsibly disclosed by Adam Kues of Assetnote/Searchlight Cyber, and Wordfence is calling it the first critical unauthenticated Core RCE in nearly a decade.
-
-Digest entry: issues/security/wordfence-blog-42501.md · Source: Wordfence Blog</description>
-      <guid isPermaLink="false">wordfence-blog-42501</guid>
-      <pubDate>Tue, 21 Jul 2026 15:00:18 +0000</pubDate>
-    </item>
+    <lastBuildDate>Wed, 19 Aug 2026 11:11:29 +0000</lastBuildDate>
     <item>
       <title>PSA: WordPress Core Patched Unauthenticated Remote Code Execution Vulnerability Chain</title>
       <link>https://www.wordfence.com/blog/2026/07/psa-wordpress-core-patched-unauthenticated-remote-code-execution-vulnerability-chain/</link>
@@ -889,6 +871,42 @@ Digest entry: issues/security/wfi-4e9698f0-b228-4f4e-838b-c0c0a193d675.md · Sou
 Digest entry: issues/security/wfi-3c4a7aef-09ec-4d17-87d6-f507d64e0afa.md · Source: Wordfence Intelligence</description>
       <guid isPermaLink="false">wfi-3c4a7aef-09ec-4d17-87d6-f507d64e0afa</guid>
       <pubDate>Sat, 15 Aug 2026 20:47:20 +0000</pubDate>
+    </item>
+    <item>
+      <title>600,000 WordPress Sites Affected by Arbitrary File Upload Vulnerability in Forminator Forms WordPress Plugin</title>
+      <link>https://www.wordfence.com/blog/2026/08/600000-wordpress-sites-affected-by-arbitrary-file-upload-vulnerability-in-forminator-forms-wordpress-plugin/</link>
+      <description>Forminator Forms fixed a critical unauthenticated arbitrary file upload vulnerability, tracked as CVE-2026-15748, that allowed attackers to upload arbitrary files, including executable PHP files, to a vulnerable site. The flaw could lead to remote code execution and full site compromise. It was exploitable only when a Forminator form contained both a File Upload field and a Select field. The patched release is 1.56.2.
+
+Digest entry: issues/security/wordfence-blog-42721.md · Source: Wordfence Blog</description>
+      <guid isPermaLink="false">wordfence-blog-42721</guid>
+      <pubDate>Wed, 19 Aug 2026 07:40:18 +0000</pubDate>
+    </item>
+    <item>
+      <title>Contact Form, Survey, Quiz &amp; Popup Form Builder – ARForms &lt;= 1.8.5 - Unauthenticated PHP Object Injection</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/5e0116d6-91c3-4212-9c68-6b706ab09768</link>
+      <description>ARForms fixed an unauthenticated PHP object injection vulnerability caused by deserializing untrusted data from form submissions. The flaw allowed an attacker to submit crafted serialized object data, but exploitation requires a POP chain from another installed plugin or theme. The patched release addresses the unsafe deserialization path. Sites using the affected plugin should update promptly.
+
+Digest entry: issues/security/wfi-5e0116d6-91c3-4212-9c68-6b706ab09768.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-5e0116d6-91c3-4212-9c68-6b706ab09768</guid>
+      <pubDate>Wed, 19 Aug 2026 07:42:48 +0000</pubDate>
+    </item>
+    <item>
+      <title>Forminator Forms &lt;= 1.56.1 - Unauthenticated Arbitrary File Upload via Forged Upload Field Configuration</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/263ac05d-f1ca-46e3-a43e-3b45eb8066d4</link>
+      <description>Forminator Forms versions up to 1.56.1 allowed unauthenticated arbitrary file upload through the `handle_file_upload` function. The plugin's dangerous-extension blocklist used exact-key matching that could be bypassed with pipe-alternative MIME type keys, and a public submission handler accepted attacker-controlled upload field configuration from a forged Select field value. This could let an attacker upload files that may be executable and achieve remote code execution. The issue is fixed in 1.56.2.
+
+Digest entry: issues/security/wfi-263ac05d-f1ca-46e3-a43e-3b45eb8066d4.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-263ac05d-f1ca-46e3-a43e-3b45eb8066d4</guid>
+      <pubDate>Wed, 19 Aug 2026 07:46:07 +0000</pubDate>
+    </item>
+    <item>
+      <title>TrueBooker &lt;= 1.2.6 - Unauthenticated Authorization Bypass Through User-Controlled Key to Account Takeover to 'truebooker_wp_user_id' Parameter</title>
+      <link>https://www.wordfence.com/threat-intel/vulnerabilities/id/73251a74-5be3-446b-8e0a-ff2d1484c467</link>
+      <description>TrueBooker – Appointment Booking and Scheduler System exposes an `admin_user_create_cus` AJAX action that performs no authentication, capability, or nonce check before handing the request-supplied `truebooker_wp_user_id` value to `wp_update_user()`. Because the target user ID is entirely attacker-controlled, an unauthenticated request can rewrite the email address on any account on the site — administrators included. Once the email is changed, the attacker triggers WordPress's stock lost-password flow, receives the reset link at their own address, and takes over the account outright. Fixed in 1.2.6's successor, 1.2.7; anything at or below 1.2.6 is exploitable with a single unauthenticated POST.
+
+Digest entry: issues/security/wfi-73251a74-5be3-446b-8e0a-ff2d1484c467.md · Source: Wordfence Intelligence</description>
+      <guid isPermaLink="false">wfi-73251a74-5be3-446b-8e0a-ff2d1484c467</guid>
+      <pubDate>Wed, 19 Aug 2026 07:51:42 +0000</pubDate>
     </item>
   </channel>
 </rss>

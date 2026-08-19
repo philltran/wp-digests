@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 15 Aug 2026 21:39:39 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 19 Aug 2026 11:11:29 +0000</lastBuildDate>
     <item>
       <title>Dev Chat Agenda – June 3, 2026</title>
       <link>https://make.wordpress.org/core/2026/06/03/dev-chat-agenda-june-03-2026/</link>
@@ -763,6 +763,42 @@ Digest entry: issues/dev-notes/make-core-125449.md · Source: Make WordPress Cor
 Digest entry: issues/dev-notes/make-core-125396.md · Source: Make WordPress Core</description>
       <guid isPermaLink="false">make-core-125396</guid>
       <pubDate>Sat, 15 Aug 2026 19:05:36 +0000</pubDate>
+    </item>
+    <item>
+      <title>Dev Chat summary: August 18, 2026</title>
+      <link>https://make.wordpress.org/core/2026/08/18/summary-dev-chat-august-18-2026/</link>
+      <description>Routine dev chat recap from the tail end of the WordPress 7.1 cycle: RC3 shipped August 12 and RC4 on August 17, with 7.1 slated to go live at WCUS on August 19. Trunk was branched on August 10, so `trunk` is now 7.2 development and the 7.1 branch is under double sign-off, with a commit freeze in effect until the Wednesday after release. The Accessibility Improvements dev note landed and the 7.1 Field Guide is published. Also announced: a 7.0.4 security release, the Contributor Toolkit 1.0, and a call for volunteers for 7.2.
+
+Digest entry: issues/dev-notes/make-core-125634.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-125634</guid>
+      <pubDate>Wed, 19 Aug 2026 07:21:11 +0000</pubDate>
+    </item>
+    <item>
+      <title>Dev Chat Agenda – August 18, 2026</title>
+      <link>https://make.wordpress.org/core/2026/08/17/dev-chat-agenda-aug-18-2026/</link>
+      <description>The August 18, 2026 Dev Chat agenda is primarily a WordPress 7.1 release-cycle status post: RC3 shipped August 12 and RC4 on August 17, with 7.1 slated to ship live at WCUS on August 19. Trunk branched on August 10, so trunk is now 7.2 development and the `7.1` branch requires double sign-off for commits. The agenda also flags the published Accessibility Improvements dev note and the WordPress 7.1 Field Guide, the 7.0.4 security release, a call for 7.2 release-squad volunteers, and the release of Contributor Toolkit 1.0. Dev Chat remains on Tuesdays at 15:00 UTC in #core for the rest of the 7.1 cycle.
+
+Digest entry: issues/dev-notes/make-core-125615.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-125615</guid>
+      <pubDate>Wed, 19 Aug 2026 07:26:42 +0000</pubDate>
+    </item>
+    <item>
+      <title>WordPress 7.1 Release Day Process</title>
+      <link>https://make.wordpress.org/core/2026/08/17/wordpress-7-1-release-day-process/</link>
+      <description>WordPress 7.1 is shipping: RC4 went out on August 17, 2026 at 15:00 UTC and was followed immediately by the Dry Run, with the general release published on August 19, 2026 starting at 23:10 UTC from the WordCamp US stage in Phoenix. An **extended** mandatory code freeze on the `7.1` branch runs from August 17 at 14:00 UTC straight through to GA — longer than the usual 24 hours, at the Core Committers' request, so the packaged release can be verified in full before it ships. Any critical bug reported during the freeze is triaged by the release squad with committers and maintainers: a confirmed blocker means a new RC and a full restart of the Dry Run and freeze, while anything else is deferred to 7.1.1. The post also lays out the specific install, upgrade, and multisite scenarios the project wants community testers to cover against the RC packages.
+
+Digest entry: issues/dev-notes/make-core-125485.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-125485</guid>
+      <pubDate>Wed, 19 Aug 2026 07:32:19 +0000</pubDate>
+    </item>
+    <item>
+      <title>WordPress 7.1 Release Candidate 4</title>
+      <link>https://make.wordpress.org/core/2026/08/17/wordpress-7-1-release-candidate-4/</link>
+      <description>WordPress 7.1 RC4 is available for testing and contains more than 26 updates and fixes since RC3, including 8 in the Editor and 18 in Core. It is a pre-release milestone ahead of the scheduled August 19, 2026 final release and marks the hard string freeze point for 7.1. The release is intended for evaluation on test environments, not production or mission-critical sites.
+
+Digest entry: issues/dev-notes/make-core-125532.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-125532</guid>
+      <pubDate>Wed, 19 Aug 2026 07:35:53 +0000</pubDate>
     </item>
   </channel>
 </rss>
