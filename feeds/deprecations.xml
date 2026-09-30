@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 19 Aug 2026 11:11:29 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 30 Sep 2026 18:02:13 +0000</lastBuildDate>
     <item>
       <title>#65333: Deprecate Product Editor v2</title>
       <link>https://github.com/woocommerce/woocommerce/pull/65333</link>
@@ -583,6 +583,186 @@ Digest entry: issues/woocommerce/gh-woocommerce-67657.md · Source: woocommerce/
 Digest entry: issues/dev-notes/make-core-125508.md · Source: Make WordPress Core</description>
       <guid isPermaLink="false">make-core-125508</guid>
       <pubDate>Sat, 15 Aug 2026 18:44:53 +0000</pubDate>
+    </item>
+    <item>
+      <title>#83493: UI: Add item labels and descriptions to remaining popups</title>
+      <link>https://github.com/WordPress/gutenberg/pull/83493</link>
+      <description>The `@wordpress/ui` package now requires `ItemLabel` as the first direct child of `Autocomplete.Item`, `Combobox.Item`, `SearchableSelect.Item`, `SearchableChipSelect.Item`, `SearchableSelectControl.Item`, and `SearchableChipSelectControl.Item`, with optional `ItemDescription` children following. This extends the item-composition pattern previously introduced for `Select` and `SelectControl` (#82369) to the remaining popup components, giving every item a structured label/description split that feeds `aria-labelledby` and `aria-describedby` on the underlying option element. Passing raw text directly to these `Item` components is no longer valid and will throw in development.
+
+Digest entry: issues/gutenberg/gh-gutenberg-83493.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-83493</guid>
+      <pubDate>Wed, 30 Sep 2026 02:00:37 +0000</pubDate>
+    </item>
+    <item>
+      <title>#82737: UI: Remove automatic Notice announcements</title>
+      <link>https://github.com/WordPress/gutenberg/pull/82737</link>
+      <description>The `@wordpress/ui` `Notice.Root` component no longer automatically announces its content to screen readers. The `spokenMessage` and `politeness` props are removed, along with the internal `useSpokenMessage` hook that called `speak()` on mount. Applications that need to announce dynamic updates must now call `speak()` from `@wordpress/a11y` explicitly, choosing the text, timing, and politeness level themselves. Error boundaries in the editor, edit-widgets, and customize-widgets packages were updated to call `speak()` assertively in `componentDidCatch`.
+
+Digest entry: issues/gutenberg/gh-gutenberg-82737.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-82737</guid>
+      <pubDate>Wed, 30 Sep 2026 04:53:40 +0000</pubDate>
+    </item>
+    <item>
+      <title>#83789: UI: Align component names with their semantics</title>
+      <link>https://github.com/WordPress/gutenberg/pull/83789</link>
+      <description>`@wordpress/ui` renames `LinkButton` to `ButtonLink`. It also renames the `Dialog.CloseIcon`, `Drawer.CloseIcon` and `Notice.CloseIcon` sub-components to `Dialog.CloseIconButton`, `Drawer.CloseIconButton` and `Notice.CloseIconButton`. The new names put the component's kind last and its appearance or purpose first. `ButtonLink` is a link styled as a button, and `CloseIconButton` is an icon button for close or dismiss actions. Props and behavior are unchanged. The rename is marked as a breaking change in the experimental package.
+
+Digest entry: issues/gutenberg/gh-gutenberg-83789.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-83789</guid>
+      <pubDate>Wed, 30 Sep 2026 13:59:50 +0000</pubDate>
+    </item>
+    <item>
+      <title>#82189: Build: Require explicit JSX file extensions</title>
+      <link>https://github.com/WordPress/gutenberg/pull/82189</link>
+      <description>`@wordpress/build` no longer parses JSX in `.js` source files. The four `loader: { '.js': 'jsx' }` esbuild overrides used during package and worker-code transpilation were removed, so JSX must now live in `.jsx` or `.tsx` files. This aligns the tool with esbuild's default behavior and with Gutenberg's own explicit-extension convention. It is labeled a breaking change.
+
+Digest entry: issues/gutenberg/gh-gutenberg-82189.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-82189</guid>
+      <pubDate>Wed, 30 Sep 2026 15:08:11 +0000</pubDate>
+    </item>
+    <item>
+      <title>#82087: UI: Add popupWidth prop to item popup components</title>
+      <link>https://github.com/WordPress/gutenberg/pull/82087</link>
+      <description>`@wordpress/ui` item popup components gain a `popupWidth` prop with presets `anchor` (default), `content`, `sm`, `md`, `lg`, and `available`. It is wired through `Select.Popup`, `Combobox.Popup`, `Autocomplete.Popup`, and the derived `SelectControl`, `SearchableChipSelect`, and `SearchableChipSelectControl`. It fixes popups growing wider than their trigger when labels contain long unbreakable words or when creatable footer content changes. Because the primitives now default to anchor width, the PR is labeled a breaking change.
+
+Digest entry: issues/gutenberg/gh-gutenberg-82087.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-82087</guid>
+      <pubDate>Wed, 30 Sep 2026 15:11:04 +0000</pubDate>
+    </item>
+    <item>
+      <title>#81357: Base Styles: Align `input-control` mixin to design system</title>
+      <link>https://github.com/WordPress/gutenberg/pull/81357</link>
+      <description>The shared `input-control` SCSS mixin in `@wordpress/base-styles` now uses the design system's `outset-ring__focus()` mixin, WPDS border tokens, and a hover border treatment instead of the old border-plus-box-shadow focus style. This restyles `TextControl`, `TextareaControl`, `FormTokenField`, `ContentEditableControl`, `ComboboxControl`, their validated variants, and the DataViews filter search input. The deprecated `input-style__focus` mixin is removed, which is a breaking change for anyone who includes it from `@wordpress/base-styles`.
+
+Digest entry: issues/gutenberg/gh-gutenberg-81357.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-81357</guid>
+      <pubDate>Wed, 30 Sep 2026 15:14:25 +0000</pubDate>
+    </item>
+    <item>
+      <title>#81354: UI: Collapse item-popup item sizing to default and small</title>
+      <link>https://github.com/WordPress/gutenberg/pull/81354</link>
+      <description>The popup item styling shared by `Select`, `Combobox`, and `Autocomplete` in `@wordpress/ui` now defaults to a 32px row height (previously 40px), matching the compact menu density from #73429. The separate `'compact'` item size is removed because it is now the default, and the `size` prop is dropped from `Combobox.Item` and `SelectControl.Item`. `Select.Item` keeps `'default'` and `'small'`. The PR is labelled as a breaking change.
+
+Digest entry: issues/gutenberg/gh-gutenberg-81354.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-81354</guid>
+      <pubDate>Wed, 30 Sep 2026 15:14:37 +0000</pubDate>
+    </item>
+    <item>
+      <title>#80989: SearchableChipSelect: Add grouped items support</title>
+      <link>https://github.com/WordPress/gutenberg/pull/80989</link>
+      <description>`SearchableChipSelect` in `@wordpress/ui` now supports grouped items. It exports `Group`, `GroupLabel`, and `Collection` subcomponents, and the default collection renderer now passes custom `children` straight through to `Combobox.Collection`. The `creatableItem` prop is removed. A creatable footer action is now an entry in `items` marked `creatable: true`, which the component pulls out of the main list and renders in the footer. Development warnings were added for common misconfigurations.
+
+Digest entry: issues/gutenberg/gh-gutenberg-80989.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-80989</guid>
+      <pubDate>Wed, 30 Sep 2026 15:14:51 +0000</pubDate>
+    </item>
+    <item>
+      <title>#80680: Components: Remove ValidatedTextControl private API</title>
+      <link>https://github.com/WordPress/gutenberg/pull/80680</link>
+      <description>Gutenberg removes the private `ValidatedTextControl` component from `@wordpress/components`, along with its tests and Storybook story. It duplicated `ValidatedInputControl`, which is what the codebase actually uses. The two remaining internal call sites (the DataForm validation story and the `core/math` format popover) now use `ValidatedInputControl`.
+
+Digest entry: issues/gutenberg/gh-gutenberg-80680.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-80680</guid>
+      <pubDate>Wed, 30 Sep 2026 15:36:04 +0000</pubDate>
+    </item>
+    <item>
+      <title>#68938: [Performance] Eliminate duplicate variation price aggregation on tax-enabled stores in read_price_data method of variable data store</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/68938</link>
+      <description>`WC_Product_Variable_Data_Store_CPT::read_price_data()` no longer aggregates variation prices twice on tax-enabled stores. The aggregation now lives in a new private `prime_price_data_cache()`, which computes display (tax-adjusted) and raw price arrays in a single pass and stores both under separate hashes. `read_price_data()` becomes a thin lookup by hash. Benchmarks in the PR show cold-cache cost dropping roughly 1.3x-1.6x, depending on variation count.
+
+Digest entry: issues/woocommerce/gh-woocommerce-68938.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-68938</guid>
+      <pubDate>Wed, 30 Sep 2026 15:43:42 +0000</pubDate>
+    </item>
+    <item>
+      <title>#68771: [Backport to release/11.2] Harden Back in Stock Notifications feature gate after alpha constant move</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/68771</link>
+      <description>Backport to `release/11.2` of a hardening pass on the Back in Stock Notifications feature gate, after #64490 moved it from the `WOOCOMMERCE_BIS_ALPHA_ENABLED` constant to the `customer_stock_notifications` feature toggle. The `StockNotifications` class now honors the old constant until the 11.2.0 DB migration has run, `NotificationQuery` returns empty values instead of throwing while the feature is off, and two signatures that #64490 changed are restored before 11.2.0 GA: `SignupService::init()` and `StockNotifications::init_hooks()`.
+
+Digest entry: issues/woocommerce/gh-woocommerce-68771.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-68771</guid>
+      <pubDate>Wed, 30 Sep 2026 15:46:45 +0000</pubDate>
+    </item>
+    <item>
+      <title>#68761: Harden Back in Stock Notifications feature gate after alpha constant move</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/68761</link>
+      <description>This WooCommerce PR hardens the Back in Stock Notifications feature gate after #64490 moved it from the `WOOCOMMERCE_BIS_ALPHA_ENABLED` constant to the `customer_stock_notifications` feature toggle. It honors the alpha constant until the 11.2.0 option migration has run, so alpha opt-in sites no longer risk a throw on the first 11.2 request. `NotificationQuery` now fails soft when the feature is off. It also reverts two signature changes that #64490 introduced and restores `init_hooks()` as a deprecated shim. It was targeted at 11.2.0 and cherry-picked to `release/11.2`.
+
+Digest entry: issues/woocommerce/gh-woocommerce-68761.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-68761</guid>
+      <pubDate>Wed, 30 Sep 2026 15:47:05 +0000</pubDate>
+    </item>
+    <item>
+      <title>#67812: [Performance] Product ordering: start legacy hooks deprecation cycle</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/67812</link>
+      <description>WooCommerce begins a deprecation cycle for the legacy product-ordering algorithm in `WC_AJAX::product_ordering()`. Any callback attached to `woocommerce_after_single_product_ordering` or `woocommerce_after_product_ordering` now triggers a `wc_deprecated_hook()` notice (since 11.2) because it forces a slow, full-catalog reorder path. The optimized path gains two bulk-oriented actions, `woocommerce_product_ordering_process_moved_products` and `woocommerce_product_ordering_process_reindexed_products`, as replacements for cache, sync and backup extensions.
+
+Digest entry: issues/woocommerce/gh-woocommerce-67812.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-67812</guid>
+      <pubDate>Wed, 30 Sep 2026 15:53:28 +0000</pubDate>
+    </item>
+    <item>
+      <title>#67915: [Backport to release/11.1] Enable variation galleries for all stores</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/67915</link>
+      <description>WooCommerce 11.1 enables the native variation gallery (multiple images per product variation) for every store, moving it from a 5% canary cohort to 100%. The experimental feature toggle is removed from WooCommerce &gt; Settings &gt; Advanced &gt; Features, and the legacy `wc_feature_woocommerce_additional_variation_images_enabled` option is deleted by a DB update. This PR is the cherry-pick of trunk PR #67884 onto `release/11.1`.
+
+Digest entry: issues/woocommerce/gh-woocommerce-67915.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-67915</guid>
+      <pubDate>Wed, 30 Sep 2026 15:55:15 +0000</pubDate>
+    </item>
+    <item>
+      <title>#67884: Enable variation galleries for all stores</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/67884</link>
+      <description>WooCommerce 11.1 rolls the native variation gallery (multiple images per variation) out to 100% of stores, up from a 5% canary cohort. The experimental "Variation gallery" toggle under WooCommerce &gt; Settings &gt; Advanced &gt; Features is removed, `Package::is_enabled()` now always returns `true`, and the option-gated code paths in the classic and block gallery renderers are made unconditional. A DB update deletes the legacy feature option, and the Additional Variation Images (AVI) plugin is deactivated with its data migrated.
+
+Digest entry: issues/woocommerce/gh-woocommerce-67884.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-67884</guid>
+      <pubDate>Wed, 30 Sep 2026 15:55:44 +0000</pubDate>
+    </item>
+    <item>
+      <title>#67887: Fix term count release version metadata</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/67887</link>
+      <description>WooCommerce bumps the release-version metadata for the new `TermCount` service and the deprecation of `WC_Post_Data::recount_terms_for_product_visibility_change()` from 11.1.0 to 11.2.0. The underlying term-count change (PR #67669) was originally planned for 11.0 and then slipped to 11.2, so the `@since`, `@deprecated`, and `wc_deprecated_function()` version strings are corrected to match. No runtime behavior changes.
+
+Digest entry: issues/woocommerce/gh-woocommerce-67887.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-67887</guid>
+      <pubDate>Wed, 30 Sep 2026 15:56:01 +0000</pubDate>
+    </item>
+    <item>
+      <title>#67669: Fix term counts after removing out-of-stock visibility</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/67669</link>
+      <description>WooCommerce now refreshes category, tag, brand, and ancestor term counts when a count-affecting `product_visibility` relationship is deleted, for example when `outofstock` is removed via `wp_remove_object_terms()`. Previously, with "Hide out of stock items from the catalog" enabled, such removals left counts stale. The visible case was converting an out-of-stock simple product to External/Affiliate. The logic moves into a new internal, container-managed `TermCount` service, and the old `WC_Post_Data` hook callback is deprecated.
+
+Digest entry: issues/woocommerce/gh-woocommerce-67669.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-67669</guid>
+      <pubDate>Wed, 30 Sep 2026 15:56:15 +0000</pubDate>
+    </item>
+    <item>
+      <title>Taxonomy: Limit term slugs to 200 characters in `wp_unique_term_slug()`.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/98d218765f16ffac15fe6c17419786a4a36b990f</link>
+      <description>`wp_unique_term_slug()` now truncates generated term slugs to the 200-character limit of the `terms.slug` column when it appends a parent slug or a numeric suffix. Previously, non-Latin term names, which are stored percent-encoded (a 21-character Cyrillic name becomes a 116-character slug), could overflow the column when combined with a parent suffix, causing the insert or update to fail. The truncation logic is extracted into a new generic `wp_truncate_slug()`, and `_truncate_post_slug()` is deprecated in its favour.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-98d218765f.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-98d218765f</guid>
+      <pubDate>Wed, 30 Sep 2026 15:57:31 +0000</pubDate>
+    </item>
+    <item>
+      <title>What’s new in Gutenberg 24.1? (30 September)</title>
+      <link>https://make.wordpress.org/core/2026/09/30/whats-new-in-gutenberg-24-1-30-september/</link>
+      <description>Gutenberg 24.1 is a design-tool-consistency release (~140 PRs) that extends background image/size/gradient, shadow, border, link/heading/button color, typography and text-columns supports to nearly every core block. It adds a `textShadow` typography support with its own Global Styles panel (Paragraph and Heading first), a public API for viewport states in custom controls, and a Media section in the Cover and Media &amp; Text inspector panels. It also stabilizes a few experimental APIs, deprecates several `@wordpress/components` primitives, removes the Fonts API BC layer, and raises the plugin's minimum WordPress version to 7.0.
+
+Digest entry: issues/dev-notes/make-core-126247.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-126247</guid>
+      <pubDate>Wed, 30 Sep 2026 16:03:43 +0000</pubDate>
+    </item>
+    <item>
+      <title>#82566: Searchable selects: Hide creatable footer when it is filtered out</title>
+      <link>https://github.com/WordPress/gutenberg/pull/82566</link>
+      <description>`SearchableSelect` and `SearchableChipSelect` (and `SearchableChipSelectControl`) in `@wordpress/ui` now render the `creatable: true` footer item only when that item survives Base UI's filtering. Previously the footer always mounted from the original `items` prop, so after an unmatched query the Create row was still clickable but unreachable with Arrow Down. The components no longer clone or rewrite the filter and item groups to pin Create back into the keyboard list; keeping the creatable item in the filtered set is now the consumer's responsibility.
+
+Digest entry: issues/gutenberg/gh-gutenberg-82566.md · Source: WordPress/gutenberg</description>
+      <guid isPermaLink="false">gh-gutenberg-82566</guid>
+      <pubDate>Wed, 30 Sep 2026 17:40:45 +0000</pubDate>
     </item>
   </channel>
 </rss>

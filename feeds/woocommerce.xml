@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 19 Aug 2026 11:11:29 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 30 Sep 2026 18:02:13 +0000</lastBuildDate>
     <item>
       <title>#65441: [dev] Update .ai/skills/woocommerce-performance/options-cache-priming.md</title>
       <link>https://github.com/woocommerce/woocommerce/pull/65441</link>
@@ -295,6 +295,87 @@ Digest entry: issues/woocommerce/gh-woocommerce-67168.md · Source: woocommerce/
 Digest entry: issues/woocommerce/gh-woocommerce-67657.md · Source: woocommerce/woocommerce</description>
       <guid isPermaLink="false">gh-woocommerce-67657</guid>
       <pubDate>Sat, 15 Aug 2026 17:00:27 +0000</pubDate>
+    </item>
+    <item>
+      <title>#68938: [Performance] Eliminate duplicate variation price aggregation on tax-enabled stores in read_price_data method of variable data store</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/68938</link>
+      <description>`WC_Product_Variable_Data_Store_CPT::read_price_data()` no longer aggregates variation prices twice on tax-enabled stores. The aggregation now lives in a new private `prime_price_data_cache()`, which computes display (tax-adjusted) and raw price arrays in a single pass and stores both under separate hashes. `read_price_data()` becomes a thin lookup by hash. Benchmarks in the PR show cold-cache cost dropping roughly 1.3x-1.6x, depending on variation count.
+
+Digest entry: issues/woocommerce/gh-woocommerce-68938.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-68938</guid>
+      <pubDate>Wed, 30 Sep 2026 15:43:42 +0000</pubDate>
+    </item>
+    <item>
+      <title>#68771: [Backport to release/11.2] Harden Back in Stock Notifications feature gate after alpha constant move</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/68771</link>
+      <description>Backport to `release/11.2` of a hardening pass on the Back in Stock Notifications feature gate, after #64490 moved it from the `WOOCOMMERCE_BIS_ALPHA_ENABLED` constant to the `customer_stock_notifications` feature toggle. The `StockNotifications` class now honors the old constant until the 11.2.0 DB migration has run, `NotificationQuery` returns empty values instead of throwing while the feature is off, and two signatures that #64490 changed are restored before 11.2.0 GA: `SignupService::init()` and `StockNotifications::init_hooks()`.
+
+Digest entry: issues/woocommerce/gh-woocommerce-68771.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-68771</guid>
+      <pubDate>Wed, 30 Sep 2026 15:46:45 +0000</pubDate>
+    </item>
+    <item>
+      <title>#68761: Harden Back in Stock Notifications feature gate after alpha constant move</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/68761</link>
+      <description>This WooCommerce PR hardens the Back in Stock Notifications feature gate after #64490 moved it from the `WOOCOMMERCE_BIS_ALPHA_ENABLED` constant to the `customer_stock_notifications` feature toggle. It honors the alpha constant until the 11.2.0 option migration has run, so alpha opt-in sites no longer risk a throw on the first 11.2 request. `NotificationQuery` now fails soft when the feature is off. It also reverts two signature changes that #64490 introduced and restores `init_hooks()` as a deprecated shim. It was targeted at 11.2.0 and cherry-picked to `release/11.2`.
+
+Digest entry: issues/woocommerce/gh-woocommerce-68761.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-68761</guid>
+      <pubDate>Wed, 30 Sep 2026 15:47:05 +0000</pubDate>
+    </item>
+    <item>
+      <title>#68302: Aggregate the customer and review report totals in one query</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/68302</link>
+      <description>The WooCommerce REST endpoints `GET /wc/v3/reports/reviews/totals` and `GET /wc/v3/reports/customers/totals` now compute their totals with aggregate SQL instead of repeated or materialized queries. The reviews endpoint replaces five per-rating `get_comments()` counts with one grouped query, cutting a cold request from six queries to two. The customers endpoint no longer selects and sorts every paying-customer ID just to discard them, and counts directly instead. Response payloads and cache invalidation signals are meant to stay the same.
+
+Digest entry: issues/woocommerce/gh-woocommerce-68302.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-68302</guid>
+      <pubDate>Wed, 30 Sep 2026 15:51:07 +0000</pubDate>
+    </item>
+    <item>
+      <title>#67812: [Performance] Product ordering: start legacy hooks deprecation cycle</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/67812</link>
+      <description>WooCommerce begins a deprecation cycle for the legacy product-ordering algorithm in `WC_AJAX::product_ordering()`. Any callback attached to `woocommerce_after_single_product_ordering` or `woocommerce_after_product_ordering` now triggers a `wc_deprecated_hook()` notice (since 11.2) because it forces a slow, full-catalog reorder path. The optimized path gains two bulk-oriented actions, `woocommerce_product_ordering_process_moved_products` and `woocommerce_product_ordering_process_reindexed_products`, as replacements for cache, sync and backup extensions.
+
+Digest entry: issues/woocommerce/gh-woocommerce-67812.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-67812</guid>
+      <pubDate>Wed, 30 Sep 2026 15:53:28 +0000</pubDate>
+    </item>
+    <item>
+      <title>#67915: [Backport to release/11.1] Enable variation galleries for all stores</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/67915</link>
+      <description>WooCommerce 11.1 enables the native variation gallery (multiple images per product variation) for every store, moving it from a 5% canary cohort to 100%. The experimental feature toggle is removed from WooCommerce &gt; Settings &gt; Advanced &gt; Features, and the legacy `wc_feature_woocommerce_additional_variation_images_enabled` option is deleted by a DB update. This PR is the cherry-pick of trunk PR #67884 onto `release/11.1`.
+
+Digest entry: issues/woocommerce/gh-woocommerce-67915.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-67915</guid>
+      <pubDate>Wed, 30 Sep 2026 15:55:15 +0000</pubDate>
+    </item>
+    <item>
+      <title>#67884: Enable variation galleries for all stores</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/67884</link>
+      <description>WooCommerce 11.1 rolls the native variation gallery (multiple images per variation) out to 100% of stores, up from a 5% canary cohort. The experimental "Variation gallery" toggle under WooCommerce &gt; Settings &gt; Advanced &gt; Features is removed, `Package::is_enabled()` now always returns `true`, and the option-gated code paths in the classic and block gallery renderers are made unconditional. A DB update deletes the legacy feature option, and the Additional Variation Images (AVI) plugin is deactivated with its data migrated.
+
+Digest entry: issues/woocommerce/gh-woocommerce-67884.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-67884</guid>
+      <pubDate>Wed, 30 Sep 2026 15:55:44 +0000</pubDate>
+    </item>
+    <item>
+      <title>#67887: Fix term count release version metadata</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/67887</link>
+      <description>WooCommerce bumps the release-version metadata for the new `TermCount` service and the deprecation of `WC_Post_Data::recount_terms_for_product_visibility_change()` from 11.1.0 to 11.2.0. The underlying term-count change (PR #67669) was originally planned for 11.0 and then slipped to 11.2, so the `@since`, `@deprecated`, and `wc_deprecated_function()` version strings are corrected to match. No runtime behavior changes.
+
+Digest entry: issues/woocommerce/gh-woocommerce-67887.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-67887</guid>
+      <pubDate>Wed, 30 Sep 2026 15:56:01 +0000</pubDate>
+    </item>
+    <item>
+      <title>#67669: Fix term counts after removing out-of-stock visibility</title>
+      <link>https://github.com/woocommerce/woocommerce/pull/67669</link>
+      <description>WooCommerce now refreshes category, tag, brand, and ancestor term counts when a count-affecting `product_visibility` relationship is deleted, for example when `outofstock` is removed via `wp_remove_object_terms()`. Previously, with "Hide out of stock items from the catalog" enabled, such removals left counts stale. The visible case was converting an out-of-stock simple product to External/Affiliate. The logic moves into a new internal, container-managed `TermCount` service, and the old `WC_Post_Data` hook callback is deprecated.
+
+Digest entry: issues/woocommerce/gh-woocommerce-67669.md · Source: woocommerce/woocommerce</description>
+      <guid isPermaLink="false">gh-woocommerce-67669</guid>
+      <pubDate>Wed, 30 Sep 2026 15:56:15 +0000</pubDate>
     </item>
   </channel>
 </rss>

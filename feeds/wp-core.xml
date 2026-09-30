@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 19 Aug 2026 11:11:29 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 30 Sep 2026 18:02:13 +0000</lastBuildDate>
     <item>
       <title>REST API: Allow-list ability schema response keywords</title>
       <link>https://github.com/WordPress/wordpress-develop/commit/da7588be089fbaeb05ecb4d79dca3cf11815698d</link>
@@ -394,6 +394,78 @@ Digest entry: issues/wp-core/gh-wordpress-develop-58b28ff788.md · Source: WordP
 Digest entry: issues/wp-core/gh-wordpress-develop-3767a6c06a.md · Source: WordPress/wordpress-develop</description>
       <guid isPermaLink="false">gh-wordpress-develop-3767a6c06a</guid>
       <pubDate>Sat, 15 Aug 2026 17:13:38 +0000</pubDate>
+    </item>
+    <item>
+      <title>Taxonomy: Limit term slugs to 200 characters in `wp_unique_term_slug()`.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/98d218765f16ffac15fe6c17419786a4a36b990f</link>
+      <description>`wp_unique_term_slug()` now truncates generated term slugs to the 200-character limit of the `terms.slug` column when it appends a parent slug or a numeric suffix. Previously, non-Latin term names, which are stored percent-encoded (a 21-character Cyrillic name becomes a 116-character slug), could overflow the column when combined with a parent suffix, causing the insert or update to fail. The truncation logic is extracted into a new generic `wp_truncate_slug()`, and `_truncate_post_slug()` is deprecated in its favour.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-98d218765f.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-98d218765f</guid>
+      <pubDate>Wed, 30 Sep 2026 15:57:31 +0000</pubDate>
+    </item>
+    <item>
+      <title>REST API: Split comma-separated methods in array form.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/cef8ae398dec880f84571c5b660c443b88d75d92</link>
+      <description>`WP_REST_Server::get_routes()` now splits comma-separated values inside an array-form `methods` argument, matching how the string form was already handled. Previously `array( WP_REST_Server::READABLE, WP_REST_Server::EDITABLE )` registered a literal `'POST, PUT, PATCH'` key, so POST, PUT and PATCH requests returned 404 with no notice. The commit also corrects the `get_routes()` docblock, which wrongly described a `$callback, $bitmask` shape, and adds `@phpstan-type` aliases for route handlers and endpoint args.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-cef8ae398d.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-cef8ae398d</guid>
+      <pubDate>Wed, 30 Sep 2026 15:58:16 +0000</pubDate>
+    </item>
+    <item>
+      <title>HTML API: Prevent `set_modifiable_text()` from abruptly closing comments.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/a58c5a9d1782b35f869252bce93523159b179a52</link>
+      <description>`WP_HTML_Tag_Processor::set_modifiable_text()` now rejects replacement text that would abruptly close an HTML comment when it is placed at the start of the comment. Previously the guard only caught `--&gt;` and `--!&gt;` anywhere in the string. It missed `&gt;` and `-&gt;` at the very start, which the HTML parser treats as an abruptly closed empty comment when they directly follow `&lt;!--`.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-a58c5a9d17.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-a58c5a9d17</guid>
+      <pubDate>Wed, 30 Sep 2026 15:58:28 +0000</pubDate>
+    </item>
+    <item>
+      <title>REST API: expose privacy policy page in settings endpoint.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/3e882136546b8cc053d97dc7db232fdf67fd05a3</link>
+      <description>The `wp_page_for_privacy_policy` option is now registered as a setting and exposed in the core `/wp/v2/settings` REST endpoint as `page_for_privacy_policy` (integer page ID). A new `rest_pre_update_setting` callback blocks updates from users who lack `manage_privacy_options`, so the REST endpoint follows the same permission rule as the Settings &gt; Privacy screen, including on multisite.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-3e88213654.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-3e88213654</guid>
+      <pubDate>Wed, 30 Sep 2026 15:59:16 +0000</pubDate>
+    </item>
+    <item>
+      <title>HTML API: Allow raw text which cannot close its own element.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/efeefeb67498aa936fe33ac416711df32b53c719</link>
+      <description>`WP_HTML_Tag_Processor::set_modifiable_text()` no longer rejects raw-text content that merely starts with the same characters as a closing (or, for SCRIPT, opening) tag name. Previously any occurrence of `&lt;/xmp`, `&lt;/iframe`, `&lt;script`, and so on was refused, so harmless text like `&lt;/iframely&gt;` or `&lt;/scriptx&gt;` triggered `_doing_it_wrong()` and a `false` return. The check is now a regex that requires the tag name to be followed by a character that actually terminates the tag name in the HTML tokenizer (whitespace, `/`, or `&gt;`).
+
+Digest entry: issues/wp-core/gh-wordpress-develop-efeefeb674.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-efeefeb674</guid>
+      <pubDate>Wed, 30 Sep 2026 15:59:40 +0000</pubDate>
+    </item>
+    <item>
+      <title>REST API: Prevent fatal error when a null template reaches prepare_item_for_response()</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/db9e1cd5ca4055ce9dc84049be9b0d6540c55117</link>
+      <description>`WP_REST_Templates_Controller::prepare_item_for_response()` now returns a `WP_Error` (`rest_template_not_found`, HTTP 404) when passed a `null` template, instead of triggering an uncaught fatal (`Attempt to assign property "content" on null`). The null case can be reached from `update_item()`, which passes its `get_block_template()` refetch to this method unchecked, including after the revert-to-theme path deletes the template's post.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-db9e1cd5ca.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-db9e1cd5ca</guid>
+      <pubDate>Wed, 30 Sep 2026 16:00:09 +0000</pubDate>
+    </item>
+    <item>
+      <title>HTML API: Escape syntax characters in RCDATA.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/049287aeda8855d6c29af747839377d7669a9fe6</link>
+      <description>`WP_HTML_Tag_Processor::set_modifiable_text()` now escapes `&lt;`, `&amp;`, and `&gt;` in the text it writes into `TITLE` and `TEXTAREA` (RCDATA) elements. Previously only a literal closing tag matching the element name (e.g. `&lt;/title`) was neutralized. Escaping is not required by the HTML spec for RCDATA, but it keeps weaker downstream parsers such as `DOMDocument` from misreading plaintext like `&lt;img&gt;` as child markup.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-049287aeda.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-049287aeda</guid>
+      <pubDate>Wed, 30 Sep 2026 16:00:31 +0000</pubDate>
+    </item>
+    <item>
+      <title>HTML API: Refactor `wp_get_admin_notice()`.</title>
+      <link>https://github.com/WordPress/wordpress-develop/commit/25a91cb9724e0fbda50a0d281c8f84e34aa738a8</link>
+      <description>`wp_get_admin_notice()` now builds the notice's opening `&lt;div&gt;` with `WP_HTML_Tag_Processor` instead of string concatenation. The `id`, `type`, `additional_classes` and `attributes` arguments are applied through `set_attribute()` and `add_class()`, so they are escaped and can no longer break out of their attribute boundaries. Previously, malicious or malformed values could corrupt the markup, and the output then got mangled when passed through `wp_kses()`. The output for well-formed input is intended to stay the same.
+
+Digest entry: issues/wp-core/gh-wordpress-develop-25a91cb972.md · Source: WordPress/wordpress-develop</description>
+      <guid isPermaLink="false">gh-wordpress-develop-25a91cb972</guid>
+      <pubDate>Wed, 30 Sep 2026 16:01:00 +0000</pubDate>
     </item>
   </channel>
 </rss>

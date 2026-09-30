@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 19 Aug 2026 11:11:29 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 30 Sep 2026 18:02:13 +0000</lastBuildDate>
     <item>
       <title>Dev Chat Agenda – June 3, 2026</title>
       <link>https://make.wordpress.org/core/2026/06/03/dev-chat-agenda-june-03-2026/</link>
@@ -799,6 +799,33 @@ Digest entry: issues/dev-notes/make-core-125485.md · Source: Make WordPress Cor
 Digest entry: issues/dev-notes/make-core-125532.md · Source: Make WordPress Core</description>
       <guid isPermaLink="false">make-core-125532</guid>
       <pubDate>Wed, 19 Aug 2026 07:35:53 +0000</pubDate>
+    </item>
+    <item>
+      <title>Dev Chat Agenda – September 30, 2026</title>
+      <link>https://make.wordpress.org/core/2026/09/30/dev-chat-agenda-sep-30-2026/</link>
+      <description>This is the agenda for the September 30, 2026 WordPress core Dev Chat (15:00 UTC, #core on Make WordPress Slack). It lists five announcements: Gutenberg's JS unit and integration tests now use Vitest, a Trac MCP Server, WordPress Contributor Toolkit 1.2, a new Core release tools repo, and a shift from live-event releases to live-streamed releases. The one discussion item is the Secrets API (Trac #66187). @ericmann asked for broader conversation on the API approach before the 7.2 beta period, because a PR integrating 2FA with it has been opened.
+
+Digest entry: issues/dev-notes/make-core-126334.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-126334</guid>
+      <pubDate>Wed, 30 Sep 2026 01:25:52 +0000</pubDate>
+    </item>
+    <item>
+      <title>WordPress Contributor Toolkit 1.2: One app for your first Core or Gutenberg contribution</title>
+      <link>https://make.wordpress.org/core/2026/09/25/wordpress-contributor-toolkit-1-2-one-app-for-your-first-core-or-gutenberg-contribution/</link>
+      <description>WordPress Contributor Toolkit v1.2.0, a desktop app for first-time contributors, now supports a full Gutenberg contribution workflow alongside the existing Core (Trac) workflow. When you create a site, you choose either WordPress Core or Gutenberg as the contribution target. A Gutenberg site clones the Gutenberg repository, builds it, and runs it in Playground. You can link a GitHub issue, apply existing PRs, and open a new PR from inside the app.
+
+Digest entry: issues/dev-notes/make-core-126258.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-126258</guid>
+      <pubDate>Wed, 30 Sep 2026 01:26:06 +0000</pubDate>
+    </item>
+    <item>
+      <title>What’s new in Gutenberg 24.1? (30 September)</title>
+      <link>https://make.wordpress.org/core/2026/09/30/whats-new-in-gutenberg-24-1-30-september/</link>
+      <description>Gutenberg 24.1 is a design-tool-consistency release (~140 PRs) that extends background image/size/gradient, shadow, border, link/heading/button color, typography and text-columns supports to nearly every core block. It adds a `textShadow` typography support with its own Global Styles panel (Paragraph and Heading first), a public API for viewport states in custom controls, and a Media section in the Cover and Media &amp; Text inspector panels. It also stabilizes a few experimental APIs, deprecates several `@wordpress/components` primitives, removes the Fonts API BC layer, and raises the plugin's minimum WordPress version to 7.0.
+
+Digest entry: issues/dev-notes/make-core-126247.md · Source: Make WordPress Core</description>
+      <guid isPermaLink="false">make-core-126247</guid>
+      <pubDate>Wed, 30 Sep 2026 16:03:43 +0000</pubDate>
     </item>
   </channel>
 </rss>
